@@ -5,68 +5,68 @@ class Register extends Component {
     super(props);
     this.state = {
       fName: '',
-      lName: '',
-      email: '',
-      password: '',
-    }; //end of state
-    this.handleSubmit = this.handleSubmit.bind(this);
-  } // end of constructor
-
-  emailHandler = event => {
-    this.setState({
-      email: event.target.value,
-    });
-  }; // end of emailHandler
-
-  passwordHandler = event => {
-    this.setState({
-      password: event.target.value,
-    });
-  }; // end of passwordHandler
-
-  userHandler = event => {
-    this.setState({
-      user: event.target.value,
-    });
-  };
+    };
+  }
 
   handleSubmit = event => {
-    alert(`${this.state.email} Registered Successfully!`);
-    this.setState({
-      fName: '',
-      lName: '',
-      email: '',
-      password: '',
-    });
     event.preventDefault();
-  }; // end of handleSubmit
+  };
+
+  handleInputChange = event => {
+    event.preventDefault();
+    console.log('handleINputChange Name', event.target.name);
+    console.log('handleINputChange Value', event.target.value);
+  };
 
   render() {
+    const { fName } = this.state;
     return (
       <div>
+        <h1>User Registration</h1>
+        <p>First name is: {fName}</p>
         <form onSubmit={this.handleSubmit}>
-          <h1>User Registration</h1>
-          <input type="text" placeholder="First Name" />
-          <input type="text" placeholder="Last Name" />
-          <input
-            type="email"
-            placeholder="email"
-            value={this.state.email}
-            onChange={this.email}
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            // value={this.state.password}
-            // onChange={this.password}
-          />
-          <label>Are you a: </label>
-          <select onChange={this.userHandler} defaultValue="Select">
-            <option defualtValue>Select One</option>
-            <option value="groomer">Groomer</option>
-            <option value="client">Client</option>
-          </select>
-          <input type="submit" value="Submit" />
+          <p>
+            <input
+              type="text"
+              placeholder="First Name"
+              name="fName"
+              onChange={this.handleInputChange}
+            />
+          </p>
+          <p>
+            <input
+              type="text"
+              placeholder="Last Name"
+              onChange={this.handleInputChange}
+            />
+          </p>
+          <p>
+            <input
+              type="email"
+              placeholder="email"
+              value={this.state.email}
+              onChange={this.handleInputChange}
+            />
+          </p>
+          <p>
+            <input
+              type="password"
+              placeholder="Password"
+              // value={this.state.password}
+              onChange={this.handleInputChange}
+            />
+          </p>
+          <p>
+            <label>Are you a: </label>
+            <select onChange={this.handleInputChange} defaultValue="Select">
+              <option defualtValue>Select One</option>
+              <option value="groomer">Groomer</option>
+              <option value="client">Client</option>
+            </select>
+          </p>
+          <p>
+            <button>Register</button>
+          </p>
         </form>
       </div>
       // end of first div
