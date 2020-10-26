@@ -1,6 +1,8 @@
-import React, { onChange } from 'react';
+import React, { useState } from 'react';
 // useState
-import { Form, Input, Button, Checkbox, Radio } from 'antd';
+import { Field, Form, Input, Button, Checkbox, Radio } from 'antd';
+import SkeletonButton from 'antd/lib/skeleton/Button';
+
 const demo = {
   labelCol: {
     span: 8,
@@ -15,19 +17,29 @@ const tailLayout = {
     span: 16,
   },
 };
-onChange = e => {
-  console.log('radio checked', e.target.value);
-  this.setState({
-    value: e.target.value,
-  });
-};
-export default function SearchForm() {
+// const onChange = e => {
+//   console.log('radio checked', e.target.value);
+//   this.setState({
+//     value: e.target.value,
+//   });
+// };
+
+const SearchForm = () => {
+  const [name, setName] = useState('');
+  const [zipcode, setZipcode] = useState('');
+
   const onFinish = values => {
     console.log('Success: groomers displayed', values);
   };
 
   const onFinishFailed = errorInfo => {
     console.log('Unable to retrieve data:', errorInfo);
+  };
+  const handleName = e => setName(e.target.value);
+  const handleZipCode = e => setZipcode(e.target.value);
+  const onSubmit = e => {
+    e.preventDefault();
+    console.log(name, zipcode);
   };
 
   return (
@@ -50,10 +62,11 @@ export default function SearchForm() {
           },
         ]}
       >
-        <Input />
+        <Input onChange={handleName} />
       </Form.Item>
 
-      <Radio.Group onChange={this.onChange} value={this.state.value}>
+      <Radio.Group>
+        {/* onChange={onChange} */}
         <h3>I have a:</h3>
         <Radio value={1}>Dog</Radio>
         <Radio value={2}>Cat</Radio>
@@ -69,7 +82,7 @@ export default function SearchForm() {
           },
         ]}
       >
-        <Input.Zipcode />
+        <Input onChange={handleZipCode} />
       </Form.Item>
 
       <Form.Item {...tailLayout} name="remember" valuePropName="checked">
@@ -77,10 +90,11 @@ export default function SearchForm() {
       </Form.Item>
 
       <Form.Item {...tailLayout}>
-        <Button type="primary" htmlType="submit">
+        <Button onClick={onSubmit} type="primary" htmlType="submit">
           Find Your Groomers
         </Button>
       </Form.Item>
     </Form>
   );
-}
+};
+export default SearchForm;

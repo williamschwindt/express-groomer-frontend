@@ -15,7 +15,7 @@ import { ProfileListPage } from './components/pages/ProfileList';
 import { LoginPage } from './components/pages/Login';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
-import { SearchForm } from './components/pages/search/SearchForm';
+import { SearchForm } from './components/pages/search';
 ReactDOM.render(
   <Router>
     <React.StrictMode>
