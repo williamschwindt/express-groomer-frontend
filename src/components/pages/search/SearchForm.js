@@ -1,8 +1,17 @@
 import React, { useState } from 'react';
 // useState
-import { Field, Form, Input, Button, Checkbox, Radio } from 'antd';
+import {
+  Field,
+  Form,
+  Input,
+  Button,
+  Checkbox,
+  Radio,
+  Card,
+  Pagination,
+} from 'antd';
 import SkeletonButton from 'antd/lib/skeleton/Button';
-
+import { SearchPagination } from './SearchPagination.js';
 const demo = {
   labelCol: {
     span: 8,
@@ -17,6 +26,18 @@ const tailLayout = {
     span: 16,
   },
 };
+
+// const {Meta} = Card;
+// function itemRender (current, type, originalElement) {
+//   if (type === 'prev') {
+//     return <a>Previous</a>;
+//   }
+//   if (type === 'next') {
+//     return <a>Next</a>;
+//   }
+//   return originalElement;
+// }
+
 // const onChange = e => {
 //   console.log('radio checked', e.target.value);
 //   this.setState({
@@ -94,7 +115,23 @@ const SearchForm = () => {
           Find Your Groomers
         </Button>
       </Form.Item>
+      <SearchPagination />
+
+      {/* <Card
+        hoverable
+        style={{width: 240}}
+        cover={
+          <img
+            alt="example"
+            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+          />
+        }
+      >
+        <Meta title="K-9 Whisperer" description="www.expressgroomers.com" />
+      </Card>
+      <Pagination total={100} itemRender={itemRender} /> */}
     </Form>
+    // <SearchPagination/>
   );
 };
 export default SearchForm;
