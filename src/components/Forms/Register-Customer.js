@@ -50,7 +50,16 @@ class RegisterCustomer extends Component {
           },
           // stringify the json obj payload
           body: JSON.stringify({
-            key1: 'myusername',
+            fName: this.state.fName,
+            lName: this.state.lName,
+            email: this.state.email,
+            phone: this.state.phone,
+            address: this.state.address,
+            city: this.state.city,
+            state: this.state.state,
+            country: this.state.country,
+            zipcode: this.state.zip,
+            photo_url: this.state.photo_url,
           }),
         }
       );

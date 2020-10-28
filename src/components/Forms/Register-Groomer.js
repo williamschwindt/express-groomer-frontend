@@ -53,7 +53,19 @@ class CustomerGroomer extends Component {
           },
           // stringify the json obj payload
           body: JSON.stringify({
-            key1: 'myusername',
+            fName: this.state.fName,
+            lName: this.state.lName,
+            email: this.state.email,
+            phone: this.state.phone,
+            address: this.state.address,
+            city: this.state.city,
+            state: this.state.state,
+            country: this.state.country,
+            zipcode: this.state.zip,
+            photo_url: this.state.photo_url,
+            walk_rate: this.state.walk_rate,
+            day_care_rate: this.state.day_care_rate,
+            vet_visit_rate: this.state.vet_visit_rate,
           }),
         }
       );
