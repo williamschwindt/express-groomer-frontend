@@ -17,22 +17,19 @@ const getExampleData = () => {
     .then(response => response.data);
 };
 
-const requestOne = axios.get(groomersReq);
-const requestTwo = axios.get(customersReq);
+const requestGroomers = axios.get(groomersReq);
+const requestCustomers = axios.get(customersReq);
 
 const getUserData = () => {
   return axios
-    .all([requestOne, requestTwo])
+    .all([requestGroomers, requestCustomers])
     .then(
       axios.spread((...responses) => {
-        // return {groomers: responses[0], customers: responses[1]}
         let users = [...responses[0].data, ...responses[1].data];
         return users;
-        // use/access the results
       })
     )
     .catch(errors => {
-      // react on errors.
       return errors;
     });
 };

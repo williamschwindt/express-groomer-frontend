@@ -50,7 +50,7 @@ function HomeContainer({ LoadingComponent }) {
         <RenderHomePage userInfo={userInfo} authService={authService} />
       ) : (
         // you can either render a registration component here,
-        <h1>hi</h1>
+        <h1>you need to register before you can view dashboard</h1>
         // OR you can redirect to it's own registration page
         // <Redirect to={'/registration'} />
       )}
