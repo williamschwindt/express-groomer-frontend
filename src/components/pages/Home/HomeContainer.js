@@ -49,8 +49,10 @@ function HomeContainer({ LoadingComponent }) {
       !(userInfo.oktaId in oktaIds) ? (
         <RenderHomePage userInfo={userInfo} authService={authService} />
       ) : (
-        // this is where the registration form component should go
-        <h1>fill out registration form</h1>
+        // you can either render a registration component here,
+        <h1>hi</h1>
+        // OR you can redirect to it's own registration page
+        // <Redirect to={'/registration'} />
       )}
     </>
   );
