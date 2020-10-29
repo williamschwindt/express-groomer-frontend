@@ -1,5 +1,8 @@
 import axios from 'axios';
 
+let groomersReq = `${process.env.REACT_APP_API_URI}/groomers`;
+let customersReq = `${process.env.REACT_APP_API_URI}/customers`;
+
 // we will define a bunch of API calls here.
 const apiUrl = `${process.env.REACT_APP_API_URI}/profiles`;
 
@@ -9,6 +12,32 @@ const sleep = time =>
   });
 
 const getExampleData = () => {
+  return axios
+    .get(`https://jsonplaceholder.typicode.com/photos?albumId=1`)
+    .then(response => response.data);
+};
+
+const requestOne = axios.get(groomersReq);
+const requestTwo = axios.get(customersReq);
+
+const getUserData = () => {
+  return axios
+    .all([requestOne, requestTwo])
+    .then(
+      axios.spread((...responses) => {
+        // return {groomers: responses[0], customers: responses[1]}
+        let users = [...responses[0].data, ...responses[1].data];
+        return users;
+        // use/access the results
+      })
+    )
+    .catch(errors => {
+      // react on errors.
+      return errors;
+    });
+};
+
+const getGUserData = () => {
   return axios
     .get(`https://jsonplaceholder.typicode.com/photos?albumId=1`)
     .then(response => response.data);
@@ -49,4 +78,4 @@ const getProfileData = authState => {
   }
 };
 
-export { sleep, getExampleData, getProfileData, getDSData };
+export { sleep, getExampleData, getProfileData, getDSData, getUserData };

@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { Redirect } from 'react-router-dom';
 import { useOktaAuth } from '@okta/okta-react';
+import { getUserData } from '../../../api/index.js';
 
 import RenderHomePage from './RenderHomePage';
 
@@ -8,6 +10,13 @@ function HomeContainer({ LoadingComponent }) {
   const [userInfo, setUserInfo] = useState(null);
   // eslint-disable-next-line
   const [memoAuthService] = useMemo(() => [authService], []);
+
+  const [oktaIds, setOktaIds] = useState([]);
+
+  getUserData().then(response => {
+    const oktaUserIds = response.filter(user => user.oktaId);
+    setOktaIds(...oktaUserIds);
+  });
 
   useEffect(() => {
     let isSubscribed = true;
@@ -33,8 +42,15 @@ function HomeContainer({ LoadingComponent }) {
       {authState.isAuthenticated && !userInfo && (
         <LoadingComponent message="Fetching user profile..." />
       )}
-      {authState.isAuthenticated && userInfo && (
+
+      {authState.isAuthenticated &&
+      userInfo &&
+      oktaIds &&
+      !(userInfo.oktaId in oktaIds) ? (
         <RenderHomePage userInfo={userInfo} authService={authService} />
+      ) : (
+        // this is where the registration form component should go
+        <h1>fill out registration form</h1>
       )}
     </>
   );
