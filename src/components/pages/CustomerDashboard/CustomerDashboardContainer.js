@@ -1,11 +1,8 @@
 import React from 'react';
+import { RenderCustomerDashboard } from './RenderCustomerDashboard';
 
 const CustomerDashboardContainer = () => {
-  return (
-    <div>
-      <h1>test</h1>
-    </div>
-  );
+  return <RenderCustomerDashboard />;
 };
 
 export default CustomerDashboardContainer;
