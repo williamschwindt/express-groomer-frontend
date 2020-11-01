@@ -205,7 +205,7 @@ class CustomerGroomer extends Component {
           <p>
             <input
               type="number"
-              placeholder="walk_rate"
+              placeholder="walk rate"
               name="walk_rate"
               onChange={this.handleInputChange}
             />
