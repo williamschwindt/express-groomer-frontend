@@ -5,7 +5,6 @@ import {
   Route,
   useHistory,
   Switch,
-  Link,
 } from 'react-router-dom';
 
 import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
