@@ -4,9 +4,9 @@ import { useForm } from 'react-hook-form';
 
 export default function RegisterCustomer() {
   const defaultUser = {
-    name: 'Martha',
-    lastname: 'Seymour',
-    email: 'martha@seymour.com',
+    name: '',
+    lastname: '',
+    email: '',
     phone: '',
     zipcode: '',
     address: '',
