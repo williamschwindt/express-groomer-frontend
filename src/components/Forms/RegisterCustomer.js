@@ -23,7 +23,7 @@ export default function RegisterCustomer() {
 
   const onSubmit = data => {
     axios
-      .post('https://labspt12-express-groomer-a-api.herokuapp.com/groomers', {
+      .post('https://labspt12-express-groomer-a-api.herokuapp.com/customers', {
         fName: user.fName,
         lName: user.lName,
         email: user.email,
