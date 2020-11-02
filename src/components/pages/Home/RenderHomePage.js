@@ -19,6 +19,9 @@ function RenderHomePage(props) {
           <Link to="/customer-dashboard">Customer Dashboard</Link>
         </p>
         <p>
+          <Link to="/groomer-dashboard">Groomer Dashboard</Link>
+        </p>
+        <p>
           <Link to="/example-list">Example List of Items</Link>
         </p>
         <p>
