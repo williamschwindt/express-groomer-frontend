@@ -40,7 +40,7 @@ class RegisterCustomer extends Component {
   async postDataGroomers() {
     try {
       let result = await fetch(
-        'https://labspt12-express-groomer-a-api.herokuapp.com/groomers',
+        'https://labspt12-express-groomer-a-api.herokuapp.com/customers',
         {
           method: 'post',
           mode: 'no-cors', // no-cors to eliminate some errors
@@ -194,7 +194,7 @@ class RegisterCustomer extends Component {
             </select>
           </p> */}
           <p>
-            <button onClick={() => this.postData()}>Register</button>
+            <button onClick={() => this.postDataCustomer()}>Register</button>
           </p>
         </form>
       </div>

@@ -10,7 +10,7 @@ import {
 import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
 import 'antd/dist/antd.less';
 
-import { NotFoundPage } from './components/pages/NotFound';
+// import { NotFoundPage } from './components/pages/NotFound';
 import { ExampleListPage } from './components/pages/ExampleList';
 import { HomePage } from './components/pages/Home';
 import { ProfileListPage } from './components/pages/ProfileList';
@@ -21,7 +21,7 @@ import { LoadingComponent } from './components/common';
 import Navbar from './components/Layouts/Navbar';
 import Register from './components/Forms/Register';
 import RegisterGroomer from './components/Forms/Register-Groomer';
-import CustomerGroomer from './components/Forms/Register-Customer';
+import RegisterCustomer from './components/Forms/Register-Customer';
 
 ReactDOM.render(
   <Router>
@@ -30,7 +30,7 @@ ReactDOM.render(
       <div className="paths-containers">
         <Route path="/register" component={Register} />
         <Route path="/groomers" component={RegisterGroomer} />
-        <Route path="/customers" component={CustomerGroomer} />
+        <Route path="/customers" component={RegisterCustomer} />
       </div>
       <App />
     </React.StrictMode>
