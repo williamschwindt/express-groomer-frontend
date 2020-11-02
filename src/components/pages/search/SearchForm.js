@@ -11,7 +11,7 @@ import {
   Pagination,
 } from 'antd';
 import SkeletonButton from 'antd/lib/skeleton/Button';
-import { SearchPagination } from './SearchPagination.js';
+import SearchPagination from './SearchPagination.js';
 const demo = {
   labelCol: {
     span: 8,
@@ -116,22 +116,7 @@ const SearchForm = () => {
         </Button>
       </Form.Item>
       <SearchPagination />
-
-      {/* <Card
-        hoverable
-        style={{width: 240}}
-        cover={
-          <img
-            alt="example"
-            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-          />
-        }
-      >
-        <Meta title="K-9 Whisperer" description="www.expressgroomers.com" />
-      </Card>
-      <Pagination total={100} itemRender={itemRender} /> */}
     </Form>
-    // <SearchPagination/>
   );
 };
 export default SearchForm;
