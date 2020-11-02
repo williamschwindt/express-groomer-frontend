@@ -269,7 +269,7 @@ export default function RegisterCustomer() {
           placeholder="Photo URL"
           onChange={handleInputChange}
           aria-invalid={errors.zipcode ? 'true' : 'false'}
-          ref={register({ required: true, maxLength: 30 })}
+          ref={register({ required: true, maxLength: 100 })}
         />
 
         {/* use role="alert" to announce the error message */}
