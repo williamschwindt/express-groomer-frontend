@@ -17,6 +17,7 @@ import { ProfileListPage } from './components/pages/ProfileList';
 import { LoginPage } from './components/pages/Login';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
+import { CustomerDashboard } from './components/pages/CustomerDashboard';
 
 ReactDOM.render(
   <Router>
@@ -39,20 +40,21 @@ function App() {
   };
 
   return (
-    
     <Security {...config} onAuthRequired={authHandler}>
       <Switch>
         <Route path="/login" component={LoginPage} />
         <Route path="/implicit/callback" component={LoginCallback} />
-        {/* any of the routes you need secured should be registered as SecureRoutes */}
+
         <SecureRoute
-          path="/"
           exact
+          path="/"
           component={() => <HomePage LoadingComponent={LoadingComponent} />}
         />
         <SecureRoute path="/example-list" component={ExampleListPage} />
-        
-        <SecureRoute path="/profile-list" component={ProfileListPage} /><Route component={NotFoundPage} />
+
+        <SecureRoute path="/profile-list" component={ProfileListPage} />
+        <SecureRoute path="/customer-dashboard" component={CustomerDashboard} />
+        <Route component={NotFoundPage} />
       </Switch>
     </Security>
   );
