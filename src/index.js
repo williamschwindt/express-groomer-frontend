@@ -15,7 +15,9 @@ import { ProfileListPage } from './components/pages/ProfileList';
 import { LoginPage } from './components/pages/Login';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
+
 import { SearchForm } from './components/pages/search';
+
 ReactDOM.render(
   <Router>
     <React.StrictMode>
@@ -39,14 +41,16 @@ function App() {
         <Route path="/login" component={LoginPage} />
         <Route path="/SearchForm" component={SearchForm} />
         <Route path="/implicit/callback" component={LoginCallback} />
-        {/* any of the routes you need secured should be registered as SecureRoutes */}
+
         <SecureRoute
-          path="/"
           exact
+          path="/"
           component={() => <HomePage LoadingComponent={LoadingComponent} />}
         />
         <SecureRoute path="/example-list" component={ExampleListPage} />
+
         <SecureRoute path="/profile-list" component={ProfileListPage} />
+
         <Route component={NotFoundPage} />
       </Switch>
     </Security>
