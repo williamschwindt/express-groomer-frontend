@@ -4,8 +4,13 @@ import { useForm } from 'react-hook-form';
 // The following component is an example of your existing Input Component
 const Input = ({ label, register, required }) => (
   <>
-    <label>{label}</label>
-    <input name={label} ref={register({ required })} />
+    <label htmlFor={label}>{label}</label>
+    <input
+      id={label}
+      placeholder={label}
+      name={label}
+      ref={register({ required })}
+    />
   </>
 );
 
@@ -27,6 +32,7 @@ export default function App() {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Input label="First Name" register={register} required />
+      <Input label="User Email" register={register} required />
       <Select label="Age" ref={register} />
       <input type="submit" />
     </form>
