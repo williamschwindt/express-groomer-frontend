@@ -4,8 +4,8 @@ import { useForm } from 'react-hook-form';
 
 export default function RegisterCustomer() {
   const defaultUser = {
-    fName: 'Martha',
-    lName: 'Seymour',
+    name: 'Martha',
+    lastname: 'Seymour',
     email: 'martha@seymour.com',
     phone: '',
     zipcode: '',
@@ -24,8 +24,8 @@ export default function RegisterCustomer() {
   const onSubmit = data => {
     axios
       .post('https://labspt12-express-groomer-a-api.herokuapp.com/customers', {
-        fName: user.fName,
-        lName: user.lName,
+        name: user.name,
+        lastname: user.lastname,
         email: user.email,
         phone: user.phone,
         address: user.address,
@@ -33,6 +33,7 @@ export default function RegisterCustomer() {
         state: user.state,
         country: user.country,
         zipcode: user.zip,
+        description: user.description,
         photo_url: user.photo_url,
       })
       .then(function(response) {
@@ -58,8 +59,8 @@ export default function RegisterCustomer() {
   //         },
   //         // stringify the json obj payload
   //         body: JSON.stringify({
-  //           fName: user.fName,
-  //           lName: user.lName,
+  //           name: user.name,
+  //           lastname: user.lastname,
   //           email: user.email,
   //           phone: user.phone,
   //           address: user.address,
@@ -113,44 +114,44 @@ export default function RegisterCustomer() {
     <div className="registration-container">
       <h1>User Registration</h1>
       {/* To test functionality */}
-      <p>First name is: {user.fName}</p>
+      <p>First name is: {user.name}</p>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="name">Name</label>
 
         {/* use aria-invalid to indicate field contain error */}
         <input
           type="text"
-          id="fName"
-          name="fName"
+          id="name"
+          name="name"
           placeholder="First Name"
           onChange={handleInputChange}
-          aria-invalid={errors.fName ? 'true' : 'false'}
+          aria-invalid={errors.name ? 'true' : 'false'}
           ref={register({ required: true, maxLength: 30 })}
         />
 
         {/* use role="alert" to announce the error message */}
-        {errors.fName && errors.fName.type === 'required' && (
+        {errors.name && errors.name.type === 'required' && (
           <span role="alert">This is required</span>
         )}
-        {errors.fName && errors.fName.type === 'maxLength' && (
+        {errors.name && errors.name.type === 'maxLength' && (
           <span role="alert">Max length exceeded</span>
         )}
 
         <input
           type="text"
-          id="lName"
-          name="lName"
+          id="lastname"
+          name="lastname"
           placeholder="Last Name"
           onChange={handleInputChange}
-          aria-invalid={errors.lName ? 'true' : 'false'}
+          aria-invalid={errors.lastname ? 'true' : 'false'}
           ref={register({ required: true, maxLength: 30 })}
         />
 
         {/* use role="alert" to announce the error message */}
-        {errors.lName && errors.lName.type === 'required' && (
+        {errors.lastname && errors.lastname.type === 'required' && (
           <span role="alert">This is required</span>
         )}
-        {errors.lName && errors.lName.type === 'maxLength' && (
+        {errors.lastname && errors.lastname.type === 'maxLength' && (
           <span role="alert">Max length exceeded</span>
         )}
 
@@ -259,6 +260,24 @@ export default function RegisterCustomer() {
           <span role="alert">This is required</span>
         )}
         {errors.zipcode && errors.zipcode.type === 'maxLength' && (
+          <span role="alert">Max length exceeded</span>
+        )}
+
+        <input
+          type="text"
+          id="description"
+          name="description"
+          placeholder="description"
+          onChange={handleInputChange}
+          aria-invalid={errors.description ? 'true' : 'false'}
+          ref={register({ required: true, maxLength: 30 })}
+        />
+
+        {/* use role="alert" to announce the error message */}
+        {errors.description && errors.description.type === 'required' && (
+          <span role="alert">This is required</span>
+        )}
+        {errors.description && errors.description.type === 'maxLength' && (
           <span role="alert">Max length exceeded</span>
         )}
 
