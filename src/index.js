@@ -18,6 +18,7 @@ import { LoginPage } from './components/pages/Login';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
 import { CustomerDashboard } from './components/pages/CustomerDashboard';
+import { GroomerDashboard } from './components/pages/GroomerDashboard';
 
 ReactDOM.render(
   <Router>
@@ -54,6 +55,7 @@ function App() {
 
         <SecureRoute path="/profile-list" component={ProfileListPage} />
         <SecureRoute path="/customer-dashboard" component={CustomerDashboard} />
+        <SecureRoute path="/groomer-dashboard" component={GroomerDashboard} />
         <Route component={NotFoundPage} />
       </Switch>
     </Security>
