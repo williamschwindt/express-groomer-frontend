@@ -44,63 +44,9 @@ export default function RegisterCustomer() {
       });
   };
 
-  //   async function onSubmit (data) = {
-  //   // must be async in order to await key function
-
-  //   try {
-  //     let result = await fetch(
-  //       'https://labspt12-express-groomer-a-api.herokuapp.com/groomers',
-  //       {
-  //         method: 'post',
-  //         mode: 'no-cors', // no-cors to eliminate some errors
-  //         headers: {
-  //           Accept: 'application/json',
-  //           'Content-type': 'application/json',
-  //         },
-  //         // stringify the json obj payload
-  //         body: JSON.stringify({
-  //           name: user.name,
-  //           lastname: user.lastname,
-  //           email: user.email,
-  //           phone: user.phone,
-  //           address: user.address,
-  //           city: user.city,
-  //           state: user.state,
-  //           country: user.country,
-  //           zipcode: user.zip,
-  //           photo_url: user.photo_url,
-  //         }),
-  //       }
-  //     );
-  //     console.log('RESULT', result);
-  //   } catch (e) {
-  //     console.log('REGISTER ERROR: ', e);
-  //   }
-
-  // }
-
-  // const handleSubmit = event => {
-  //   event.preventDefault();
-  //   //   testing the handlesubmit
-  //   const data = this.state;
-  //   console.log('Final Data', data);
-  // };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault()
-  //   axios.post('/customers', customerRegister)
-  //     .then(function (response) {
-  //         console.log(response)
-  //     })
-  //     .catch(function (error) {
-  //         console.log(error)
-  //     })
-
   const handleInputChange = event => {
     event.preventDefault();
     //   getting name of input and value
-    // console.log('handleINputChange Name', event.target.name);
-    //   console.log('handleINputChange Value', event.target.value);
     setUser({
       ...user,
       // seting key to key-value pair
