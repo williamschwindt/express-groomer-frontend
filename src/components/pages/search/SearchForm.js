@@ -13,6 +13,9 @@ import SkeletonButton from 'antd/lib/skeleton/Button';
 // import { SearchPagination } from './SearchPagination.js';
 import { getGroomerData } from '../../../api/index';
 
+const cardDescription = {
+  margin: '1px',
+};
 const demo = {
   labelCol: {
     span: 8,
@@ -85,10 +88,25 @@ const SearchForm = () => {
             }}
             cover={<img alt="example" src={groomer.photo_url} />}
           >
-            <Meta
-              title={groomer.name}
-              description={'$' + groomer.vet_visit_rate}
-            ></Meta>
+            <Meta title={groomer.name + ' ' + groomer.lastname}></Meta>
+            <div
+              style={{
+                marginBottom: '1px',
+              }}
+            >
+              <p style={cardDescription}>
+                Vet Visit Rate: ${groomer.vet_visit_rate}
+              </p>
+              <p style={cardDescription}>
+                Day Care Rate: ${groomer.day_care_rate}
+              </p>
+              <p style={cardDescription}>Walk Rate: ${groomer.walk_rate}</p>
+              <p style={cardDescription}>Address: {groomer.address}</p>
+              <p style={cardDescription}>
+                {groomer.city}, {groomer.state} {groomer.zip}
+              </p>
+              <p style={cardDescription}>{groomer.country}</p>
+            </div>
           </Card>
         );
       })}
