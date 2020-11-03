@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-// useState
+import React, { useState, useEffect } from 'react';
 import {
   Field,
   Form,
@@ -11,7 +10,9 @@ import {
   Pagination,
 } from 'antd';
 import SkeletonButton from 'antd/lib/skeleton/Button';
-import { SearchPagination } from './SearchPagination.js';
+// import { SearchPagination } from './SearchPagination.js';
+import { getGroomerData } from '../../../api/index';
+
 const demo = {
   labelCol: {
     span: 8,
@@ -27,7 +28,7 @@ const tailLayout = {
   },
 };
 
-// const {Meta} = Card;
+const { Meta } = Card;
 // function itemRender (current, type, originalElement) {
 //   if (type === 'prev') {
 //     return <a>Previous</a>;
@@ -48,6 +49,7 @@ const tailLayout = {
 const SearchForm = () => {
   const [name, setName] = useState('');
   const [zipcode, setZipcode] = useState('');
+  const [groomers, setGroomers] = useState([]);
 
   const onFinish = values => {
     console.log('Success: groomers displayed', values);
@@ -63,75 +65,103 @@ const SearchForm = () => {
     console.log(name, zipcode);
   };
 
+  useEffect(() => {
+    getGroomerData().then(response => {
+      setGroomers(response);
+    });
+  }, []);
+
+  console.log(groomers);
+
   return (
-    <Form
-      {...SearchForm}
-      name="basic"
-      initialValues={{
-        remember: true,
-      }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-    >
-      <Form.Item
-        label="petsName"
-        name="petsName"
-        rules={[
-          {
-            required: true,
-            message: 'What is your pets name?',
-          },
-        ]}
-      >
-        <Input onChange={handleName} />
-      </Form.Item>
+    <div style={{ display: 'flex', flexWrap: 'wrap', margin: '10px' }}>
+      {groomers.map(groomer => {
+        return (
+          <Card
+            hoverable
+            style={{
+              width: 240,
+              margin: '10px',
+            }}
+            cover={<img alt="example" src={groomer.photo_url} />}
+          >
+            <Meta
+              title={groomer.name}
+              description={'$' + groomer.vet_visit_rate}
+            ></Meta>
+          </Card>
+        );
+      })}
+    </div>
 
-      <Radio.Group>
-        {/* onChange={onChange} */}
-        <h3>I have a:</h3>
-        <Radio value={1}>Dog</Radio>
-        <Radio value={2}>Cat</Radio>
-      </Radio.Group>
+    // <Form
+    //   {...SearchForm}
+    //   name="basic"
+    //   initialValues={{
+    //     remember: true,
+    //   }}
+    //   onFinish={onFinish}
+    //   onFinishFailed={onFinishFailed}
+    // >
+    //   <Form.Item
+    //     label="Pet's Name"
+    //     name="petsName"
+    //     rules={[
+    //       {
+    //         required: true,
+    //         message: 'What is your pets name?',
+    //       },
+    //     ]}
+    //   >
+    //     <Input onChange={handleName} />
+    //   </Form.Item>
 
-      <Form.Item
-        label="Enter zip or postal code:"
-        name="zipcode"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your zipcode!',
-          },
-        ]}
-      >
-        <Input onChange={handleZipCode} />
-      </Form.Item>
+    //   <Radio.Group>
+    //     {/* onChange={onChange} */}
+    //     <h3>I have a:</h3>
+    //     <Radio value={1}>Dog</Radio>
+    //     <Radio value={2}>Cat</Radio>
+    //   </Radio.Group>
 
-      <Form.Item {...tailLayout} name="remember" valuePropName="checked">
-        <Checkbox>Remember me</Checkbox>
-      </Form.Item>
+    //   <Form.Item
+    //     label="Enter zip or postal code:"
+    //     name="zipcode"
+    //     rules={[
+    //       {
+    //         required: true,
+    //         message: 'Please input your zipcode!',
+    //       },
+    //     ]}
+    //   >
+    //     <Input onChange={handleZipCode} />
+    //   </Form.Item>
 
-      <Form.Item {...tailLayout}>
-        <Button onClick={onSubmit} type="primary" htmlType="submit">
-          Find Your Groomers
-        </Button>
-      </Form.Item>
-      <SearchPagination />
+    //   <Form.Item {...tailLayout} name="remember" valuePropName="checked">
+    //     <Checkbox>Remember me</Checkbox>
+    //   </Form.Item>
 
-      {/* <Card
-        hoverable
-        style={{width: 240}}
-        cover={
-          <img
-            alt="example"
-            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-          />
-        }
-      >
-        <Meta title="K-9 Whisperer" description="www.expressgroomers.com" />
-      </Card>
-      <Pagination total={100} itemRender={itemRender} /> */}
-    </Form>
-    // <SearchPagination/>
+    //   <Form.Item {...tailLayout}>
+    //     <Button onClick={onSubmit} type="primary" htmlType="submit">
+    //       Find Your Groomers
+    //     </Button>
+    //   </Form.Item>
+    //   {/* <SearchPagination /> */}
+
+    //   <Card
+    //     hoverable
+    //     style={{width: 240}}
+    //     cover={
+    //       <img
+    //         alt="example"
+    //         src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+    //       />
+    //     }
+    //   >
+    //     <Meta title="K-9 Whisperer" description="www.expressgroomers.com" />
+    //   </Card>
+    //   {/* <Pagination total={100} itemRender={itemRender} /> */}
+    // </Form>
+    // // <SearchPagination/>
   );
 };
 export default SearchForm;

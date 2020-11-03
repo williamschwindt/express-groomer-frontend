@@ -1,26 +1,34 @@
 import axios from 'axios';
-
+let groomersReq = `${process.env.REACT_APP_API_URI}/groomers`;
 // we will define a bunch of API calls here.
 const apiUrl = `${process.env.REACT_APP_API_URI}/profiles`;
-
 const sleep = time =>
   new Promise(resolve => {
     setTimeout(resolve, time);
   });
-
 const getExampleData = () => {
   return axios
     .get(`https://jsonplaceholder.typicode.com/photos?albumId=1`)
     .then(response => response.data);
 };
-
+const requestGroomers = axios.get(groomersReq);
+const getGroomerData = () => {
+  return axios
+    .get(groomersReq)
+    .then(response => {
+      let groomers = response.data;
+      return groomers;
+    })
+    .catch(errors => {
+      return errors;
+    });
+};
 const getAuthHeader = authState => {
   if (!authState.isAuthenticated) {
     throw new Error('Not authenticated');
   }
   return { Authorization: `Bearer ${authState.idToken}` };
 };
-
 const getDSData = (url, authState) => {
   // here's another way you can compose together your API calls.
   // Note the use of GetAuthHeader here is a little different than in the getProfileData call.
@@ -33,11 +41,9 @@ const getDSData = (url, authState) => {
     .then(res => JSON.parse(res.data))
     .catch(err => err);
 };
-
 const apiAuthGet = authHeader => {
   return axios.get(apiUrl, { headers: authHeader });
 };
-
 const getProfileData = authState => {
   try {
     return apiAuthGet(getAuthHeader(authState)).then(response => response.data);
@@ -48,5 +54,4 @@ const getProfileData = authState => {
     });
   }
 };
-
-export { sleep, getExampleData, getProfileData, getDSData };
+export { sleep, getExampleData, getProfileData, getDSData, getGroomerData };
