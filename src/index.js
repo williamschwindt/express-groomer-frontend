@@ -20,12 +20,21 @@ import { LoadingComponent } from './components/common';
 // new imports
 import Navbar from './components/Layouts/Navbar';
 import Register from './components/Forms/Register';
+<<<<<<< HEAD
 import RegisterGroomer from './components/Forms/Register-Groomer';
 import CustomerGroomer from './components/Forms/Register-Customer';
+=======
+import RegisterGroomer from './components/Forms/RegisterGroomer';
+import CustomerGroomer from './components/Forms/RegisterCustomer';
+>>>>>>> 8b701827cdc817bbc20e4f1b1ec58c574c186829
 
 ReactDOM.render(
   <Router>
     <React.StrictMode>
+<<<<<<< HEAD
+=======
+      <Navbar />
+>>>>>>> 8b701827cdc817bbc20e4f1b1ec58c574c186829
       <div className="paths-containers">
         <Route path="/register" component={Register} />
         <Route path="/groomers" component={RegisterGroomer} />
