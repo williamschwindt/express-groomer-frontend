@@ -17,11 +17,10 @@ export default function RegisterCustomer() {
     walk_rate: 0,
     day_care_rate: 0,
     vet_visit_rate: 0,
-    //   password: '',
+    
   };
 
   const { register, handleSubmit, errors } = useForm();
-  // const onSubmit = (data) => console.log(data);
   const [user, setUser] = useState(defaultUser);
 
   const onSubmit = data => {
@@ -53,8 +52,7 @@ export default function RegisterCustomer() {
   const handleInputChange = event => {
     event.preventDefault();
     //   getting name of input and value
-    // console.log('handleINputChange Name', event.target.name);
-    //   console.log('handleINputChange Value', event.target.value);
+    
     setUser({
       ...user,
       // seting key to key-value pair
