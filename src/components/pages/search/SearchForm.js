@@ -1,16 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {
-  Field,
-  Form,
-  Input,
-  Button,
-  Checkbox,
-  Radio,
-  Card,
-  Pagination,
-} from 'antd';
-import SkeletonButton from 'antd/lib/skeleton/Button';
-// import { SearchPagination } from './SearchPagination.js';
+import { Card, Pagination } from 'antd';
 import { getGroomerData } from '../../../api/index';
 
 const cardDescription = {
@@ -32,27 +21,18 @@ const tailLayout = {
 };
 
 const { Meta } = Card;
-// function itemRender (current, type, originalElement) {
-//   if (type === 'prev') {
-//     return <a>Previous</a>;
-//   }
-//   if (type === 'next') {
-//     return <a>Next</a>;
-//   }
-//   return originalElement;
-// }
-
-// const onChange = e => {
-//   console.log('radio checked', e.target.value);
-//   this.setState({
-//     value: e.target.value,
-//   });
-// };
 
 const SearchForm = () => {
   const [name, setName] = useState('');
   const [zipcode, setZipcode] = useState('');
   const [groomers, setGroomers] = useState([]);
+  const [minValue, setMinValue] = useState(0);
+  const [maxValue, setMaxValue] = useState(12);
+
+  const handleChange = value => {
+    setMinValue((value - 1) * 12);
+    setMaxValue(value * 12);
+  };
 
   const onFinish = values => {
     console.log('Success: groomers displayed', values);
@@ -78,8 +58,9 @@ const SearchForm = () => {
 
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap', margin: '10px' }}>
-      {groomers.map(groomer => {
-        return (
+      {groomers &&
+        groomers.length > 0 &&
+        groomers.slice(minValue, maxValue).map(groomer => (
           <Card
             hoverable
             style={{
@@ -108,78 +89,14 @@ const SearchForm = () => {
               <p style={cardDescription}>{groomer.country}</p>
             </div>
           </Card>
-        );
-      })}
+        ))}
+      <Pagination
+        defaultCurrent={1}
+        defaultPageSize={12}
+        onChange={handleChange}
+        total={100}
+      />
     </div>
-
-    // <Form
-    //   {...SearchForm}
-    //   name="basic"
-    //   initialValues={{
-    //     remember: true,
-    //   }}
-    //   onFinish={onFinish}
-    //   onFinishFailed={onFinishFailed}
-    // >
-    //   <Form.Item
-    //     label="Pet's Name"
-    //     name="petsName"
-    //     rules={[
-    //       {
-    //         required: true,
-    //         message: 'What is your pets name?',
-    //       },
-    //     ]}
-    //   >
-    //     <Input onChange={handleName} />
-    //   </Form.Item>
-
-    //   <Radio.Group>
-    //     {/* onChange={onChange} */}
-    //     <h3>I have a:</h3>
-    //     <Radio value={1}>Dog</Radio>
-    //     <Radio value={2}>Cat</Radio>
-    //   </Radio.Group>
-
-    //   <Form.Item
-    //     label="Enter zip or postal code:"
-    //     name="zipcode"
-    //     rules={[
-    //       {
-    //         required: true,
-    //         message: 'Please input your zipcode!',
-    //       },
-    //     ]}
-    //   >
-    //     <Input onChange={handleZipCode} />
-    //   </Form.Item>
-
-    //   <Form.Item {...tailLayout} name="remember" valuePropName="checked">
-    //     <Checkbox>Remember me</Checkbox>
-    //   </Form.Item>
-
-    //   <Form.Item {...tailLayout}>
-    //     <Button onClick={onSubmit} type="primary" htmlType="submit">
-    //       Find Your Groomers
-    //     </Button>
-    //   </Form.Item>
-    //   {/* <SearchPagination /> */}
-
-    //   <Card
-    //     hoverable
-    //     style={{width: 240}}
-    //     cover={
-    //       <img
-    //         alt="example"
-    //         src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-    //       />
-    //     }
-    //   >
-    //     <Meta title="K-9 Whisperer" description="www.expressgroomers.com" />
-    //   </Card>
-    //   {/* <Pagination total={100} itemRender={itemRender} /> */}
-    // </Form>
-    // // <SearchPagination/>
   );
 };
 export default SearchForm;
