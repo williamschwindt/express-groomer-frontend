@@ -26,7 +26,6 @@ import CustomerGroomer from './components/Forms/Register-Customer';
 ReactDOM.render(
   <Router>
     <React.StrictMode>
-      <Navbar />
       <div className="paths-containers">
         <Route path="/register" component={Register} />
         <Route path="/groomers" component={RegisterGroomer} />

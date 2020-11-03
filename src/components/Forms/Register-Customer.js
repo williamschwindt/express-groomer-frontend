@@ -28,8 +28,6 @@ class RegisterCustomer extends Component {
   handleInputChange = event => {
     event.preventDefault();
     //   getting name of input and value
-    // console.log('handleINputChange Name', event.target.name);
-    //   console.log('handleINputChange Value', event.target.value);
     this.setState({
       // seting key to key-value pair
       [event.target.name]: event.target.value,
@@ -177,22 +175,6 @@ class RegisterCustomer extends Component {
           </p>
           {/* end of description */}
 
-          {/* <p>
-            <input
-              type="password"
-              placeholder="Password"
-              name="password"
-              onChange={this.handleInputChange}
-            />
-          </p> */}
-          {/* <p>
-            <label>Are you a: </label>
-            <select onChange={this.handleInputChange} defaultValue="Select">
-              <option>Select One</option>
-              <option value="groomer">Groomer</option>
-              <option value="client">Client</option>
-            </select>
-          </p> */}
           <p>
             <button onClick={() => this.postData()}>Register</button>
           </p>
