@@ -1,3 +1,9 @@
 import { combineReducers } from 'redux';
 
-export const rootReducer = combineReducers({});
+import { groomerReducer } from './groomerReducers/groomerReducer';
+import { customerReducer } from './customerReducers/customerReducer';
+
+export const rootReducer = combineReducers({
+  groomerReducer,
+  customerReducer,
+});
