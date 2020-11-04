@@ -24,6 +24,15 @@ function RenderHomePage(props) {
             <Link to="/groomer-dashboard">Groomer Dashboard</Link>
           </li>
           <li>
+            <Link to="/register">Registration</Link>
+          </li>
+          <li>
+            <Link to="/groomers">Groomers Registration</Link>
+          </li>
+          <li>
+            <Link to="/customers">Customers Registration</Link>
+          </li>
+          <li>
             <Link to="/example-list">Example List of Items</Link>
           </li>
           <li>
