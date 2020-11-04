@@ -59,8 +59,7 @@ function App() {
             exact
             component={() => <HomePage LoadingComponent={LoadingComponent} />}
           />
-          <SecureRoute path="/example-list" component={ExampleListPage} />
-
+          <SecureRoute path="/example-list" component={ExampleListPage} />{' '}
           <SecureRoute path="/profile-list" component={ProfileListPage} />
           <SecureRoute path="/register" component={Registration} />
           <SecureRoute path="/groomers" component={GroomerRegistration} />
@@ -70,7 +69,6 @@ function App() {
             component={CustomerDashboard}
           />
           <SecureRoute path="/groomer-dashboard" component={GroomerDashboard} />
-
           <Route path="/404" component={NotFoundPage} />
           <Redirect to="/404" />
         </Switch>
