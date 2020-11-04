@@ -22,6 +22,8 @@ import { LoadingComponent } from './components/common';
 import Registration from './components/pages/Registration/Registration';
 import GroomerRegistration from './components/pages/GroomerRegistration/GroomerRegistration';
 import CustomerRegistration from './components/pages/CustomerRegistration/CustomerRegistration';
+import CustomerDashboard from './components/pages/CustomerDashboard/CustomerDashboardContainer';
+import GroomerDashboard from './components/pages/GroomerDashboard/GroomerDashboardContainer';
 
 ReactDOM.render(
   <Router>
@@ -63,6 +65,12 @@ function App() {
           <SecureRoute path="/register" component={Registration} />
           <SecureRoute path="/groomers" component={GroomerRegistration} />
           <SecureRoute path="/customers" component={CustomerRegistration} />
+          <SecureRoute
+            path="/customer-dashboard"
+            component={CustomerDashboard}
+          />
+          <SecureRoute path="/groomer-dashboard" component={GroomerDashboard} />
+
           <Route path="/404" component={NotFoundPage} />
           <Redirect to="/404" />
         </Switch>

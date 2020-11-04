@@ -14,18 +14,14 @@ function RenderHomePage(props) {
             This is an example of a common example of how we'd like for you to
             approach components.
           </p>
-          <li>
-            <Link to="/profile-list">Profiles Example</Link>
-          </li>
+
           <li>
             <Link to="/customer-dashboard">Customer Dashboard</Link>
           </li>
           <li>
             <Link to="/groomer-dashboard">Groomer Dashboard</Link>
           </li>
-          <li>
-            <Link to="/register">Registration</Link>
-          </li>
+
           <li>
             <Link to="/groomers">Groomers Registration</Link>
           </li>
@@ -35,9 +31,7 @@ function RenderHomePage(props) {
           <li>
             <Link to="/example-list">Example List of Items</Link>
           </li>
-          <li>
-            <Link to="/datavis">Data Visualizations Example</Link>
-          </li>
+
           <li>
             <Button
               handleClick={() => authService.logout()}
