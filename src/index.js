@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import {
   BrowserRouter as Router,
@@ -10,7 +10,7 @@ import {
 import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
 import 'antd/dist/antd.less';
 
-import { NotFoundPage } from './components/pages/NotFound';
+// import { NotFoundPage } from './components/pages/NotFound';
 import { ExampleListPage } from './components/pages/ExampleList';
 import { HomePage } from './components/pages/Home';
 import { ProfileListPage } from './components/pages/ProfileList';
