@@ -18,7 +18,7 @@ import { LoadingComponent } from './components/common';
 import { CustomerDashboard } from './components/pages/CustomerDashboard';
 import { GroomerDashboard } from './components/pages/GroomerDashboard';
 import { SearchForm } from './components/pages/search';
-import './styles/GroomerProfile.css';
+import './styles/UserProfile.css';
 
 ReactDOM.render(
   <Router>
