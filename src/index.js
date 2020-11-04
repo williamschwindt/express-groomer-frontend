@@ -18,7 +18,6 @@ import { LoginPage } from './components/pages/Login';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
 // new imports
-import Navbar from './components/Layouts/Navbar';
 import Registration from './components/pages/Registration/Registration';
 import GroomerRegistration from './components/pages/GroomerRegistration/GroomerRegistration';
 import CustomerRegistration from './components/pages/CustomerRegistration/CustomerRegistration';
@@ -26,7 +25,6 @@ import CustomerRegistration from './components/pages/CustomerRegistration/Custom
 ReactDOM.render(
   <Router>
     <React.StrictMode>
-      <Navbar />
       <div className="paths-containers">
         <Route path="/register" component={Registration} />
         <Route path="/groomers" component={GroomerRegistration} />
