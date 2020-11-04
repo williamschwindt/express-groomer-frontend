@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
+import './CustomerRegistration.css';
 
 function RegisterCustomer() {
   const defaultUser = {
@@ -60,9 +61,8 @@ function RegisterCustomer() {
     //   change user.state based on whats coming in input
 
     <div className="registration-container">
-      <h1>User Registration</h1>
-      {/* To test functionality */}
-      <p>First name is: {user.name}</p>
+      <h1>Customer Registration</h1>
+
       <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="name">Name</label>
 

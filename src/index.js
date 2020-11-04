@@ -67,7 +67,7 @@ function App() {
 
           <SecureRoute path="/profile-list" component={ProfileListPage} />
 
-          <SecureRoute component={NotFoundPage} />
+          {/* <SecureRoute component={NotFoundPage} /> */}
         </Switch>
       </Security>
     </div>

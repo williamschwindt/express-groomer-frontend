@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Registeration = () => {
+const Registration = () => {
   return (
     <div>
       <h2>Are you a...</h2>
@@ -11,4 +11,4 @@ const Registeration = () => {
   );
 };
 
-export default Registeration;
+export default Registration;

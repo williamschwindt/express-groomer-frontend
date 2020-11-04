@@ -66,9 +66,8 @@ function GroomerRegistration() {
     //   change user.state based on whats coming in input
 
     <div className="registration-container">
-      <h1>User Registration</h1>
-      {/* To test functionality */}
-      <p>First name is: {user.name}</p>
+      <h1>Groomer Registration</h1>
+
       <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="name">Name</label>
 

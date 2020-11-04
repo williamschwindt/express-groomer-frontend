@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AACA,AAAA,CAAC,CAAC;EAEE,KAAK,EAAE,IAAI;CAEd",
+    "sources": [
+        "CustomerRegistration.scss"
+    ],
+    "names": [],
+    "file": "CustomerRegistration.css"
+}
