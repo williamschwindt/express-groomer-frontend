@@ -5,6 +5,7 @@ import {
   Route,
   useHistory,
   Switch,
+  Redirect,
 } from 'react-router-dom';
 
 import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
@@ -25,11 +26,6 @@ import CustomerRegistration from './components/pages/CustomerRegistration/Custom
 ReactDOM.render(
   <Router>
     <React.StrictMode>
-      <div className="paths-containers">
-        <Route path="/register" component={Registration} />
-        <Route path="/groomers" component={GroomerRegistration} />
-        <Route path="/customers" component={CustomerRegistration} />
-      </div>
       <App />
     </React.StrictMode>
   </Router>,
@@ -64,7 +60,11 @@ function App() {
           <SecureRoute path="/example-list" component={ExampleListPage} />
 
           <SecureRoute path="/profile-list" component={ProfileListPage} />
-          <Route component={NotFoundPage} />
+          <SecureRoute path="/register" component={Registration} />
+          <SecureRoute path="/groomers" component={GroomerRegistration} />
+          <SecureRoute path="/customers" component={CustomerRegistration} />
+          <Route path="/404" component={NotFoundPage} />
+          <Redirect to="/404" />
         </Switch>
       </Security>
     </div>
