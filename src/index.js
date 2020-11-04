@@ -10,7 +10,7 @@ import {
 import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
 import 'antd/dist/antd.less';
 
-// import { NotFoundPage } from './components/pages/NotFound';
+import { NotFoundPage } from './components/pages/NotFound';
 import { ExampleListPage } from './components/pages/ExampleList';
 import { HomePage } from './components/pages/Home';
 import { ProfileListPage } from './components/pages/ProfileList';
@@ -19,18 +19,18 @@ import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
 // new imports
 import Navbar from './components/Layouts/Navbar';
-import Register from './components/Forms/Register';
-import RegisterGroomer from './components/Forms/RegisterGroomer';
-import CustomerGroomer from './components/Forms/RegisterCustomer';
+import Registration from './components/pages/Registration/Registration';
+import GroomerRegistration from './components/pages/GroomerRegistration/GroomerRegistration';
+import CustomerRegistration from './components/pages/CustomerRegistration/CustomerRegistration';
 
 ReactDOM.render(
   <Router>
     <React.StrictMode>
       <Navbar />
       <div className="paths-containers">
-        <Route path="/register" component={Register} />
-        <Route path="/groomers" component={RegisterGroomer} />
-        <Route path="/customers" component={CustomerGroomer} />
+        <Route path="/register" component={Registration} />
+        <Route path="/groomers" component={GroomerRegistration} />
+        <Route path="/customers" component={CustomerRegistration} />
       </div>
       <App />
     </React.StrictMode>
@@ -66,7 +66,8 @@ function App() {
           <SecureRoute path="/example-list" component={ExampleListPage} />
 
           <SecureRoute path="/profile-list" component={ProfileListPage} />
-          {/* <Route component={NotFoundPage} /> */}
+
+          <SecureRoute component={NotFoundPage} />
         </Switch>
       </Security>
     </div>

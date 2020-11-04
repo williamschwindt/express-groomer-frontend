@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 
-export default function RegisterCustomer() {
+function GroomerRegistration() {
   const defaultUser = {
-    name: '',
-    lastname: '',
-    email: '',
+    name: 'Martha',
+    lastname: 'Seymour',
+    email: 'martha@seymour.com',
     phone: '',
     zipcode: '',
     address: '',
@@ -14,6 +14,9 @@ export default function RegisterCustomer() {
     state: '',
     country: '',
     photo_url: 'https://images.unsplash.com/photo-1586057710892-4f30aed09a20',
+    walk_rate: 0,
+    day_care_rate: 0,
+    vet_visit_rate: 0,
     //   password: '',
   };
 
@@ -23,7 +26,7 @@ export default function RegisterCustomer() {
 
   const onSubmit = data => {
     axios
-      .post('https://labspt12-express-groomer-a-api.herokuapp.com/customers', {
+      .post('https://labspt12-express-groomer-a-api.herokuapp.com/groomers', {
         name: user.name,
         lastname: user.lastname,
         email: user.email,
@@ -35,6 +38,9 @@ export default function RegisterCustomer() {
         zipcode: user.zip,
         description: user.description,
         photo_url: user.photo_url,
+        walk_rate: user.walk_rate,
+        day_care_rate: user.day_care_rate,
+        vet_visit_rate: user.vet_visit_rate,
       })
       .then(function(response) {
         console.log(response);
@@ -43,58 +49,6 @@ export default function RegisterCustomer() {
         console.log(error);
       });
   };
-
-  //   async function onSubmit (data) = {
-  //   // must be async in order to await key function
-
-  //   try {
-  //     let result = await fetch(
-  //       'https://labspt12-express-groomer-a-api.herokuapp.com/groomers',
-  //       {
-  //         method: 'post',
-  //         mode: 'no-cors', // no-cors to eliminate some errors
-  //         headers: {
-  //           Accept: 'application/json',
-  //           'Content-type': 'application/json',
-  //         },
-  //         // stringify the json obj payload
-  //         body: JSON.stringify({
-  //           name: user.name,
-  //           lastname: user.lastname,
-  //           email: user.email,
-  //           phone: user.phone,
-  //           address: user.address,
-  //           city: user.city,
-  //           state: user.state,
-  //           country: user.country,
-  //           zipcode: user.zip,
-  //           photo_url: user.photo_url,
-  //         }),
-  //       }
-  //     );
-  //     console.log('RESULT', result);
-  //   } catch (e) {
-  //     console.log('REGISTER ERROR: ', e);
-  //   }
-
-  // }
-
-  // const handleSubmit = event => {
-  //   event.preventDefault();
-  //   //   testing the handlesubmit
-  //   const data = this.state;
-  //   console.log('Final Data', data);
-  // };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault()
-  //   axios.post('/customers', customerRegister)
-  //     .then(function (response) {
-  //         console.log(response)
-  //     })
-  //     .catch(function (error) {
-  //         console.log(error)
-  //     })
 
   const handleInputChange = event => {
     event.preventDefault();
@@ -299,8 +253,65 @@ export default function RegisterCustomer() {
           <span role="alert">Max length exceeded</span>
         )}
 
+        <input
+          type="text"
+          id="walk_rate"
+          name="walk_rate"
+          placeholder="Walk rate"
+          onChange={handleInputChange}
+          aria-invalid={errors.walk_rate ? 'true' : 'false'}
+          ref={register({ required: true, maxLength: 100 })}
+        />
+
+        {/* use role="alert" to announce the error message */}
+        {errors.walk_rate && errors.walk_rate.type === 'required' && (
+          <span role="alert">This is required</span>
+        )}
+        {errors.walk_rate && errors.walk_rate.type === 'maxLength' && (
+          <span role="alert">Max length exceeded</span>
+        )}
+
+        <input
+          type="text"
+          id="day_care_rate"
+          name="day_care_rate"
+          placeholder="Day care rate"
+          onChange={handleInputChange}
+          aria-invalid={errors.day_care_rate ? 'true' : 'false'}
+          ref={register({ required: true, maxLength: 100 })}
+        />
+
+        {/* use role="alert" to announce the error message */}
+        {errors.day_care_rate && errors.day_care_rate.type === 'required' && (
+          <span role="alert">This is required</span>
+        )}
+        {errors.day_care_rate && errors.day_care_rate.type === 'maxLength' && (
+          <span role="alert">Max length exceeded</span>
+        )}
+
+        <input
+          type="text"
+          id="vet_visit_rate"
+          name="vet_visit_rate"
+          placeholder="Vet visit rate"
+          onChange={handleInputChange}
+          aria-invalid={errors.vet_visit_rate ? 'true' : 'false'}
+          ref={register({ required: true, maxLength: 100 })}
+        />
+
+        {/* use role="alert" to announce the error message */}
+        {errors.vet_visit_rate && errors.vet_visit_rate.type === 'required' && (
+          <span role="alert">This is required</span>
+        )}
+        {errors.vet_visit_rate &&
+          errors.vet_visit_rate.type === 'maxLength' && (
+            <span role="alert">Max length exceeded</span>
+          )}
+
         <input type="submit" />
       </form>
     </div>
   );
 }
+
+export default GroomerRegistration;

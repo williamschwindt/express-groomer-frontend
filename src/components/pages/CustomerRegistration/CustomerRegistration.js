@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 
-export default function RegisterCustomer() {
+function RegisterCustomer() {
   const defaultUser = {
-    name: 'Martha',
-    lastname: 'Seymour',
-    email: 'martha@seymour.com',
+    name: '',
+    lastname: '',
+    email: '',
     phone: '',
     zipcode: '',
     address: '',
@@ -14,9 +14,6 @@ export default function RegisterCustomer() {
     state: '',
     country: '',
     photo_url: 'https://images.unsplash.com/photo-1586057710892-4f30aed09a20',
-    walk_rate: 0,
-    day_care_rate: 0,
-    vet_visit_rate: 0,
     //   password: '',
   };
 
@@ -26,7 +23,7 @@ export default function RegisterCustomer() {
 
   const onSubmit = data => {
     axios
-      .post('https://labspt12-express-groomer-a-api.herokuapp.com/groomers', {
+      .post('https://labspt12-express-groomer-a-api.herokuapp.com/customers', {
         name: user.name,
         lastname: user.lastname,
         email: user.email,
@@ -38,9 +35,6 @@ export default function RegisterCustomer() {
         zipcode: user.zip,
         description: user.description,
         photo_url: user.photo_url,
-        walk_rate: user.walk_rate,
-        day_care_rate: user.day_care_rate,
-        vet_visit_rate: user.vet_visit_rate,
       })
       .then(function(response) {
         console.log(response);
@@ -72,7 +66,7 @@ export default function RegisterCustomer() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="name">Name</label>
 
-        {/* use aria-invalid to indicate field contain error */}
+        {/* use aria-invalid to indicate field contain error for screen reader users*/}
         <input
           type="text"
           id="name"
@@ -253,63 +247,10 @@ export default function RegisterCustomer() {
           <span role="alert">Max length exceeded</span>
         )}
 
-        <input
-          type="text"
-          id="walk_rate"
-          name="walk_rate"
-          placeholder="Walk rate"
-          onChange={handleInputChange}
-          aria-invalid={errors.walk_rate ? 'true' : 'false'}
-          ref={register({ required: true, maxLength: 100 })}
-        />
-
-        {/* use role="alert" to announce the error message */}
-        {errors.walk_rate && errors.walk_rate.type === 'required' && (
-          <span role="alert">This is required</span>
-        )}
-        {errors.walk_rate && errors.walk_rate.type === 'maxLength' && (
-          <span role="alert">Max length exceeded</span>
-        )}
-
-        <input
-          type="text"
-          id="day_care_rate"
-          name="day_care_rate"
-          placeholder="Day care rate"
-          onChange={handleInputChange}
-          aria-invalid={errors.day_care_rate ? 'true' : 'false'}
-          ref={register({ required: true, maxLength: 100 })}
-        />
-
-        {/* use role="alert" to announce the error message */}
-        {errors.day_care_rate && errors.day_care_rate.type === 'required' && (
-          <span role="alert">This is required</span>
-        )}
-        {errors.day_care_rate && errors.day_care_rate.type === 'maxLength' && (
-          <span role="alert">Max length exceeded</span>
-        )}
-
-        <input
-          type="text"
-          id="vet_visit_rate"
-          name="vet_visit_rate"
-          placeholder="Vet visit rate"
-          onChange={handleInputChange}
-          aria-invalid={errors.vet_visit_rate ? 'true' : 'false'}
-          ref={register({ required: true, maxLength: 100 })}
-        />
-
-        {/* use role="alert" to announce the error message */}
-        {errors.vet_visit_rate && errors.vet_visit_rate.type === 'required' && (
-          <span role="alert">This is required</span>
-        )}
-        {errors.vet_visit_rate &&
-          errors.vet_visit_rate.type === 'maxLength' && (
-            <span role="alert">Max length exceeded</span>
-          )}
-
         <input type="submit" />
       </form>
     </div>
   );
 }
+
+export default RegisterCustomer;
