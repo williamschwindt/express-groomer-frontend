@@ -2,7 +2,7 @@ import {
   GET_GROOMER_DATA_START,
   GET_GROOMER_DATA_SUCCESS,
   GET_GROOMER_DATA_FAILURE,
-} from '../../actions/types';
+} from '../../../api/index';
 
 const initialState = {
   groomer: {},

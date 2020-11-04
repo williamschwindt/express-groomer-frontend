@@ -1,5 +1,13 @@
 import axios from 'axios';
 
+export const GET_CUSTOMER_DATA_START = 'GET_CUSTOMER_DATA_START';
+export const GET_CUSTOMER_DATA_SUCCESS = 'GET_CUSTOMER_DATA_SUCCESS';
+export const GET_CUSTOMER_DATA_FAILURE = 'GET_CUSTOMER_DATA_FAILURE';
+
+export const GET_GROOMER_DATA_START = 'GET_GROOMER_DATA_START';
+export const GET_GROOMER_DATA_SUCCESS = 'GET_GROOMER_DATA_SUCCESS';
+export const GET_GROOMER_DATA_FAILURE = 'GET_GROOMER_DATA_FAILURE';
+
 // we will define a bunch of API calls here.
 const apiUrl = `${process.env.REACT_APP_API_URI}/profiles`;
 
@@ -49,4 +57,37 @@ const getProfileData = authState => {
   }
 };
 
-export { sleep, getExampleData, getProfileData, getDSData };
+const getCustomerData = id => dispatch => {
+  dispatch({ type: GET_CUSTOMER_DATA_START });
+
+  axios
+    .get(`${process.env.REACT_APP_API_URI}customers/${id}`)
+    .then(res => {
+      dispatch({ type: GET_CUSTOMER_DATA_SUCCESS, payload: res.body });
+    })
+    .catch(err => {
+      dispatch({ type: GET_CUSTOMER_DATA_FAILURE, payload: err.message });
+    });
+};
+
+const getGroomerData = id => dispatch => {
+  dispatch({ type: GET_GROOMER_DATA_START });
+
+  axios
+    .get(`${process.env.REACT_APP_API_URI}groomers/${id}`)
+    .then(res => {
+      dispatch({ type: GET_GROOMER_DATA_SUCCESS, payload: res.body });
+    })
+    .catch(err => {
+      dispatch({ type: GET_GROOMER_DATA_FAILURE, payload: err.message });
+    });
+};
+
+export {
+  sleep,
+  getExampleData,
+  getProfileData,
+  getDSData,
+  getCustomerData,
+  getGroomerData,
+};

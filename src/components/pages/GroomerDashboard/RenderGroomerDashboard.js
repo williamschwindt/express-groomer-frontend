@@ -7,7 +7,7 @@ import {
   UserOutlined,
 } from '@ant-design/icons';
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Content, Sider } = Layout;
 
 export const RenderGroomerDashboard = props => {
   return (
@@ -52,9 +52,6 @@ export const RenderGroomerDashboard = props => {
               <GroomerProfile />
             </div>
           </Content>
-          <Footer style={{ textAlign: 'center' }}>
-            Ant Design ©2018 Created by Ant UED
-          </Footer>
         </Layout>
       )}
       {props.appointments && (
@@ -72,9 +69,6 @@ export const RenderGroomerDashboard = props => {
               Groomer appointment managment here
             </div>
           </Content>
-          <Footer style={{ textAlign: 'center' }}>
-            Ant Design ©2018 Created by Ant UED
-          </Footer>
         </Layout>
       )}
     </Layout>

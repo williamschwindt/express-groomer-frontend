@@ -2,7 +2,7 @@ import {
   GET_CUSTOMER_DATA_START,
   GET_CUSTOMER_DATA_SUCCESS,
   GET_CUSTOMER_DATA_FAILURE,
-} from '../../actions/types';
+} from '../../../api/index';
 
 const initialState = {
   customer: {},
