@@ -2,21 +2,33 @@ import React, { useState } from 'react';
 import { RenderGroomerProfile } from './RenderGroomerProfile';
 
 const GroomerProfileContainer = () => {
-  const [modalVisible, setModalVisible] = useState(false);
+  const [contactModalVisible, setContactModalVisible] = useState(false);
+  const [profileModalVisible, setProfileModalVisible] = useState(false);
 
-  const showModal = () => {
-    setModalVisible(true);
+  const showContactModal = () => {
+    setContactModalVisible(true);
   };
 
-  const handleClose = e => {
-    setModalVisible(false);
+  const handleContactModalClose = e => {
+    setContactModalVisible(false);
+  };
+
+  const showProfileModal = () => {
+    setProfileModalVisible(true);
+  };
+
+  const handleProfileModalClose = e => {
+    setProfileModalVisible(false);
   };
 
   return (
     <RenderGroomerProfile
-      modalVisible={modalVisible}
-      showModal={showModal}
-      handleClose={handleClose}
+      contactModalVisible={contactModalVisible}
+      showContactModal={showContactModal}
+      handleContactModalClose={handleContactModalClose}
+      profileModalVisible={profileModalVisible}
+      showProfileModal={showProfileModal}
+      handleProfileModalClose={handleProfileModalClose}
     />
   );
 };

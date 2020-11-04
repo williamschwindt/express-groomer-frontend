@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Avatar, Modal, Button } from 'antd';
+import { Row, Col, Avatar, Modal, Button, Breadcrumb, Form, Input } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 
 const DemoBox = props => (
@@ -11,11 +11,11 @@ export const RenderGroomerProfile = props => {
     <>
       <Modal
         title="Contact info"
-        visible={props.modalVisible}
-        onOk={props.handleClose}
-        onCancel={props.handleClose}
+        visible={props.contactModalVisible}
+        onOk={props.handleContactModalClose}
+        onCancel={props.handleContactModalClose}
         footer={[
-          <Button key="back" onClick={props.handleClose}>
+          <Button key="back" onClick={props.handleContactModalClose}>
             Close
           </Button>,
         ]}
@@ -23,6 +23,63 @@ export const RenderGroomerProfile = props => {
         <p>Phone number: (111)-111-1111</p>
         <p>Email: llama001@maildrop.cc</p>
       </Modal>
+      <Modal
+        title="Edit profile"
+        visible={props.profileModalVisible}
+        onOk={props.handleProfileModalClose}
+        onCancel={props.handleProfileModalClose}
+        footer={[
+          <Button key="back" onClick={props.handleProfileModalClose}>
+            Close
+          </Button>,
+          <Button
+            key="submit"
+            type="primary"
+            onClick={props.handleProfileModalClose}
+          >
+            Update
+          </Button>,
+        ]}
+      >
+        <Form.Item label="First Name" name="name">
+          <Input />
+        </Form.Item>
+        <Form.Item label="Last Name" name="lastname">
+          <Input />
+        </Form.Item>
+        <Form.Item label="Address" name="address">
+          <Input />
+        </Form.Item>
+        <Form.Item label="Zip Code" name="zip">
+          <Input />
+        </Form.Item>
+        <Form.Item label="City" name="city">
+          <Input />
+        </Form.Item>
+        <Form.Item label="State" name="state">
+          <Input />
+        </Form.Item>
+        <Form.Item label="Country" name="country">
+          <Input />
+        </Form.Item>
+        <Form.Item label="Phone Number" name="phone">
+          <Input />
+        </Form.Item>
+        <Form.Item label="Email" name="email">
+          <Input />
+        </Form.Item>
+        <Form.Item label="Profile Picture" name="photo_url">
+          <Input />
+        </Form.Item>
+      </Modal>
+      <Breadcrumb style={{ margin: '16px 0', marginBottom: '24px' }}>
+        <Breadcrumb.Item
+          onClick={props.showProfileModal}
+          style={{ cursor: 'pointer' }}
+        >
+          Edit profile
+        </Breadcrumb.Item>
+      </Breadcrumb>
       <Row justify="space-around" align="middle">
         <Col xs={2} sm={4} md={6} lg={8} xl={10}>
           <DemoBox value={100}>
@@ -35,7 +92,7 @@ export const RenderGroomerProfile = props => {
             <p>
               Bend, Oregon, United States{' '}
               <span
-                onClick={props.showModal}
+                onClick={props.showContactModal}
                 style={{
                   color: '#ec3944',
                   marginLeft: '20px',
