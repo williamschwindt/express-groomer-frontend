@@ -64,7 +64,7 @@ function RegisterCustomer() {
       <h1>Customer Registration</h1>
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="name">Name</label>
+        <label htmlFor="name">Name: </label>
 
         {/* use aria-invalid to indicate field contain error for screen reader users*/}
         <input
@@ -85,6 +85,7 @@ function RegisterCustomer() {
           <span role="alert">Max length exceeded</span>
         )}
 
+        <label htmlFor="lastname">Last Name: </label>
         <input
           type="text"
           id="lastname"
@@ -102,6 +103,8 @@ function RegisterCustomer() {
         {errors.lastname && errors.lastname.type === 'maxLength' && (
           <span role="alert">Max length exceeded</span>
         )}
+
+        <label htmlFor="email">Email: </label>
 
         <input
           type="email"
@@ -121,6 +124,8 @@ function RegisterCustomer() {
           <span role="alert">Max length exceeded</span>
         )}
 
+        <label htmlFor="phone">Phone: </label>
+
         <input
           type="text"
           id="phone"
@@ -138,6 +143,8 @@ function RegisterCustomer() {
         {errors.phone && errors.phone.type === 'maxLength' && (
           <span role="alert">Max length exceeded</span>
         )}
+
+        <label htmlFor="address">Address: </label>
 
         <input
           type="text"
@@ -157,6 +164,8 @@ function RegisterCustomer() {
           <span role="alert">Max length exceeded</span>
         )}
 
+        <label htmlFor="city">City: </label>
+
         <input
           type="text"
           id="city"
@@ -174,6 +183,8 @@ function RegisterCustomer() {
         {errors.city && errors.city.type === 'maxLength' && (
           <span role="alert">Max length exceeded</span>
         )}
+
+        <label htmlFor="state">State: </label>
 
         <input
           type="text"
@@ -193,6 +204,8 @@ function RegisterCustomer() {
           <span role="alert">Max length exceeded</span>
         )}
 
+        <label htmlFor="zipcode">Zipcode: </label>
+
         <input
           type="text"
           id="zipcode"
@@ -211,6 +224,8 @@ function RegisterCustomer() {
           <span role="alert">Max length exceeded</span>
         )}
 
+        <label htmlFor="description">Description: </label>
+
         <input
           type="text"
           id="description"
@@ -228,6 +243,7 @@ function RegisterCustomer() {
         {errors.description && errors.description.type === 'maxLength' && (
           <span role="alert">Max length exceeded</span>
         )}
+        <label htmlFor="photoUrl">Photo URL: </label>
 
         <input
           type="text"
@@ -247,7 +263,7 @@ function RegisterCustomer() {
           <span role="alert">Max length exceeded</span>
         )}
 
-        <input type="submit" />
+        <button type="submit">Submit</button>
       </form>
     </div>
   );
