@@ -4,9 +4,9 @@ import { useForm } from 'react-hook-form';
 
 export default function RegisterCustomer() {
   const defaultUser = {
-    name: 'Martha',
-    lastname: 'Seymour',
-    email: 'martha@seymour.com',
+    name: '',
+    lastname: '',
+    email: '',
     phone: '',
     zipcode: '',
     address: '',
@@ -17,7 +17,6 @@ export default function RegisterCustomer() {
     walk_rate: 0,
     day_care_rate: 0,
     vet_visit_rate: 0,
-    
   };
 
   const { register, handleSubmit, errors } = useForm();
@@ -52,7 +51,7 @@ export default function RegisterCustomer() {
   const handleInputChange = event => {
     event.preventDefault();
     //   getting name of input and value
-    
+
     setUser({
       ...user,
       // seting key to key-value pair
