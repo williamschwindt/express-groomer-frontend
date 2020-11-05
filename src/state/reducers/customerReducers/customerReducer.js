@@ -1,7 +1,7 @@
 import {
-  GET_CUSTOMER_DATA_START,
-  GET_CUSTOMER_DATA_SUCCESS,
-  GET_CUSTOMER_DATA_FAILURE,
+  GET_CUSTOMER_INFO_START,
+  GET_CUSTOMER_INFO_SUCCESS,
+  GET_CUSTOMER_INFO_FAILURE,
 } from '../../../api/index';
 
 const initialState = {
@@ -12,18 +12,18 @@ const initialState = {
 
 export const customerReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_CUSTOMER_DATA_START:
+    case GET_CUSTOMER_INFO_START:
       return {
         ...state,
         isFetching: true,
       };
-    case GET_CUSTOMER_DATA_SUCCESS:
+    case GET_CUSTOMER_INFO_SUCCESS:
       return {
         ...state,
         isFetching: false,
         customer: action.payload,
       };
-    case GET_CUSTOMER_DATA_FAILURE:
+    case GET_CUSTOMER_INFO_FAILURE:
       return {
         ...state,
         isFetching: false,

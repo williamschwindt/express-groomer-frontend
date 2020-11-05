@@ -1,7 +1,7 @@
 import {
-  GET_GROOMER_DATA_START,
-  GET_GROOMER_DATA_SUCCESS,
-  GET_GROOMER_DATA_FAILURE,
+  GET_GROOMER_INFO_START,
+  GET_GROOMER_INFO_SUCCESS,
+  GET_GROOMER_INFO_FAILURE,
 } from '../../../api/index';
 
 const initialState = {
@@ -12,18 +12,18 @@ const initialState = {
 
 export const groomerReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_GROOMER_DATA_START:
+    case GET_GROOMER_INFO_START:
       return {
         ...state,
         isFetching: true,
       };
-    case GET_GROOMER_DATA_SUCCESS:
+    case GET_GROOMER_INFO_SUCCESS:
       return {
         ...state,
         isFetching: false,
         groomer: action.payload,
       };
-    case GET_GROOMER_DATA_FAILURE:
+    case GET_GROOMER_INFO_FAILURE:
       return {
         ...state,
         isFetching: false,

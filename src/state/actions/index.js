@@ -1,5 +1,5 @@
-import { getCustomerData } from '../../api/index';
-import { getGroomerData } from '../../api/index';
+import { getCustomerInfo } from '../../api/index';
+import { getGroomerInfo } from '../../api/index';
 
-export { getCustomerData };
-export { getGroomerData };
+export { getCustomerInfo };
+export { getGroomerInfo };

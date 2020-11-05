@@ -7,7 +7,7 @@ import {
   TeamOutlined,
   UserOutlined,
 } from '@ant-design/icons';
-
+import SearchForm from '../search/SearchForm';
 const { Header, Content, Footer, Sider } = Layout;
 
 export const RenderCustomerDashboard = props => {
@@ -101,7 +101,7 @@ export const RenderCustomerDashboard = props => {
               className="site-layout-background"
               style={{ padding: 24, minHeight: 360 }}
             >
-              Groomer search component displayed here
+              <SearchForm />
             </div>
           </Content>
           <Footer style={{ textAlign: 'center' }}>

@@ -51,19 +51,15 @@ function App() {
         <Route path="/login" component={LoginPage} />
         <Route path="/SearchForm" component={SearchForm} />
         <Route path="/implicit/callback" component={LoginCallback} />
-
         <SecureRoute
           exact
           path="/"
           component={() => <HomePage LoadingComponent={LoadingComponent} />}
         />
         <SecureRoute path="/example-list" component={ExampleListPage} />
-
         <SecureRoute path="/profile-list" component={ProfileListPage} />
-
         <SecureRoute path="/customer-dashboard" component={CustomerDashboard} />
         <SecureRoute path="/groomer-dashboard" component={GroomerDashboard} />
-
         <Route component={NotFoundPage} />
       </Switch>
     </Security>
