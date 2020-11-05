@@ -112,12 +112,14 @@ const getCustomerInfo = id => dispatch => {
 };
 
 const getGroomerInfo = id => dispatch => {
+  console.log('get ran');
   dispatch({ type: GET_GROOMER_INFO_START });
 
   axios
     .get(`${process.env.REACT_APP_API_URI}groomers/${id}`)
     .then(res => {
-      dispatch({ type: GET_GROOMER_INFO_SUCCESS, payload: res.body });
+      console.log(res.data);
+      dispatch({ type: GET_GROOMER_INFO_SUCCESS, payload: res.data });
     })
     .catch(err => {
       dispatch({ type: GET_GROOMER_INFO_FAILURE, payload: err.message });
@@ -171,11 +173,13 @@ const registerGroomer = data => dispatch => {
       vet_visit_rate: data.vet_visit_rate,
     })
     .then(res => {
-      dispatch({ type: REGISTER_GROOMER_INFO_SUCCESS, payload: res.body });
+      console.log(res.data);
+      dispatch({ type: REGISTER_GROOMER_INFO_SUCCESS, payload: res.data });
       return <Redirect to="/groomer-dashboard" />;
     })
     .catch(err => {
       dispatch({ type: REGISTER_GROOMER_INFO_FAILURE, payload: err.message });
+      console.log(err);
     });
 };
 

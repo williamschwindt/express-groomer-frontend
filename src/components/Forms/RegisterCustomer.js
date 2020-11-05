@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import {registerCustomer} from '../../api/index'
+import { registerCustomer } from '../../api/index';
 
-export default function RegisterCustomer() {
+const RegisterCustomer = props => {
   const defaultUser = {
     name: '',
     lastname: '',
@@ -21,27 +21,7 @@ export default function RegisterCustomer() {
   const [user, setUser] = useState(defaultUser);
 
   const onSubmit = data => {
-    // axios
-    //   .post('https://labspt12-express-groomer-a-api.herokuapp.com/customers', {
-    //     name: user.name,
-    //     lastname: user.lastname,
-    //     email: user.email,
-    //     phone: user.phone,
-    //     address: user.address,
-    //     city: user.city,
-    //     state: user.state,
-    //     country: user.country,
-    //     zipcode: user.zip,
-    //     description: user.description,
-    //     photo_url: user.photo_url,
-    //   })
-    //   .then(function(response) {
-    //     console.log(response);
-    //   })
-    //   .catch(function(error) {
-    //     console.log(error);
-    //   });
-      registerCustomer(data);
+    props.registerCustomer(data);
   };
 
   const handleInputChange = event => {
@@ -249,4 +229,12 @@ export default function RegisterCustomer() {
       </form>
     </div>
   );
-}
+};
+
+const mapStateToProps = state => {
+  return {
+    customer: state.customerReducer.customer,
+  };
+};
+
+export default connect(mapStateToProps, { registerCustomer })(RegisterCustomer);
