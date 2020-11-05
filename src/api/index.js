@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Route } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import {
     GET_CUSTOMER_INFO_START,
     GET_CUSTOMER_INFO_SUCCESS,
@@ -144,7 +144,7 @@ const registerCustomer = data => dispatch => {
         .then(res => {
             dispatch({ type: REGISTER_CUSTOMER_INFO_SUCCESS, payload: res.body });
         })
-        .catch(res => {
+        .catch(err => {
             dispatch({ type: REGISTER_CUSTOMER_INFO_FAILURE, payload: err.message });
         })
         
@@ -154,29 +154,31 @@ const registerGroomer = data => dispatch => {
     dispatch({type: REGISTER_GROOMER_INFO_START})
 
     axios
-       .post('https://labspt12-express-groomer-a-api.herokuapp.com/groomers', {
-        name: data.name,
-        lastname: data.lastname,
-        email: data.email,
-        phone: data.phone,
-        address: data.address,
-        city: data.city,
-        state: data.state,
-        country: data.country,
-        zipcode: data.zip,
-        description: data.description,
-        photo_url: data.photo_url,
-        walk_rate: data.walk_rate,
-        day_care_rate: data.day_care_rate,
-        vet_visit_rate: data.vet_visit_rate,
-      })
+        .post('https://labspt12-express-groomer-a-api.herokuapp.com/groomers', {
+            name: data.name,
+            lastname: data.lastname,
+            email: data.email,
+            phone: data.phone,
+            address: data.address,
+            city: data.city,
+            state: data.state,
+            country: data.country,
+            zipcode: data.zip,
+            description: data.description,
+            photo_url: data.photo_url,
+            walk_rate: data.walk_rate,
+            day_care_rate: data.day_care_rate,
+            vet_visit_rate: data.vet_visit_rate,
+        })
         .then(res => {
             dispatch({ type: REGISTER_GROOMER_INFO_SUCCESS, payload: res.body });
-            <Route to="/groomer-dashboard" />
+            return (
+                <Redirect to="/groomer-dashboard" />
+            );
         })
-        .catch(res => {
+        .catch(err => {
             dispatch({ type: REGISTER_GROOMER_INFO_FAILURE, payload: err.message });
-        })
+        });
     
 }
  
