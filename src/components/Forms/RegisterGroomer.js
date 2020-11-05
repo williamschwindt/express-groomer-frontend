@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
+import {registerGroomer} from '../../api/index'
 
 export default function RegisterCustomer() {
   const defaultUser = {
@@ -23,29 +24,30 @@ export default function RegisterCustomer() {
   const [user, setUser] = useState(defaultUser);
 
   const onSubmit = data => {
-    axios
-      .post('https://labspt12-express-groomer-a-api.herokuapp.com/groomers', {
-        name: user.name,
-        lastname: user.lastname,
-        email: user.email,
-        phone: user.phone,
-        address: user.address,
-        city: user.city,
-        state: user.state,
-        country: user.country,
-        zipcode: user.zip,
-        description: user.description,
-        photo_url: user.photo_url,
-        walk_rate: user.walk_rate,
-        day_care_rate: user.day_care_rate,
-        vet_visit_rate: user.vet_visit_rate,
-      })
-      .then(function(response) {
-        console.log(response);
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+    // axios
+    //   .post('https://labspt12-express-groomer-a-api.herokuapp.com/groomers', {
+    //     name: user.name,
+    //     lastname: user.lastname,
+    //     email: user.email,
+    //     phone: user.phone,
+    //     address: user.address,
+    //     city: user.city,
+    //     state: user.state,
+    //     country: user.country,
+    //     zipcode: user.zip,
+    //     description: user.description,
+    //     photo_url: user.photo_url,
+    //     walk_rate: user.walk_rate,
+    //     day_care_rate: user.day_care_rate,
+    //     vet_visit_rate: user.vet_visit_rate,
+    //   })
+    //   .then(function(response) {
+    //     console.log(response);
+    //   })
+    //   .catch(function(error) {
+    //     console.log(error);
+    //   });
+      registerGroomer(data);
   };
 
   const handleInputChange = event => {

@@ -1,12 +1,21 @@
+import React from 'react';
 import axios from 'axios';
+import { Route } from 'react-router-dom';
+import {
+    GET_CUSTOMER_INFO_START,
+    GET_CUSTOMER_INFO_SUCCESS,
+    GET_CUSTOMER_INFO_FAILURE,
+    REGISTER_CUSTOMER_INFO_START,
+    REGISTER_CUSTOMER_INFO_SUCCESS,
+    REGISTER_CUSTOMER_INFO_FAILURE,
+    GET_GROOMER_INFO_START,
+    GET_GROOMER_INFO_SUCCESS,
+    GET_GROOMER_INFO_FAILURE,
+    REGISTER_GROOMER_INFO_START,
+    REGISTER_GROOMER_INFO_SUCCESS,
+    REGISTER_GROOMER_INFO_FAILURE
+} from './types';
 
-export const GET_CUSTOMER_INFO_START = 'GET_CUSTOMER_INFO_START';
-export const GET_CUSTOMER_INFO_SUCCESS = 'GET_CUSTOMER_INFO_SUCCESS';
-export const GET_CUSTOMER_INFO_FAILURE = 'GET_CUSTOMER_INFO_FAILURE';
-
-export const GET_GROOMER_INFO_START = 'GET_GROOMER_INFO_START';
-export const GET_GROOMER_INFO_SUCCESS = 'GET_GROOMER_INFO_SUCCESS';
-export const GET_GROOMER_INFO_FAILURE = 'GET_GROOMER_INFO_FAILURE';
 let groomersReq = `${process.env.REACT_APP_API_URI}/groomers`;
 let customersReq = `${process.env.REACT_APP_API_URI}/customers`;
 
@@ -22,13 +31,14 @@ const getExampleData = () => {
     .then(response => response.data);
 };
 
-const requestGroomers = axios.get(groomersReq);
+
 const getGroomerData = () => {
   return axios.get(groomersReq).then(response => {
     let groomers = response.data;
     return groomers;
   });
 };
+
 
 const requestUserGroomers = axios.get(groomersReq);
 const requestUserCustomers = axios.get(customersReq);
@@ -48,11 +58,13 @@ const getUserData = () => {
     });
 };
 
+// original function
 const getGUserData = () => {
   return axios
     .get(`https://jsonplaceholder.typicode.com/photos?albumId=1`)
     .then(response => response.data);
 };
+
 
 const getAuthHeader = authState => {
   if (!authState.isAuthenticated) {
@@ -112,6 +124,62 @@ const getGroomerInfo = id => dispatch => {
     });
 };
 
+const registerCustomer = data => dispatch => {
+    dispatch({type: REGISTER_CUSTOMER_INFO_START})
+    
+    axios
+    .post('https://labspt12-express-groomer-a-api.herokuapp.com/customers', {
+        name: data.name,
+        lastname: data.lastname,
+        email: data.email,
+        phone: data.phone,
+        address: data.address,
+        city: data.city,
+        state: data.state,
+        country: data.country,
+        zipcode: data.zip,
+        description: data.description,
+        photo_url: data.photo_url,
+    })
+        .then(res => {
+            dispatch({ type: REGISTER_CUSTOMER_INFO_SUCCESS, payload: res.body });
+        })
+        .catch(res => {
+            dispatch({ type: REGISTER_CUSTOMER_INFO_FAILURE, payload: err.message });
+        })
+        
+}
+
+const registerGroomer = data => dispatch => {
+    dispatch({type: REGISTER_GROOMER_INFO_START})
+
+    axios
+       .post('https://labspt12-express-groomer-a-api.herokuapp.com/groomers', {
+        name: data.name,
+        lastname: data.lastname,
+        email: data.email,
+        phone: data.phone,
+        address: data.address,
+        city: data.city,
+        state: data.state,
+        country: data.country,
+        zipcode: data.zip,
+        description: data.description,
+        photo_url: data.photo_url,
+        walk_rate: data.walk_rate,
+        day_care_rate: data.day_care_rate,
+        vet_visit_rate: data.vet_visit_rate,
+      })
+        .then(res => {
+            dispatch({ type: REGISTER_GROOMER_INFO_SUCCESS, payload: res.body });
+            <Route to="/groomer-dashboard" />
+        })
+        .catch(res => {
+            dispatch({ type: REGISTER_GROOMER_INFO_FAILURE, payload: err.message });
+        })
+    
+}
+ 
 export {
   sleep,
   getExampleData,
@@ -121,4 +189,7 @@ export {
   getGroomerInfo,
   getGroomerData,
   getUserData,
+  registerCustomer,
+  registerGroomer,
+
 };

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
+import {registerCustomer} from '../../api/index'
 
 export default function RegisterCustomer() {
   const defaultUser = {
@@ -20,26 +21,27 @@ export default function RegisterCustomer() {
   const [user, setUser] = useState(defaultUser);
 
   const onSubmit = data => {
-    axios
-      .post('https://labspt12-express-groomer-a-api.herokuapp.com/customers', {
-        name: user.name,
-        lastname: user.lastname,
-        email: user.email,
-        phone: user.phone,
-        address: user.address,
-        city: user.city,
-        state: user.state,
-        country: user.country,
-        zipcode: user.zip,
-        description: user.description,
-        photo_url: user.photo_url,
-      })
-      .then(function(response) {
-        console.log(response);
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+    // axios
+    //   .post('https://labspt12-express-groomer-a-api.herokuapp.com/customers', {
+    //     name: user.name,
+    //     lastname: user.lastname,
+    //     email: user.email,
+    //     phone: user.phone,
+    //     address: user.address,
+    //     city: user.city,
+    //     state: user.state,
+    //     country: user.country,
+    //     zipcode: user.zip,
+    //     description: user.description,
+    //     photo_url: user.photo_url,
+    //   })
+    //   .then(function(response) {
+    //     console.log(response);
+    //   })
+    //   .catch(function(error) {
+    //     console.log(error);
+    //   });
+      registerCustomer(data);
   };
 
   const handleInputChange = event => {
