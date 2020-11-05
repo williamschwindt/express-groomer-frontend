@@ -22,6 +22,8 @@ import { LoadingComponent } from './components/common';
 import { CustomerDashboard } from './components/pages/CustomerDashboard';
 import { GroomerDashboard } from './components/pages/GroomerDashboard';
 import { SearchForm } from './components/pages/search';
+import RegisterGroomer from './components/Forms/RegisterGroomer';
+import RegisterCustomer from './components/Forms/RegisterCustomer';
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
@@ -60,6 +62,8 @@ function App() {
         <SecureRoute path="/profile-list" component={ProfileListPage} />
         <SecureRoute path="/customer-dashboard" component={CustomerDashboard} />
         <SecureRoute path="/groomer-dashboard" component={GroomerDashboard} />
+        <SecureRoute path="/groomers" component={RegisterGroomer} />
+        <SecureRoute path="/customers" component={RegisterCustomer} />
         <Route component={NotFoundPage} />
       </Switch>
     </Security>

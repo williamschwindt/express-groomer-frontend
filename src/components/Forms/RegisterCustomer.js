@@ -21,7 +21,7 @@ const RegisterCustomer = props => {
   const [user, setUser] = useState(defaultUser);
 
   const onSubmit = data => {
-    props.registerCustomer(data);
+    props.registerCustomer(data, props);
   };
 
   const handleInputChange = event => {

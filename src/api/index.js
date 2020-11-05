@@ -126,7 +126,7 @@ const getGroomerInfo = id => dispatch => {
     });
 };
 
-const registerCustomer = data => dispatch => {
+const registerCustomer = (data, props) => dispatch => {
   dispatch({ type: REGISTER_CUSTOMER_INFO_START });
 
   axios
@@ -145,14 +145,14 @@ const registerCustomer = data => dispatch => {
     })
     .then(res => {
       dispatch({ type: REGISTER_CUSTOMER_INFO_SUCCESS, payload: res.body });
-      return <Redirect to="/customer-dashboard" />;
+      props.history.push('/customer-dashboard');
     })
     .catch(err => {
       dispatch({ type: REGISTER_CUSTOMER_INFO_FAILURE, payload: err.message });
     });
 };
 
-const registerGroomer = data => dispatch => {
+const registerGroomer = (data, props) => dispatch => {
   dispatch({ type: REGISTER_GROOMER_INFO_START });
 
   axios
@@ -173,13 +173,11 @@ const registerGroomer = data => dispatch => {
       vet_visit_rate: data.vet_visit_rate,
     })
     .then(res => {
-      console.log(res.data);
       dispatch({ type: REGISTER_GROOMER_INFO_SUCCESS, payload: res.data });
-      return <Redirect to="/groomer-dashboard" />;
+      props.history.push('/groomer-dashboard');
     })
     .catch(err => {
       dispatch({ type: REGISTER_GROOMER_INFO_FAILURE, payload: err.message });
-      console.log(err);
     });
 };
 

@@ -25,7 +25,7 @@ const RegisterGroomer = props => {
   const [user, setUser] = useState(defaultUser);
 
   const onSubmit = data => {
-    props.registerGroomer(data);
+    props.registerGroomer(data, props);
   };
 
   const handleInputChange = event => {
