@@ -17,20 +17,18 @@ const getExampleData = () => {
 
 const requestGroomers = axios.get(groomersReq);
 const getGroomerData = () => {
-  return axios
-    .get(groomersReq)
-    .then(response => {
-      let groomers = response.data;
-      return groomers;
-    })
+  return axios.get(groomersReq).then(response => {
+    let groomers = response.data;
+    return groomers;
+  });
+};
 
-
-const requestGroomers = axios.get(groomersReq);
-const requestCustomers = axios.get(customersReq);
+const requestUserGroomers = axios.get(groomersReq);
+const requestUserCustomers = axios.get(customersReq);
 
 const getUserData = () => {
   return axios
-    .all([requestGroomers, requestCustomers])
+    .all([requestUserGroomers, requestUserCustomers])
     .then(
       axios.spread((...responses) => {
         let users = [...responses[0].data, ...responses[1].data];
@@ -48,7 +46,6 @@ const getGUserData = () => {
     .get(`https://jsonplaceholder.typicode.com/photos?albumId=1`)
     .then(response => response.data);
 };
-
 
 const getAuthHeader = authState => {
   if (!authState.isAuthenticated) {
@@ -82,4 +79,11 @@ const getProfileData = authState => {
   }
 };
 
-export { sleep, getExampleData, getProfileData, getDSData, getGroomerData, getUserData };
+export {
+  sleep,
+  getExampleData,
+  getProfileData,
+  getDSData,
+  getGroomerData,
+  getUserData,
+};
