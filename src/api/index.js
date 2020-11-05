@@ -33,7 +33,7 @@ const getUserData = () => {
       return errors;
     });
 };
-
+// kill me
 const getGUserData = () => {
   return axios
     .get(`https://jsonplaceholder.typicode.com/photos?albumId=1`)

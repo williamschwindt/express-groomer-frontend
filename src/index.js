@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import {
   BrowserRouter as Router,
@@ -17,10 +17,19 @@ import { ProfileListPage } from './components/pages/ProfileList';
 import { LoginPage } from './components/pages/Login';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
+// new imports
+import Register from './components/Forms/Register';
+import RegisterGroomer from './components/Forms/RegisterGroomer';
+import CustomerGroomer from './components/Forms/RegisterCustomer';
 
 ReactDOM.render(
   <Router>
     <React.StrictMode>
+      <div className="paths-containers">
+        <Route path="/register" component={Register} />
+        <Route path="/groomers" component={RegisterGroomer} />
+        <Route path="/customers" component={CustomerGroomer} />
+      </div>
       <App />
     </React.StrictMode>
   </Router>,
@@ -39,21 +48,25 @@ function App() {
   };
 
   return (
-    
-    <Security {...config} onAuthRequired={authHandler}>
-      <Switch>
-        <Route path="/login" component={LoginPage} />
-        <Route path="/implicit/callback" component={LoginCallback} />
-        {/* any of the routes you need secured should be registered as SecureRoutes */}
-        <SecureRoute
-          path="/"
-          exact
-          component={() => <HomePage LoadingComponent={LoadingComponent} />}
-        />
-        <SecureRoute path="/example-list" component={ExampleListPage} />
-        
-        <SecureRoute path="/profile-list" component={ProfileListPage} /><Route component={NotFoundPage} />
-      </Switch>
-    </Security>
+    <div className="index-container">
+      {/* Added features */}
+
+      <Security {...config} onAuthRequired={authHandler}>
+        <Switch>
+          <Route path="/login" component={LoginPage} />
+          <Route path="/implicit/callback" component={LoginCallback} />
+          {/* any of the routes you need secured should be registered as SecureRoutes */}
+          <SecureRoute
+            path="/"
+            exact
+            component={() => <HomePage LoadingComponent={LoadingComponent} />}
+          />
+          <SecureRoute path="/example-list" component={ExampleListPage} />
+
+          <SecureRoute path="/profile-list" component={ProfileListPage} />
+          {/* <Route component={NotFoundPage} /> */}
+        </Switch>
+      </Security>
+    </div>
   );
 }
