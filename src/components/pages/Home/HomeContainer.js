@@ -44,7 +44,16 @@ function HomeContainer({ LoadingComponent }) {
         <LoadingComponent message="Fetching user profile..." />
       )}
 
-      {authState.isAuthenticated &&
+      {authState.isAuthenticated && userInfo ? (
+        <RenderHomePage userInfo={userInfo} authService={authService} />
+      ) : (
+        // you can either render a registration component here,
+        <h1>you need to register before you can view dashboard</h1>
+        // OR you can redirect to it's own registration page
+        // <Redirect to={'/registration'} />
+      )}
+
+      {/* {authState.isAuthenticated &&
       userInfo &&
       oktaIds &&
       !(userInfo.oktaId in oktaIds) ? (
@@ -54,7 +63,7 @@ function HomeContainer({ LoadingComponent }) {
         <h1>you need to register before you can view dashboard</h1>
         // OR you can redirect to it's own registration page
         // <Redirect to={'/registration'} />
-      )}
+      )} */}
     </>
   );
 }
