@@ -20,8 +20,8 @@ export const RenderGroomerProfile = props => {
           </Button>,
         ]}
       >
-        <p>Phone number: (111)-111-1111</p>
-        <p>Email: llama001@maildrop.cc</p>
+        <p>Phone number: {props.dummyData.phone}</p>
+        <p>Email: {props.dummyData.email}</p>
       </Modal>
       <Modal
         title="Edit profile"
@@ -42,34 +42,34 @@ export const RenderGroomerProfile = props => {
         ]}
       >
         <Form.Item label="First Name" name="name">
-          <Input />
+          <Input placeholder={props.dummyData.name} />
         </Form.Item>
         <Form.Item label="Last Name" name="lastname">
-          <Input />
+          <Input placeholder={props.dummyData.lastname} />
         </Form.Item>
         <Form.Item label="Address" name="address">
-          <Input />
+          <Input placeholder={props.dummyData.address} />
         </Form.Item>
         <Form.Item label="Zip Code" name="zip">
-          <Input />
+          <Input placeholder={props.dummyData.zip} />
         </Form.Item>
         <Form.Item label="City" name="city">
-          <Input />
+          <Input placeholder={props.dummyData.city} />
         </Form.Item>
         <Form.Item label="State" name="state">
-          <Input />
+          <Input placeholder={props.dummyData.state} />
         </Form.Item>
         <Form.Item label="Country" name="country">
-          <Input />
+          <Input placeholder={props.dummyData.country} />
         </Form.Item>
         <Form.Item label="Phone Number" name="phone">
-          <Input />
+          <Input placeholder={props.dummyData.phone} />
         </Form.Item>
         <Form.Item label="Email" name="email">
-          <Input />
+          <Input placeholder={props.dummyData.email} />
         </Form.Item>
         <Form.Item label="Profile Picture" name="photo_url">
-          <Input />
+          <Input placeholder={props.dummyData.photo_url} />
         </Form.Item>
       </Modal>
       <Breadcrumb style={{ margin: '16px 0', marginBottom: '24px' }}>
@@ -83,14 +83,17 @@ export const RenderGroomerProfile = props => {
       <Row justify="space-around" align="middle">
         <Col xs={2} sm={4} md={6} lg={8} xl={10}>
           <DemoBox value={100}>
-            <Avatar
-              size={128}
-              icon={<UserOutlined />}
-              style={{ marginBottom: '10px' }}
+            <img
+              src={props.dummyData.photo_url}
+              alt={props.dummyData.name}
+              style={{ borderRadius: '50%', marginBottom: '10px' }}
             />
-            <h2>William Schwindt</h2>
+            <h2>
+              {props.dummyData.name} {props.dummyData.lastname}
+            </h2>
             <p>
-              Bend, Oregon, United States{' '}
+              {props.dummyData.city}, {props.dummyData.state},{' '}
+              {props.dummyData.country}
               <span
                 onClick={props.showContactModal}
                 style={{
@@ -105,15 +108,7 @@ export const RenderGroomerProfile = props => {
           </DemoBox>
           <div className="groomer-about-section">
             <h2>About</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
+            <p>{props.dummyData.description}</p>
           </div>
         </Col>
         <Col xs={20} sm={16} md={12} lg={8} xl={4} />
