@@ -18,7 +18,7 @@ import { LoadingComponent } from './components/common';
 import { CustomerDashboard } from './components/pages/CustomerDashboard';
 import { GroomerDashboard } from './components/pages/GroomerDashboard';
 import { SearchForm } from './components/pages/search';
-
+import MyMap from './components/MyMap/MyMap.js';
 
 ReactDOM.render(
   <Router>
@@ -55,6 +55,7 @@ function App() {
 
         <SecureRoute path="/customer-dashboard" component={CustomerDashboard} />
         <SecureRoute path="/groomer-dashboard" component={GroomerDashboard} />
+        <SecureRoute path="/google-map" component={MyMap} />
 
         <Route component={NotFoundPage} />
       </Switch>

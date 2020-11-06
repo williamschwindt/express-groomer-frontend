@@ -3,7 +3,6 @@ import OktaSignIn from '@okta/okta-signin-widget';
 import '@okta/okta-signin-widget/dist/css/okta-sign-in.min.css';
 
 import { config } from '../../../utils/oktaConfig';
-import GoogleMap from '../../GoogleMap/GoogleMap.js';
 
 const LoginContainer = props => {
   useEffect(() => {
@@ -33,7 +32,7 @@ const LoginContainer = props => {
         scopes,
       },
     });
-
+    widget.remove();
     widget.renderEl(
       { el: '#sign-in-widget' },
       () => {
@@ -50,7 +49,6 @@ const LoginContainer = props => {
 
   return (
     <>
-      <GoogleMap placeName="Madrid" />
       <div id="sign-in-widget" />
     </>
   );

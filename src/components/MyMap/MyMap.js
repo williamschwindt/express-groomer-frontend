@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { GoogleMap, LoadScript } from '@react-google-maps/api';
 
 const containerStyle = {
@@ -11,16 +11,16 @@ const center = {
   lng: -38.523,
 };
 
-function MyComponent() {
-  const [map, setMap] = React.useState(null);
+function MyMap() {
+  const [map, setMap] = useState(null);
 
-  const onLoad = React.useCallback(function callback(map) {
+  const onLoad = useCallback(function callback(map) {
     const bounds = new window.google.maps.LatLngBounds();
     map.fitBounds(bounds);
     setMap(map);
   }, []);
 
-  const onUnmount = React.useCallback(function callback(map) {
+  const onUnmount = useCallback(function callback(map) {
     setMap(null);
   }, []);
 
@@ -40,4 +40,4 @@ function MyComponent() {
   );
 }
 
-export default React.memo(MyComponent);
+export default React.memo(MyMap);
