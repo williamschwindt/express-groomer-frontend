@@ -15,7 +15,6 @@ describe('<FormInput /> test suite', () => {
     );
 
     const input = getByLabelText(/user email/i);
-    expect(input.type).toBe('text');
     expect(input.placeholder).toBe('User Email');
   });
 });

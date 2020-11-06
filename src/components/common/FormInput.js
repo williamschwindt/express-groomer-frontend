@@ -7,7 +7,6 @@ const Input = ({ label, register, required }) => (
     <label htmlFor={label}>{label}</label>
     <input
       id={label}
-      type="text"
       placeholder={label}
       name={label}
       ref={register({ required })}
