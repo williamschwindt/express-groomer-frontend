@@ -20,6 +20,7 @@ import { GroomerDashboard } from './components/pages/GroomerDashboard';
 import { SearchForm } from './components/pages/search';
 import MyMap from './components/MyMap/MyMap.js';
 
+
 ReactDOM.render(
   <Router>
     <React.StrictMode>
@@ -28,6 +29,7 @@ ReactDOM.render(
   </Router>,
   document.getElementById('root')
 );
+
 function App() {
   // The reason to declare App this way is so that we can use any helper functions we'd need for business logic, in our case auth.
   // React Router has a nifty useHistory hook we can use at this level to ensure we have security around our routes.
@@ -43,16 +45,13 @@ function App() {
         <Route path="/login" component={LoginPage} />
         <Route path="/SearchForm" component={SearchForm} />
         <Route path="/implicit/callback" component={LoginCallback} />
-
         <SecureRoute
           exact
           path="/"
           component={() => <HomePage LoadingComponent={LoadingComponent} />}
         />
         <SecureRoute path="/example-list" component={ExampleListPage} />
-
         <SecureRoute path="/profile-list" component={ProfileListPage} />
-
         <SecureRoute path="/customer-dashboard" component={CustomerDashboard} />
         <SecureRoute path="/groomer-dashboard" component={GroomerDashboard} />
         <SecureRoute path="/google-map" component={MyMap} />
