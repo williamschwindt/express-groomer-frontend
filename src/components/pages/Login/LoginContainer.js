@@ -32,7 +32,7 @@ const LoginContainer = () => {
         scopes,
       },
     });
-
+    widget.remove();
     widget.renderEl(
       { el: '#sign-in-widget' },
       () => {
