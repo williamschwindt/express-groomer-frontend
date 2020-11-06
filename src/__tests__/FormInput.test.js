@@ -11,11 +11,7 @@ describe('<FormInput /> test suite', () => {
   test('input is rendered with proper labels', () => {
     // For this assertion, we're just using RTL to test the attributes that get rendered from FormInput
     const { getByLabelText } = render(
-      <FormInput
-        labelId="User Email"
-        name="username"
-        placeholder="User Email"
-      />
+      <FormInput labelId="User Email" placeholder="User Email" />
     );
 
     const input = getByLabelText(/user email/i);
