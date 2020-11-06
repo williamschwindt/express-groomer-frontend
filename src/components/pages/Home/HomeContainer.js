@@ -11,7 +11,7 @@ function HomeContainer({ LoadingComponent }) {
   // eslint-disable-next-line
   const [memoAuthService] = useMemo(() => [authService], []);
 
-  // const [oktaIds, setOktaIds] = useState([]);
+  const [oktaIds, setOktaIds] = useState([]);
 
   // getUserData().then(response => {
   //   const oktaUserIds = response.filter(user => user.oktaId);
