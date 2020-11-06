@@ -46,8 +46,6 @@ function RegisterCustomer() {
   const handleInputChange = event => {
     event.preventDefault();
     //   getting name of input and value
-    // console.log('handleINputChange Name', event.target.name);
-    //   console.log('handleINputChange Value', event.target.value);
     setUser({
       ...user,
       // seting key to key-value pair
