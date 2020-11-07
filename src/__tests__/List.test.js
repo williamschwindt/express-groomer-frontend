@@ -22,7 +22,7 @@ describe('<List /> test suite', () => {
       rendered = render(
         <List
           // return an unresolved promise to test initial component state
-          getItemsData={jest.fn(() => new Promise(() => {}))}
+          // getItemsData={jest.fn(() => new Promise(() => {}))}
           LoadingComponent={() => (
             <div>you need to register before you can view dashboard</div>
           )}
