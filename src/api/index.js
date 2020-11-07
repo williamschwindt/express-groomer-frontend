@@ -12,15 +12,24 @@ const sleep = time =>
 const getExampleData = () => {
   return axios
     .get(`https://jsonplaceholder.typicode.com/photos?albumId=1`)
-    .then(response => response.data);
+    .then(response => response.data)
+    .catch(err => {
+      console.log(err);
+      return err;
+    });
 };
 
-const requestGroomers = axios.get(groomersReq);
 const getGroomerData = () => {
-  return axios.get(groomersReq).then(response => {
-    let groomers = response.data;
-    return groomers;
-  });
+  return axios
+    .get(groomersReq)
+    .then(response => {
+      let groomers = response.data;
+      return groomers;
+    })
+    .catch(err => {
+      console.log(err);
+      return err;
+    });
 };
 
 const requestUserGroomers = axios.get(groomersReq);
@@ -35,9 +44,9 @@ const getUserData = () => {
         return users;
       })
     )
-
-    .catch(errors => {
-      return errors;
+    .catch(err => {
+      console.log(err);
+      return err;
     });
 };
 
