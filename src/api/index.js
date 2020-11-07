@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-let groomersReq = `${process.env.REACT_APP_API_URI}groomers`;
-let customersReq = `${process.env.REACT_APP_API_URI}customers`;
+let groomersReq = `${process.env.REACT_APP_API_URI}/groomers`;
+let customersReq = `${process.env.REACT_APP_API_URI}/customers`;
 
 // we will define a bunch of API calls here.
 const apiUrl = `${process.env.REACT_APP_API_URI}profiles`;
