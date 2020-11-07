@@ -40,4 +40,5 @@ function MyMap() {
   );
 }
 
-export default React.memo(MyMap);
+// export default React.memo(MyMap);
+export default MyMap;

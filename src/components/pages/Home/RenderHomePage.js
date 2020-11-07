@@ -31,6 +31,9 @@ function RenderHomePage(props) {
           <li>
             <Link to="/example-list">Example List of Items</Link>
           </li>
+          <li>
+            <Link to="/googlemap-component">Example GoogleMap component</Link>
+          </li>
 
           <li>
             <Button

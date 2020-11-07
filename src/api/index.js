@@ -53,7 +53,8 @@ const getUserData = () => {
 const getGUserData = () => {
   return axios
     .get(`https://jsonplaceholder.typicode.com/photos?albumId=1`)
-    .then(response => response.data);
+    .then(response => response.data)
+    .catch(err => err);
 };
 
 const getAuthHeader = authState => {

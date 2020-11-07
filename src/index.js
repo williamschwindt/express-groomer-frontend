@@ -23,7 +23,7 @@ import CustomerRegistration from './components/pages/CustomerRegistration/Custom
 import CustomerDashboard from './components/pages/CustomerDashboard/CustomerDashboardContainer';
 import GroomerDashboard from './components/pages/GroomerDashboard/GroomerDashboardContainer';
 import { SearchForm } from './components/pages/search';
-import MyMap from './components/MyMap/MyMap.js';
+import MyMap from './components/MyMap/MyMap';
 
 ReactDOM.render(
   <Router>
@@ -68,6 +68,7 @@ function App() {
             component={CustomerDashboard}
           />
           <SecureRoute path="/groomer-dashboard" component={GroomerDashboard} />
+          <SecureRoute path="/googlemap-component" component={MyMap} />
           <Route path="/404" component={NotFoundPage} />
           <Redirect to="/404" />
         </Switch>
