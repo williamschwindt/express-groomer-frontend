@@ -4,7 +4,7 @@ import '@okta/okta-signin-widget/dist/css/okta-sign-in.min.css';
 
 import { config } from '../../../utils/oktaConfig';
 
-const LoginContainer = () => {
+const LoginContainer = props => {
   useEffect(() => {
     const { pkce, issuer, clientId, redirectUri, scopes } = config;
     // destructure your config so that you can pass it into the required fields in your widget.
@@ -32,7 +32,7 @@ const LoginContainer = () => {
         scopes,
       },
     });
-
+    widget.remove();
     widget.renderEl(
       { el: '#sign-in-widget' },
       () => {
@@ -47,7 +47,11 @@ const LoginContainer = () => {
     );
   }, []);
 
-  return <div id="sign-in-widget" />;
+  return (
+    <>
+      <div id="sign-in-widget" />
+    </>
+  );
 };
 
 export default LoginContainer;
