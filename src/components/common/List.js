@@ -17,7 +17,8 @@ const List = ({ LoadingComponent, RenderItems, getItemsData }) => {
       })
       .catch(error => {
         console.error(error);
-        // Be sure to add functionality that displays errors to your UI here.
+        // TODO Be sure to add functionality that displays errors to your UI here.
+        return error;
         // We want our users to know whether something has gone wrong with our request.
       })
       .finally(() => {

@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { registerCustomer } from '../../api/index';
+import './CustomerRegistration.css';
 
-const RegisterCustomer = props => {
+const CustomerRegistration = props => {
   const defaultUser = {
     name: '',
     lastname: '',
@@ -38,13 +39,12 @@ const RegisterCustomer = props => {
     //   change user.state based on whats coming in input
 
     <div className="registration-container">
-      <h1>User Registration</h1>
-      {/* To test functionality */}
-      <p>First name is: {user.name}</p>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="name">Name</label>
+      <h1>Customer Registration</h1>
 
-        {/* use aria-invalid to indicate field contain error */}
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <label htmlFor="name">Name: </label>
+
+        {/* use aria-invalid to indicate field contain error for screen reader users*/}
         <input
           type="text"
           id="name"
@@ -63,6 +63,7 @@ const RegisterCustomer = props => {
           <span role="alert">Max length exceeded</span>
         )}
 
+        <label htmlFor="lastname">Last Name: </label>
         <input
           type="text"
           id="lastname"
@@ -80,6 +81,8 @@ const RegisterCustomer = props => {
         {errors.lastname && errors.lastname.type === 'maxLength' && (
           <span role="alert">Max length exceeded</span>
         )}
+
+        <label htmlFor="email">Email: </label>
 
         <input
           type="email"
@@ -99,6 +102,8 @@ const RegisterCustomer = props => {
           <span role="alert">Max length exceeded</span>
         )}
 
+        <label htmlFor="phone">Phone: </label>
+
         <input
           type="text"
           id="phone"
@@ -116,6 +121,8 @@ const RegisterCustomer = props => {
         {errors.phone && errors.phone.type === 'maxLength' && (
           <span role="alert">Max length exceeded</span>
         )}
+
+        <label htmlFor="address">Address: </label>
 
         <input
           type="text"
@@ -135,6 +142,8 @@ const RegisterCustomer = props => {
           <span role="alert">Max length exceeded</span>
         )}
 
+        <label htmlFor="city">City: </label>
+
         <input
           type="text"
           id="city"
@@ -152,6 +161,8 @@ const RegisterCustomer = props => {
         {errors.city && errors.city.type === 'maxLength' && (
           <span role="alert">Max length exceeded</span>
         )}
+
+        <label htmlFor="state">State: </label>
 
         <input
           type="text"
@@ -171,6 +182,8 @@ const RegisterCustomer = props => {
           <span role="alert">Max length exceeded</span>
         )}
 
+        <label htmlFor="zipcode">Zipcode: </label>
+
         <input
           type="text"
           id="zipcode"
@@ -189,6 +202,8 @@ const RegisterCustomer = props => {
           <span role="alert">Max length exceeded</span>
         )}
 
+        <label htmlFor="description">Description: </label>
+
         <input
           type="text"
           id="description"
@@ -206,6 +221,7 @@ const RegisterCustomer = props => {
         {errors.description && errors.description.type === 'maxLength' && (
           <span role="alert">Max length exceeded</span>
         )}
+        <label htmlFor="photoUrl">Photo URL: </label>
 
         <input
           type="text"
@@ -225,7 +241,7 @@ const RegisterCustomer = props => {
           <span role="alert">Max length exceeded</span>
         )}
 
-        <input type="submit" />
+        <button type="submit">Submit</button>
       </form>
     </div>
   );
@@ -237,4 +253,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { registerCustomer })(RegisterCustomer);
+export default connect(mapStateToProps, { registerCustomer })(
+  CustomerRegistration
+);

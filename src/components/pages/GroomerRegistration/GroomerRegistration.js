@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { registerGroomer } from '../../api/index';
+import './GroomerRegistration.css';
 
-const RegisterGroomer = props => {
-  console.log(props.groomer);
+const GroomerRegistration = props => {
   const defaultUser = {
     name: '',
     lastname: '',
@@ -43,11 +43,10 @@ const RegisterGroomer = props => {
     //   change user.state based on whats coming in input
 
     <div className="registration-container">
-      <h1>User Registration</h1>
-      {/* To test functionality */}
-      <p>First name is: {user.name}</p>
+      <h1>Groomer Registration</h1>
+
       <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="name">Name</label>
+        <label htmlFor="name">Name: </label>
 
         {/* use aria-invalid to indicate field contain error */}
         <input
@@ -68,6 +67,7 @@ const RegisterGroomer = props => {
           <span role="alert">Max length exceeded</span>
         )}
 
+        <label htmlFor="lastname">Last Name: </label>
         <input
           type="text"
           id="lastname"
@@ -86,6 +86,7 @@ const RegisterGroomer = props => {
           <span role="alert">Max length exceeded</span>
         )}
 
+        <label htmlFor="email">Email: </label>
         <input
           type="email"
           id="email"
@@ -104,6 +105,7 @@ const RegisterGroomer = props => {
           <span role="alert">Max length exceeded</span>
         )}
 
+        <label htmlFor="phone">Phone: </label>
         <input
           type="text"
           id="phone"
@@ -122,6 +124,7 @@ const RegisterGroomer = props => {
           <span role="alert">Max length exceeded</span>
         )}
 
+        <label htmlFor="address">Address: </label>
         <input
           type="text"
           id="address"
@@ -140,6 +143,7 @@ const RegisterGroomer = props => {
           <span role="alert">Max length exceeded</span>
         )}
 
+        <label htmlFor="city">City: </label>
         <input
           type="text"
           id="city"
@@ -158,6 +162,7 @@ const RegisterGroomer = props => {
           <span role="alert">Max length exceeded</span>
         )}
 
+        <label htmlFor="state">State: </label>
         <input
           type="text"
           id="state"
@@ -176,6 +181,7 @@ const RegisterGroomer = props => {
           <span role="alert">Max length exceeded</span>
         )}
 
+        <label htmlFor="zipcode">ZIP Code: </label>
         <input
           type="text"
           id="zipcode"
@@ -194,6 +200,7 @@ const RegisterGroomer = props => {
           <span role="alert">Max length exceeded</span>
         )}
 
+        <label htmlFor="description">Description: </label>
         <input
           type="text"
           id="description"
@@ -212,6 +219,7 @@ const RegisterGroomer = props => {
           <span role="alert">Max length exceeded</span>
         )}
 
+        <label htmlFor="photoUrl">Photo URL: </label>
         <input
           type="text"
           id="photoUrl"
@@ -230,6 +238,7 @@ const RegisterGroomer = props => {
           <span role="alert">Max length exceeded</span>
         )}
 
+        <label htmlFor="walk_rate">Walk rate: </label>
         <input
           type="text"
           id="walk_rate"
@@ -248,6 +257,7 @@ const RegisterGroomer = props => {
           <span role="alert">Max length exceeded</span>
         )}
 
+        <label htmlFor="day_care_rate">Day care rate: </label>
         <input
           type="text"
           id="day_care_rate"
@@ -265,6 +275,7 @@ const RegisterGroomer = props => {
         {errors.day_care_rate && errors.day_care_rate.type === 'maxLength' && (
           <span role="alert">Max length exceeded</span>
         )}
+        <label htmlFor="vet_visit_rate">Vet visit rate: </label>
 
         <input
           type="text"
@@ -285,7 +296,7 @@ const RegisterGroomer = props => {
             <span role="alert">Max length exceeded</span>
           )}
 
-        <input type="submit" />
+        <button type="submit">Submit</button>
       </form>
     </div>
   );
@@ -297,4 +308,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { registerGroomer })(RegisterGroomer);
+export default connect(mapStateToProps, { registerGroomer })(
+  GroomerRegistration
+);
