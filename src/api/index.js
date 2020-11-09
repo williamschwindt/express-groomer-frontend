@@ -16,11 +16,11 @@ import {
   REGISTER_GROOMER_INFO_FAILURE,
 } from './types';
 
-let groomersReq = `${process.env.REACT_APP_API_URI}groomers`;
-let customersReq = `${process.env.REACT_APP_API_URI}customers`;
+let groomersReq = `${process.env.REACT_APP_API_URI}/groomers`;
+let customersReq = `${process.env.REACT_APP_API_URI}/customers`;
 
 // we will define a bunch of API calls here.
-const apiUrl = `${process.env.REACT_APP_API_URI}profiles`;
+const apiUrl = `${process.env.REACT_APP_API_URI}/profiles`;
 
 const sleep = time =>
   new Promise(resolve => {
@@ -41,7 +41,11 @@ const getUserData = () => {
     .all([requestGroomers, requestCustomers])
     .then(
       axios.spread((...responses) => {
-        let users = [...responses[0].data, ...responses[1].data];
+        console.log(responses);
+        let users = {
+          groomers: responses[0].data,
+          customers: responses[1].data,
+        };
         return users;
       })
     )
@@ -96,7 +100,7 @@ const getCustomerInfo = id => dispatch => {
   dispatch({ type: GET_CUSTOMER_INFO_START });
 
   axios
-    .get(`${process.env.REACT_APP_API_URI}customers/${id}`)
+    .get(`${process.env.REACT_APP_API_URI}/customers/${id}`)
     .then(res => {
       dispatch({ type: GET_CUSTOMER_INFO_SUCCESS, payload: res.body });
     })
@@ -110,7 +114,7 @@ const getGroomerInfo = id => dispatch => {
   dispatch({ type: GET_GROOMER_INFO_START });
 
   axios
-    .get(`${process.env.REACT_APP_API_URI}groomers/${id}`)
+    .get(`${process.env.REACT_APP_API_URI}/groomers/${id}`)
     .then(res => {
       console.log(res.data);
       dispatch({ type: GET_GROOMER_INFO_SUCCESS, payload: res.data });
