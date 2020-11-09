@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { registerCustomer } from '../../api/index';
+import { registerCustomer } from '../../../api/index';
 import './CustomerRegistration.css';
 
 const CustomerRegistration = props => {
