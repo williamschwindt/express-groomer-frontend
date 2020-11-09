@@ -3,8 +3,6 @@ import { Redirect } from 'react-router-dom';
 import { useOktaAuth } from '@okta/okta-react';
 import { getUserData } from '../../../api/index.js';
 
-import RenderHomePage from './RenderHomePage';
-
 function HomeContainer({ LoadingComponent }) {
   const { authState, authService } = useOktaAuth();
   const [userInfo, setUserInfo] = useState(null);
@@ -24,9 +22,7 @@ function HomeContainer({ LoadingComponent }) {
         // isSubscribed is a boolean toggle that we're using to clean up our useEffect.
         if (isSubscribed) {
           setUserInfo(info);
-          console.log(info);
           getUserData().then(response => {
-            console.log(response);
             const existingCustomer = response['customers'].filter(
               user => user.email === info.email
             );
@@ -55,14 +51,6 @@ function HomeContainer({ LoadingComponent }) {
         <LoadingComponent message="Fetching user profile..." />
       )}
 
-      {/* {authState.isAuthenticated && userInfo ? (
-        <RenderHomePage userInfo={userInfo} authService={authService} />
-      ) : (
-        // you can either render a registration component here,
-        <h1>you need to register before you can view dashboard</h1>
-        // OR you can redirect to it's own registration page
-        // <Redirect to={'/registration'} />
-      )} */}
       {authState.isAuthenticated && userInfo && customer ? (
         <Redirect to={'/customer-dashboard'} />
       ) : authState.isAuthenticated && userInfo && groomer ? (
