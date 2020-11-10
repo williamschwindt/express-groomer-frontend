@@ -15,7 +15,16 @@ const Registration = props => {
       >
         Groomer
       </Link>
-      <Link to="/customers">Customer</Link>
+      <Link
+        to={{
+          pathname: 'customers',
+          state: {
+            email: props.email,
+          },
+        }}
+      >
+        Customer
+      </Link>
     </div>
   );
 };

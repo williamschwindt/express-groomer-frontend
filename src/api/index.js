@@ -126,19 +126,7 @@ const registerCustomer = (data, props) => dispatch => {
   dispatch({ type: REGISTER_CUSTOMER_INFO_START });
 
   axios
-    .post(`${process.env.REACT_APP_API_URI}/customers`, {
-      name: data.name,
-      lastname: data.lastname,
-      email: data.email,
-      phone: data.phone,
-      address: data.address,
-      city: data.city,
-      state: data.state,
-      country: data.country,
-      zipcode: data.zip,
-      description: data.description,
-      photo_url: data.photo_url,
-    })
+    .post(`${process.env.REACT_APP_API_URI}/customers`, data)
     .then(res => {
       dispatch({ type: REGISTER_CUSTOMER_INFO_SUCCESS, payload: res.body });
       props.history.push('/customer-dashboard');
@@ -158,8 +146,6 @@ const registerGroomer = (data, props) => dispatch => {
       props.history.push('/groomer-dashboard');
     })
     .catch(err => {
-      console.log(data);
-      console.log(err);
       dispatch({ type: REGISTER_GROOMER_INFO_FAILURE, payload: err.message });
     });
 };

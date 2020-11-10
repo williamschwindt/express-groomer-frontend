@@ -5,13 +5,12 @@ import { registerCustomer } from '../../../api/index';
 import './CustomerRegistration.css';
 
 const CustomerRegistration = props => {
-  console.log(props);
   const defaultUser = {
     name: '',
     lastname: '',
-    email: '',
+    email: props.location.state.email,
     phone: '',
-    zipcode: '',
+    zip: '',
     address: '',
     city: '',
     state: '',
@@ -22,8 +21,8 @@ const CustomerRegistration = props => {
   const { register, handleSubmit, errors } = useForm();
   const [user, setUser] = useState(defaultUser);
 
-  const onSubmit = data => {
-    props.registerCustomer(data, props);
+  const onSubmit = () => {
+    props.registerCustomer(user, props);
   };
 
   const handleInputChange = event => {
@@ -80,26 +79,6 @@ const CustomerRegistration = props => {
           <span role="alert">This is required</span>
         )}
         {errors.lastname && errors.lastname.type === 'maxLength' && (
-          <span role="alert">Max length exceeded</span>
-        )}
-
-        <label htmlFor="email">Email: </label>
-
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="Email"
-          onChange={handleInputChange}
-          aria-invalid={errors.email ? 'true' : 'false'}
-          ref={register({ required: true, maxLength: 30 })}
-        />
-
-        {/* use role="alert" to announce the error message */}
-        {errors.email && errors.email.type === 'required' && (
-          <span role="alert">This is required</span>
-        )}
-        {errors.email && errors.email.type === 'maxLength' && (
           <span role="alert">Max length exceeded</span>
         )}
 
@@ -188,7 +167,7 @@ const CustomerRegistration = props => {
         <input
           type="text"
           id="zipcode"
-          name="zipcode"
+          name="zip"
           placeholder="zipcode"
           onChange={handleInputChange}
           aria-invalid={errors.zipcode ? 'true' : 'false'}
@@ -227,7 +206,7 @@ const CustomerRegistration = props => {
         <input
           type="text"
           id="photoUrl"
-          name="photoUrl"
+          name="photo_url"
           placeholder="Photo URL"
           onChange={handleInputChange}
           aria-invalid={errors.zipcode ? 'true' : 'false'}
