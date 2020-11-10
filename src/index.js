@@ -5,6 +5,7 @@ import {
   Route,
   useHistory,
   Switch,
+  Redirect,
 } from 'react-router-dom';
 import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
 import 'antd/dist/antd.less';
@@ -15,10 +16,18 @@ import { ProfileListPage } from './components/pages/ProfileList';
 import { LoginPage } from './components/pages/Login';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
-import { CustomerDashboard } from './components/pages/CustomerDashboard';
-import { GroomerDashboard } from './components/pages/GroomerDashboard';
+// new imports
+import Registration from './components/pages/Registration/Registration';
+import GroomerRegistration from './components/pages/GroomerRegistration/GroomerRegistration';
+import CustomerRegistration from './components/pages/CustomerRegistration/CustomerRegistration';
+import CustomerDashboard from './components/pages/CustomerDashboard/CustomerDashboardContainer';
+import GroomerDashboard from './components/pages/GroomerDashboard/GroomerDashboardContainer';
 import { SearchForm } from './components/pages/search';
+
 import './styles/UserProfile.css';
+
+import MyMap from './components/MyMap/MyMap';
+
 
 ReactDOM.render(
   <Router>
@@ -28,6 +37,7 @@ ReactDOM.render(
   </Router>,
   document.getElementById('root')
 );
+
 function App() {
   // The reason to declare App this way is so that we can use any helper functions we'd need for business logic, in our case auth.
   // React Router has a nifty useHistory hook we can use at this level to ensure we have security around our routes.
@@ -38,26 +48,35 @@ function App() {
     history.push('/login');
   };
   return (
-    <Security {...config} onAuthRequired={authHandler}>
-      <Switch>
-        <Route path="/login" component={LoginPage} />
-        <Route path="/SearchForm" component={SearchForm} />
-        <Route path="/implicit/callback" component={LoginCallback} />
+    <div className="index-container">
+      {/* Added features */}
 
-        <SecureRoute
-          exact
-          path="/"
-          component={() => <HomePage LoadingComponent={LoadingComponent} />}
-        />
-        <SecureRoute path="/example-list" component={ExampleListPage} />
-
-        <SecureRoute path="/profile-list" component={ProfileListPage} />
-
-        <SecureRoute path="/customer-dashboard" component={CustomerDashboard} />
-        <SecureRoute path="/groomer-dashboard" component={GroomerDashboard} />
-
-        <Route component={NotFoundPage} />
-      </Switch>
-    </Security>
+      <Security {...config} onAuthRequired={authHandler}>
+        <Switch>
+          <Route path="/login" component={LoginPage} />
+          <Route path="/SearchForm" component={SearchForm} />
+          <Route path="/implicit/callback" component={LoginCallback} />
+          {/* any of the routes you need secured should be registered as SecureRoutes */}
+          <SecureRoute
+            path="/"
+            exact
+            component={() => <HomePage LoadingComponent={LoadingComponent} />}
+          />
+          <SecureRoute path="/example-list" component={ExampleListPage} />{' '}
+          <SecureRoute path="/profile-list" component={ProfileListPage} />
+          <SecureRoute path="/register" component={Registration} />
+          <SecureRoute path="/groomers" component={GroomerRegistration} />
+          <SecureRoute path="/customers" component={CustomerRegistration} />
+          <SecureRoute
+            path="/customer-dashboard"
+            component={CustomerDashboard}
+          />
+          <SecureRoute path="/groomer-dashboard" component={GroomerDashboard} />
+          <SecureRoute path="/googlemap-component" component={MyMap} />
+          <Route path="/404" component={NotFoundPage} />
+          <Redirect to="/404" />
+        </Switch>
+      </Security>
+    </div>
   );
 }
