@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 const RenderExampleListPage = props => (
   <div>
+    {console.log('RenderExampleListPage', props)}
     {props.data.map(item => (
       <figure key={item.id}>
         <img src={item.thumbnailUrl} alt={item.title} />

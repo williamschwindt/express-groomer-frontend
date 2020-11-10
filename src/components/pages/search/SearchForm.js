@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Pagination } from 'antd';
 import { getGroomerData } from '../../../api/index';
+import { Link } from 'react-router-dom';
 
 const cardDescription = {
   margin: '1px',
@@ -61,34 +62,36 @@ const SearchForm = () => {
       {groomers &&
         groomers.length > 0 &&
         groomers.slice(minValue, maxValue).map(groomer => (
-          <Card
-            hoverable
-            style={{
-              width: 240,
-              margin: '10px',
-            }}
-            cover={<img alt="example" src={groomer.photo_url} />}
-          >
-            <Meta title={groomer.name + ' ' + groomer.lastname}></Meta>
-            <div
+          <Link to={`/groomers/${groomer.id}`}>
+            <Card
+              hoverable
               style={{
-                marginBottom: '1px',
+                width: 240,
+                margin: '10px',
               }}
+              cover={<img alt="example" src={groomer.photo_url} />}
             >
-              <p style={cardDescription}>
-                Vet Visit Rate: ${groomer.vet_visit_rate}
-              </p>
-              <p style={cardDescription}>
-                Day Care Rate: ${groomer.day_care_rate}
-              </p>
-              <p style={cardDescription}>Walk Rate: ${groomer.walk_rate}</p>
-              <p style={cardDescription}>Address: {groomer.address}</p>
-              <p style={cardDescription}>
-                {groomer.city}, {groomer.state} {groomer.zip}
-              </p>
-              <p style={cardDescription}>{groomer.country}</p>
-            </div>
-          </Card>
+              <Meta title={groomer.name + ' ' + groomer.lastname}></Meta>
+              <div
+                style={{
+                  marginBottom: '1px',
+                }}
+              >
+                <p style={cardDescription}>
+                  Vet Visit Rate: ${groomer.vet_visit_rate}
+                </p>
+                <p style={cardDescription}>
+                  Day Care Rate: ${groomer.day_care_rate}
+                </p>
+                <p style={cardDescription}>Walk Rate: ${groomer.walk_rate}</p>
+                <p style={cardDescription}>Address: {groomer.address}</p>
+                <p style={cardDescription}>
+                  {groomer.city}, {groomer.state} {groomer.zip}
+                </p>
+                <p style={cardDescription}>{groomer.country}</p>
+              </div>
+            </Card>
+          </Link>
         ))}
       <Pagination
         defaultCurrent={1}
