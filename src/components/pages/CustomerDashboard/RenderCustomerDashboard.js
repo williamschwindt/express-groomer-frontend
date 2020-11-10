@@ -44,7 +44,11 @@ export const RenderCustomerDashboard = props => {
           <Menu.Item key="4" icon={<TeamOutlined />} onClick={props.viewPets}>
             Pets
           </Menu.Item>
-          <Menu.Item key="5" icon={<FileOutlined />}>
+          <Menu.Item
+            key="5"
+            icon={<FileOutlined />}
+            onClick={() => props.authService.logout()}
+          >
             Logout
           </Menu.Item>
         </Menu>

@@ -8,9 +8,9 @@ const GroomerRegistration = props => {
   const defaultUser = {
     name: '',
     lastname: '',
-    email: '',
+    email: props.location.state.email,
     phone: '',
-    zipcode: '',
+    zip: '',
     address: '',
     city: '',
     state: '',
@@ -24,8 +24,8 @@ const GroomerRegistration = props => {
   const { register, handleSubmit, errors } = useForm();
   const [user, setUser] = useState(defaultUser);
 
-  const onSubmit = data => {
-    props.registerGroomer(data, props);
+  const onSubmit = () => {
+    props.registerGroomer(user, props);
   };
 
   const handleInputChange = event => {
@@ -83,25 +83,6 @@ const GroomerRegistration = props => {
           <span role="alert">This is required</span>
         )}
         {errors.lastname && errors.lastname.type === 'maxLength' && (
-          <span role="alert">Max length exceeded</span>
-        )}
-
-        <label htmlFor="email">Email: </label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="Email"
-          onChange={handleInputChange}
-          aria-invalid={errors.email ? 'true' : 'false'}
-          ref={register({ required: true, maxLength: 30 })}
-        />
-
-        {/* use role="alert" to announce the error message */}
-        {errors.email && errors.email.type === 'required' && (
-          <span role="alert">This is required</span>
-        )}
-        {errors.email && errors.email.type === 'maxLength' && (
           <span role="alert">Max length exceeded</span>
         )}
 
@@ -185,7 +166,7 @@ const GroomerRegistration = props => {
         <input
           type="text"
           id="zipcode"
-          name="zipcode"
+          name="zip"
           placeholder="zipcode"
           onChange={handleInputChange}
           aria-invalid={errors.zipcode ? 'true' : 'false'}
@@ -223,7 +204,7 @@ const GroomerRegistration = props => {
         <input
           type="text"
           id="photoUrl"
-          name="photoUrl"
+          name="photo_url"
           placeholder="Photo URL"
           onChange={handleInputChange}
           aria-invalid={errors.zipcode ? 'true' : 'false'}

@@ -154,27 +154,14 @@ const registerGroomer = (data, props) => dispatch => {
   dispatch({ type: REGISTER_GROOMER_INFO_START });
 
   axios
-    .post('https://labspt12-express-groomer-a-api.herokuapp.com/groomers', {
-      name: data.name,
-      lastname: data.lastname,
-      email: data.email,
-      phone: data.phone,
-      address: data.address,
-      city: data.city,
-      state: data.state,
-      country: data.country,
-      zipcode: data.zip,
-      description: data.description,
-      photo_url: data.photo_url,
-      walk_rate: data.walk_rate,
-      day_care_rate: data.day_care_rate,
-      vet_visit_rate: data.vet_visit_rate,
-    })
+    .post('https://labspt12-express-groomer-a-api.herokuapp.com/groomers', data)
     .then(res => {
       dispatch({ type: REGISTER_GROOMER_INFO_SUCCESS, payload: res.data });
       props.history.push('/groomer-dashboard');
     })
     .catch(err => {
+      console.log(data);
+      console.log(err);
       dispatch({ type: REGISTER_GROOMER_INFO_FAILURE, payload: err.message });
     });
 };

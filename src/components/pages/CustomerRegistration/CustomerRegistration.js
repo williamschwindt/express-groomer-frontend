@@ -5,6 +5,7 @@ import { registerCustomer } from '../../../api/index';
 import './CustomerRegistration.css';
 
 const CustomerRegistration = props => {
+  console.log(props);
   const defaultUser = {
     name: '',
     lastname: '',

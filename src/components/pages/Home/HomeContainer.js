@@ -2,14 +2,17 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { Redirect } from 'react-router-dom';
 import { useOktaAuth } from '@okta/okta-react';
 import { getUserData } from '../../../api/index.js';
+import { RegistrationForm } from '../Registration/';
 
 function HomeContainer({ LoadingComponent }) {
   const { authState, authService } = useOktaAuth();
   const [userInfo, setUserInfo] = useState(null);
+  console.log(userInfo);
   // eslint-disable-next-line
   const [memoAuthService] = useMemo(() => [authService], []);
 
   const [customer, setCustomer] = useState(null);
+  console.log(customer);
   const [groomer, setGroomer] = useState(null);
 
   useEffect(() => {
@@ -18,6 +21,7 @@ function HomeContainer({ LoadingComponent }) {
     memoAuthService
       .getUser()
       .then(info => {
+        console.log(info);
         // if user is authenticated we can use the authService to snag some user info.
         // isSubscribed is a boolean toggle that we're using to clean up our useEffect.
         if (isSubscribed) {
@@ -47,16 +51,16 @@ function HomeContainer({ LoadingComponent }) {
 
   return (
     <>
-      {authState.isAuthenticated && !userInfo && (
+      {authState.isAuthenticated && !userInfo ? (
         <LoadingComponent message="Fetching user profile..." />
-      )}
-
-      {authState.isAuthenticated && userInfo && customer ? (
+      ) : authState.isAuthenticated && userInfo && customer ? (
         <Redirect to={'/customer-dashboard'} />
       ) : authState.isAuthenticated && userInfo && groomer ? (
         <Redirect to={'/groomer-dashboard'} />
+      ) : userInfo ? (
+        <RegistrationForm email={userInfo.email} />
       ) : (
-        <Redirect to={'/register'} />
+        <h1>nope</h1>
       )}
     </>
   );
