@@ -7,6 +7,7 @@ import {
   TeamOutlined,
   UserOutlined,
 } from '@ant-design/icons';
+import { Link, Route } from 'react-router-dom';
 
 import SearchForm from '../search/SearchForm';
 const { Header, Content, Footer, Sider } = Layout;

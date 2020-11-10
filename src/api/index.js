@@ -36,9 +36,7 @@ const getUserData = () => {
 };
 
 const getGroomerData = () => {
-  return axios
-    .get(`https://jsonplaceholder.typicode.com/photos?albumId=1`)
-    .then(response => response.data);
+  return axios.get(groomersReq).then(response => response.data);
 };
 
 const getAuthHeader = authState => {
