@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { RenderGroomerProfile } from './RenderGroomerProfile';
+import { RenderCustomerProfile } from './RenderCustomerProfile';
 
-const GroomerProfileContainer = () => {
+const CustomerProfileContainer = () => {
   const [contactModalVisible, setContactModalVisible] = useState(false);
   const [profileModalVisible, setProfileModalVisible] = useState(false);
   const dummyData = {
@@ -37,7 +37,7 @@ const GroomerProfileContainer = () => {
   };
 
   return (
-    <RenderGroomerProfile
+    <RenderCustomerProfile
       contactModalVisible={contactModalVisible}
       showContactModal={showContactModal}
       handleContactModalClose={handleContactModalClose}
@@ -49,4 +49,4 @@ const GroomerProfileContainer = () => {
   );
 };
 
-export default GroomerProfileContainer;
+export default CustomerProfileContainer;

@@ -6,7 +6,7 @@ const DemoBox = props => (
   <p className={`height-${props.value}`}>{props.children}</p>
 );
 
-export const RenderGroomerProfile = props => {
+export const RenderCustomerProfile = props => {
   return (
     <>
       <Modal
@@ -106,7 +106,7 @@ export const RenderGroomerProfile = props => {
               </span>
             </p>
           </DemoBox>
-          <div className="groomer-about-section">
+          <div className="customer-about-section">
             <h2>About</h2>
             <p>{props.dummyData.description}</p>
           </div>
