@@ -1,6 +1,4 @@
-import React from 'react';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
 import {
   GET_CUSTOMER_INFO_START,
   GET_CUSTOMER_INFO_SUCCESS,
@@ -56,7 +54,7 @@ const getUserData = () => {
 
 const getGroomerData = () => {
   return axios
-    .get(`https://jsonplaceholder.typicode.com/photos?albumId=1`)
+    .get(`${process.env.REACT_APP_API_URI}/groomers`)
     .then(response => response.data)
     .catch(err => console.log(err));
 };
@@ -128,7 +126,7 @@ const registerCustomer = (data, props) => dispatch => {
   dispatch({ type: REGISTER_CUSTOMER_INFO_START });
 
   axios
-    .post('https://labspt12-express-groomer-a-api.herokuapp.com/customers', {
+    .post(`${process.env.REACT_APP_API_URI}/customers`, {
       name: data.name,
       lastname: data.lastname,
       email: data.email,
@@ -154,7 +152,7 @@ const registerGroomer = (data, props) => dispatch => {
   dispatch({ type: REGISTER_GROOMER_INFO_START });
 
   axios
-    .post('https://labspt12-express-groomer-a-api.herokuapp.com/groomers', data)
+    .post(`${process.env.REACT_APP_API_URI}/groomers`, data)
     .then(res => {
       dispatch({ type: REGISTER_GROOMER_INFO_SUCCESS, payload: res.data });
       props.history.push('/groomer-dashboard');
