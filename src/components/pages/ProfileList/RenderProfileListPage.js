@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const RenderProfileListPage = props => (
@@ -10,9 +10,12 @@ const RenderProfileListPage = props => (
     {props.data.map(item => (
       <figure key={item.id}>
         <img src={item.avatarUrl} alt={item.name} />
-        <figcaption>
-          <h3>{item.name}</h3>
-        </figcaption>
+        <Link to="/:{item.id}">
+          <figcaption>
+            <h3>{item.name}</h3>
+          </figcaption>
+        </Link>
+        <Route path="/:{item.id}" />
       </figure>
     ))}
   </div>
