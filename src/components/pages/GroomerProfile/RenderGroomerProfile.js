@@ -115,7 +115,9 @@ export const RenderGroomerProfile = props => {
         </Col>
 
         <Col xs={24} sm={24} md={24} lg={12} xl={12}>
-          <DemoBox value={50}>Calendar Here</DemoBox>
+          <div id="calendar">
+            <DemoBox value={50}>Calendar Here</DemoBox>
+          </div>
         </Col>
       </Row>
 
