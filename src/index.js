@@ -22,12 +22,10 @@ import GroomerRegistration from './components/pages/GroomerRegistration/GroomerR
 import CustomerRegistration from './components/pages/CustomerRegistration/CustomerRegistration';
 import CustomerDashboard from './components/pages/CustomerDashboard/CustomerDashboardContainer';
 import GroomerDashboard from './components/pages/GroomerDashboard/GroomerDashboardContainer';
+import MyMap from './components/MyMap/MyMap';
 import { SearchForm } from './components/pages/search';
 
 import './styles/UserProfile.css';
-
-import MyMap from './components/MyMap/MyMap';
-
 
 ReactDOM.render(
   <Router>

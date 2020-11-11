@@ -1,9 +1,10 @@
 import React from 'react';
 import { Row, Col, Avatar, Modal, Button, Breadcrumb, Form, Input } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
+import MyMap from '../../../components/MyMap/MyMap';
 
 const DemoBox = props => (
-  <p className={`height-${props.value}`}>{props.children}</p>
+  <div className={`height-${props.value}`}>{props.children}</div>
 );
 
 export const RenderGroomerProfile = props => {
@@ -114,6 +115,12 @@ export const RenderGroomerProfile = props => {
         <Col xs={20} sm={16} md={12} lg={8} xl={4} />
         <Col xs={2} sm={4} md={6} lg={8} xl={10}>
           <DemoBox value={50}>Calendar Here</DemoBox>
+          <DemoBox value={50}>
+            <MyMap
+              latitude={props.dummyData.latitude}
+              longitude={props.dummyData.longitude}
+            />
+          </DemoBox>
         </Col>
       </Row>
     </>

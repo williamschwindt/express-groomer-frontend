@@ -63,7 +63,7 @@ export const RenderGroomerDashboard = props => {
               className="site-layout-background"
               style={{ padding: 24, minHeight: 360 }}
             >
-              Groomer appointment managment here
+              Groomer appointment management here
             </div>
           </Content>
         </Layout>

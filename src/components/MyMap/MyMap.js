@@ -6,13 +6,13 @@ const containerStyle = {
   height: '400px',
 };
 
-const center = {
-  lat: -3.745,
-  lng: -38.523,
-};
-
-function MyMap() {
+function MyMap(props) {
   const [map, setMap] = useState(null);
+
+  const center = {
+    lat: parseFloat(props.latitude),
+    lng: parseFloat(props.longitude),
+  };
 
   const onLoad = useCallback(function callback(map) {
     const bounds = new window.google.maps.LatLngBounds();

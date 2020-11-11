@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
+import Autocomplete from 'react-google-autocomplete';
 import './CustomerRegistration.css';
 
 function RegisterCustomer() {
@@ -22,7 +23,7 @@ function RegisterCustomer() {
 
   const onSubmit = data => {
     axios
-      .post('https://labspt12-express-groomer-a-api.herokuapp.com/customers', {
+      .post(`${process.env.REACT_APP_API_URI}customers`, {
         name: user.name,
         lastname: user.lastname,
         email: user.email,
@@ -151,6 +152,21 @@ function RegisterCustomer() {
           aria-invalid={errors.address ? 'true' : 'false'}
           ref={register({ required: true, maxLength: 30 })}
         />
+
+        {/* todo maybe I can use this for the inputs as a stretch goal
+         <Autocomplete        
+          apiKey={process.env.REACT_APP_API_KEY}
+          style={{ width: '90%' }}
+          id="address"
+          onChange={handleInputChange}
+          aria-invalid={errors.address ? 'true' : 'false'}
+          ref={register({ required: true, maxLength: 30 })}
+          onPlaceSelected={(place) => {
+            console.log(place);
+          }}
+          types={['(regions)']}
+          componentRestrictions={{ address: user.address }}
+        /> */}
 
         {/* use role="alert" to announce the error message */}
         {errors.address && errors.address.type === 'required' && (
