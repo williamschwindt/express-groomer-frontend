@@ -12,6 +12,9 @@ import {
   REGISTER_GROOMER_INFO_START,
   REGISTER_GROOMER_INFO_SUCCESS,
   REGISTER_GROOMER_INFO_FAILURE,
+  GET_USER_INFO_START,
+  GET_USER_INFO_SUCCESS,
+  GET_USER_INFO_FAILURE,
 } from './types';
 
 let groomersReq = `${process.env.REACT_APP_API_URI}/groomers`;
@@ -34,21 +37,35 @@ const getExampleData = () => {
 const requestGroomers = axios.get(groomersReq).catch(err => err);
 const requestCustomers = axios.get(customersReq).catch(err => err);
 
-const getUserData = () => {
-  return axios
-    .all([requestGroomers, requestCustomers])
-    .then(
-      axios.spread((...responses) => {
-        console.log(responses);
-        let users = {
-          groomers: responses[0].data,
-          customers: responses[1].data,
-        };
-        return users;
-      })
-    )
-    .catch(errors => {
-      return errors;
+const getUserData = memoAuthService => dispatch => {
+  dispatch({ type: GET_USER_INFO_START });
+
+  memoAuthService
+    .getUser()
+    .then(info => {
+      console.log(info);
+      // if user is authenticated we can use the authService to snag some user info.
+      return axios
+        .all([requestGroomers, requestCustomers])
+        .then(
+          axios.spread((...responses) => {
+            console.log(responses);
+            let users = {
+              groomers: responses[0].data,
+              customers: responses[1].data,
+            };
+            dispatch({
+              type: GET_USER_INFO_SUCCESS,
+              payload: { users: users, oktaUser: info },
+            });
+          })
+        )
+        .catch(errors => {
+          dispatch({ type: GET_USER_INFO_FAILURE, payload: errors });
+        });
+    })
+    .catch(err => {
+      console.log(err);
     });
 };
 
