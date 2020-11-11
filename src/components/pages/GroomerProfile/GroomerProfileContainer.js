@@ -10,8 +10,8 @@ const GroomerProfileContainer = () => {
       'Deleniti dolorem nam. Dolores libero omnis consequatur minus illo. Cum soluta tempore quod nemo placeat ratione saepe. Sit labore reprehenderit et laborum cumque corrupti.',
     lastname: 'Lang',
     address: 'Ave L',
-    latitude: 31.82083005,
-    longitude: -99.090166306,
+    latitude: '',
+    longitude: '',
     zip: '76801',
     phone: '2649864723',
     email: 'Norene45@gmail.com',
@@ -48,8 +48,6 @@ const GroomerProfileContainer = () => {
         showProfileModal={showProfileModal}
         handleProfileModalClose={handleProfileModalClose}
         dummyData={dummyData}
-        latitude={dummyData.latitude}
-        longitude={dummyData.longitude}
       />
     </div>
   );
