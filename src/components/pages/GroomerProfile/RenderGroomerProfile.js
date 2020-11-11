@@ -4,6 +4,10 @@ import { UserOutlined } from '@ant-design/icons';
 import MyMap from '../../../components/MyMap/MyMap';
 import './style.css';
 
+const style = {
+  minHeight: '300px',
+};
+
 const DemoBox = props => (
   <div className={`height-${props.value}`}>{props.children}</div>
 );
