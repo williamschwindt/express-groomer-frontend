@@ -83,7 +83,7 @@ export const RenderGroomerProfile = props => {
         </Breadcrumb.Item>
       </Breadcrumb>
       <Row id="about" justify="start" align="middle">
-        <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+        <Col xs={24} sm={24} md={24} lg={10} xl={10}>
           <DemoBox value={100}>
             <img
               src={props.dummyData.photo_url}
@@ -114,7 +114,7 @@ export const RenderGroomerProfile = props => {
           </div>
         </Col>
 
-        <Col xs={24} sm={24} md={24} lg={10} xl={12}>
+        <Col xs={24} sm={24} md={24} lg={12} xl={12}>
           <div id="calendar">
             <DemoBox value={50}>Calendar Here</DemoBox>
           </div>
@@ -122,7 +122,7 @@ export const RenderGroomerProfile = props => {
       </Row>
 
       <Row id="map" justify="start" align="middle">
-        <Col xs={24} sm={24} md={24} lg={10} xl={12}>
+        <Col xs={24} sm={24} md={24} lg={10} xl={10}>
           <div id="map">
             <h2>Location</h2>
             <MyMap
