@@ -114,7 +114,7 @@ export const RenderGroomerProfile = props => {
           </div>
         </Col>
 
-        <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+        <Col xs={24} sm={24} md={24} lg={10} xl={12}>
           <div id="calendar">
             <DemoBox value={50}>Calendar Here</DemoBox>
           </div>
@@ -122,8 +122,9 @@ export const RenderGroomerProfile = props => {
       </Row>
 
       <Row id="map" justify="start" align="middle">
-        <Col xs={24} sm={24} md={20} lg={12} xl={8}>
+        <Col xs={24} sm={24} md={24} lg={10} xl={12}>
           <div id="map">
+            <h2>Location</h2>
             <MyMap
               // style={{
 
