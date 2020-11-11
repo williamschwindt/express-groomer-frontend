@@ -2,10 +2,7 @@ import React from 'react';
 import { Row, Col, Avatar, Modal, Button, Breadcrumb, Form, Input } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import MyMap from '../../../components/MyMap/MyMap';
-
-const style = {
-  minHeight: '300px',
-};
+import './style.css';
 
 const DemoBox = props => (
   <div className={`height-${props.value}`}>{props.children}</div>
@@ -119,18 +116,31 @@ export const RenderGroomerProfile = props => {
         <Col xs={20} sm={16} md={12} lg={8} xl={4} />
         <Col xs={2} sm={4} md={6} lg={8} xl={10}>
           <DemoBox value={50}>Calendar Here</DemoBox>
-          <div id="map">
-            <MyMap
-              style={style}
-              zoom={10}
-              initialCenter={{
-                lat: -1.2884,
-                lng: 36.8233,
-              }}
-            />
-          </div>
         </Col>
       </Row>
+      <Row justify="start" align="left">
+        <Col xs={2} sm={4} md={6} lg={8} xl={10}>
+          <DemoBox value={50}>
+            <div id="map">
+              <MyMap
+                style={{
+                  display: 'flex',
+                  flexDirection: 'vertical',
+                  alignSelf: 'start',
+                  margin: '0',
+                  height: '10rem',
+                }}
+                zoom={10}
+                initialCenter={{
+                  lat: -1.2884,
+                  lng: 36.8233,
+                }}
+              />
+            </div>
+          </DemoBox>
+        </Col>
+      </Row>
+      )
     </>
   );
 };
