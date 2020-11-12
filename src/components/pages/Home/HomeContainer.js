@@ -29,7 +29,7 @@ function HomeContainer(props) {
       ) : props.oktaUser ? (
         <RegistrationForm email={props.oktaUser.email} />
       ) : (
-        <h1>nope</h1>
+        <h1>Something went wrong</h1>
       )}
     </>
   );
