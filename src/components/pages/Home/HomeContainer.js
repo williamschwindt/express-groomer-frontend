@@ -12,6 +12,7 @@ function HomeContainer(props) {
 
   useEffect(() => {
     props.getUserData(memoAuthService);
+    // eslint-disable-next-line
   }, [memoAuthService]);
 
   return (
