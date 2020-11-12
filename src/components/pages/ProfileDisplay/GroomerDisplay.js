@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const GroomerDisplay = props => {
-  let groomerInfo = props.location.groomer;
+  let groomerInfo = props.location.groomer.groomer;
   return (
     // name, location, phone#, schedule
     <div className="profile-page">
