@@ -24,8 +24,11 @@ import CustomerDashboard from './components/pages/CustomerDashboard/CustomerDash
 import GroomerDashboard from './components/pages/GroomerDashboard/GroomerDashboardContainer';
 import MyMap from './components/MyMap/MyMap';
 import { SearchForm } from './components/pages/search';
+import GroomerDisplay from './components/pages/ProfileDisplay/GroomerDisplay';
 
 import './styles/UserProfile.css';
+
+import MyMap from './components/MyMap/MyMap';
 
 ReactDOM.render(
   <Router>
@@ -63,6 +66,7 @@ function App() {
           <SecureRoute path="/example-list" component={ExampleListPage} />{' '}
           <SecureRoute path="/profile-list" component={ProfileListPage} />
           <SecureRoute path="/register" component={Registration} />
+          <SecureRoute path="/groomers/:id" component={GroomerDisplay} />
           <SecureRoute path="/groomers" component={GroomerRegistration} />
           <SecureRoute path="/customers" component={CustomerRegistration} />
           <SecureRoute
