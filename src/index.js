@@ -1,5 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+import { rootReducer } from './state/reducers/rootReducer';
 import {
   BrowserRouter as Router,
   Route,
@@ -28,12 +32,18 @@ import GroomerDisplay from './components/pages/ProfileDisplay/GroomerDisplay';
 
 import './styles/UserProfile.css';
 
+import MyMap from './components/MyMap/MyMap';
+
+const store = createStore(rootReducer, applyMiddleware(thunk));
+
 ReactDOM.render(
-  <Router>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </Router>,
+  <Provider store={store}>
+    <Router>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </Router>
+  </Provider>,
   document.getElementById('root')
 );
 

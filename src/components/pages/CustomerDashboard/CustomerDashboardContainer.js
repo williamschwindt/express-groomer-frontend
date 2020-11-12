@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { RenderCustomerDashboard } from './RenderCustomerDashboard';
+import { useOktaAuth } from '@okta/okta-react';
 
 const CustomerDashboardContainer = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -7,6 +8,8 @@ const CustomerDashboardContainer = () => {
   const [profile, setProfile] = useState(false);
   const [groomers, setGroomers] = useState(false);
   const [pets, setPets] = useState(false);
+
+  const { authService } = useOktaAuth();
 
   const onCollapse = collapsed => {
     setCollapsed(collapsed);
@@ -52,6 +55,7 @@ const CustomerDashboardContainer = () => {
       viewGroomers={viewGroomers}
       pets={pets}
       viewPets={viewPets}
+      authService={authService}
     />
   );
 };
