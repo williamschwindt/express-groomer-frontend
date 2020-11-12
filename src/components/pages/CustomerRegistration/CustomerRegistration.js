@@ -179,6 +179,26 @@ const CustomerRegistration = props => {
           <span role="alert">Max length exceeded</span>
         )}
 
+        <label htmlFor="state">Country: </label>
+
+        <input
+          type="text"
+          id="country"
+          name="country"
+          placeholder="Country"
+          onChange={handleInputChange}
+          aria-invalid={errors.country ? 'true' : 'false'}
+          ref={register({ required: true, maxLength: 30 })}
+        />
+
+        {/* use role="alert" to announce the error message */}
+        {errors.country && errors.country.type === 'required' && (
+          <span role="alert">This is required</span>
+        )}
+        {errors.country && errors.country.type === 'maxLength' && (
+          <span role="alert">Max length exceeded</span>
+        )}
+
         <label htmlFor="zipcode">Zipcode: </label>
 
         <input
