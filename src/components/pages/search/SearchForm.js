@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Card, Pagination } from 'antd';
 import { getGroomerData } from '../../../api/index';
 import { Link } from 'react-router-dom';
+import GroomerDispaly from '../ProfileDisplay/GroomerDisplay';
+import GroomerDisplay from '../ProfileDisplay/GroomerDisplay';
 
 const cardDescription = {
   margin: '1px',
@@ -72,11 +74,8 @@ const SearchForm = () => {
               cover={<img alt="example" src={groomer.photo_url} />}
             >
               <Meta title={groomer.name + ' ' + groomer.lastname}></Meta>
-              <div
-                style={{
-                  marginBottom: '1px',
-                }}
-              >
+              <div style={{ marginBottom: '1px' }}>
+                {GroomerDisplay(groomer)}# pass
                 <p style={cardDescription}>
                   Vet Visit Rate: ${groomer.vet_visit_rate}
                 </p>
