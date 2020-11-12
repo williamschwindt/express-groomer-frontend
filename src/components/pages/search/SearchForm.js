@@ -12,6 +12,9 @@ import {
 import SkeletonButton from 'antd/lib/skeleton/Button';
 // import { SearchPagination } from './SearchPagination.js';
 import { getGroomerData } from '../../../api/index';
+import Geocode from 'react-geocode';
+
+Geocode.setApiKey('AIzaSyDvbprCrQ-zJnjwdimEwzJHO5LULTR_vtg');
 
 const cardDescription = {
   margin: '1px',
@@ -102,6 +105,16 @@ const SearchForm = () => {
   // };
 
   const onFormFinish = values => {
+    Geocode.fromAddress(values).then(
+      response => {
+        const { lat, lng } = response.results[0].geometry.location;
+        console.log(lat, lng);
+      },
+      error => {
+        console.error(error);
+      }
+    );
+
     console.log(values);
   };
 
@@ -158,26 +171,28 @@ const SearchForm = () => {
 
           {/* this is to set an option, maybe for pet breeds or options for services? */}
 
-          {/* <Form.Item
-        noStyle
-        shouldUpdate={(prevValues, currentValues) => prevValues.Example !== currentValues.Example}
-      >
-        {({ getFieldValue }) => {
-          return getFieldValue('Example') === 'other' ? (
-            <Form.Item
-              name="customizeExample"
-              label="Customize Example"
-              rules={[
-                {
-                  required: true,
-                },
-              ]}
-            >
-              <Input />
-            </Form.Item>
-          ) : null;
-        }}
-      </Form.Item> */}
+          <Form.Item
+            noStyle
+            shouldUpdate={(prevValues, currentValues) =>
+              prevValues.Example !== currentValues.Example
+            }
+          >
+            {({ getFieldValue }) => {
+              return getFieldValue('Example') === 'other' ? (
+                <Form.Item
+                  name="customizeExample"
+                  label="Customize Example"
+                  rules={[
+                    {
+                      required: true,
+                    },
+                  ]}
+                >
+                  <Input />
+                </Form.Item>
+              ) : null;
+            }}
+          </Form.Item>
 
           <Form.Item {...tailLayout}>
             <Button type="primary" htmlType="submit">
