@@ -1,71 +1,48 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
+import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { useOktaAuth } from '@okta/okta-react';
 import { getUserData } from '../../../api/index.js';
+import { RegistrationForm } from '../Registration/';
 
-import RenderHomePage from './RenderHomePage';
-
-function HomeContainer({ LoadingComponent }) {
+function HomeContainer(props) {
   const { authState, authService } = useOktaAuth();
-  const [userInfo, setUserInfo] = useState(null);
   // eslint-disable-next-line
   const [memoAuthService] = useMemo(() => [authService], []);
 
-  const [oktaIds, setOktaIds] = useState([]);
-
-  // getUserData().then(response => {
-  //   const oktaUserIds = response.filter(user => user.oktaId);
-  //   setOktaIds(...oktaUserIds);
-  // });
-
   useEffect(() => {
-    let isSubscribed = true;
-
-    memoAuthService
-      .getUser()
-      .then(info => {
-        // if user is authenticated we can use the authService to snag some user info.
-        // isSubscribed is a boolean toggle that we're using to clean up our useEffect.
-        if (isSubscribed) {
-          setUserInfo(info);
-          console.log(info);
-        }
-      })
-      .catch(err => {
-        isSubscribed = false;
-        return setUserInfo(null);
-      });
-    return () => (isSubscribed = false);
+    props.getUserData(memoAuthService);
+    // eslint-disable-next-line
   }, [memoAuthService]);
 
   return (
     <>
-      {authState.isAuthenticated && !userInfo && (
-        <LoadingComponent message="Fetching user profile..." />
-      )}
-
-      {authState.isAuthenticated && userInfo ? (
-        <RenderHomePage userInfo={userInfo} authService={authService} />
+      {authState.isAuthenticated && props.isFetching ? (
+        <props.LoadingComponent message="Fetching user profile..." />
+      ) : authState.isAuthenticated &&
+        props.oktaUser &&
+        props.customer.length === 1 ? (
+        <Redirect to={'/customer-dashboard'} />
+      ) : authState.isAuthenticated &&
+        props.oktaUser &&
+        props.groomer.length === 1 ? (
+        <Redirect to={'/groomer-dashboard'} />
+      ) : props.oktaUser ? (
+        <RegistrationForm email={props.oktaUser.email} />
       ) : (
-        // you can either render a registration component here,
-        <h1>you need to register before you can view dashboard</h1>
-        // OR you can redirect to it's own registration page
-        // <Redirect to={'/registration'} />
+        <h1>Something went wrong</h1>
       )}
-
-      {/* {authState.isAuthenticated &&
-      userInfo &&
-      oktaIds &&
-      !(userInfo.oktaId in oktaIds) ? (
-        <RenderHomePage userInfo={userInfo} authService={authService} />
-      ) : (
-        // you can either render a registration component here,
-        <h1>you need to register before you can view dashboard</h1>
-        // OR you can redirect to it's own registration page
-        // <Redirect to={'/registration'} />
-      )} */}
     </>
   );
 }
 
-export default HomeContainer;
+const mapStateToProps = state => {
+  return {
+    isFetching: state.usersReducer.isFetching,
+    oktaUser: state.usersReducer.oktaUser,
+    groomer: state.usersReducer.groomer,
+    customer: state.usersReducer.customer,
+  };
+};
+
+export default connect(mapStateToProps, { getUserData })(HomeContainer);
