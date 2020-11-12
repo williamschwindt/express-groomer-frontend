@@ -64,7 +64,12 @@ const SearchForm = () => {
       {groomers &&
         groomers.length > 0 &&
         groomers.slice(minValue, maxValue).map(groomer => (
-          <Link to={`/groomers/${groomer.id}`}>
+          <Link
+            to={{
+              pathname: `/groomers/${groomer.id}`,
+              groomer: { groomer },
+            }}
+          >
             <Card
               hoverable
               style={{
@@ -75,7 +80,6 @@ const SearchForm = () => {
             >
               <Meta title={groomer.name + ' ' + groomer.lastname}></Meta>
               <div style={{ marginBottom: '1px' }}>
-                {GroomerDisplay(groomer)}# pass
                 <p style={cardDescription}>
                   Vet Visit Rate: ${groomer.vet_visit_rate}
                 </p>
@@ -92,6 +96,7 @@ const SearchForm = () => {
             </Card>
           </Link>
         ))}
+
       <Pagination
         defaultCurrent={1}
         defaultPageSize={12}
