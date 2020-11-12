@@ -1,12 +1,30 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Registration = () => {
+const Registration = props => {
   return (
     <div>
       <h2>Are you a...</h2>
-      <Link to="/groomers">Groomer</Link>
-      <Link to="/customers">Customer</Link>
+      <Link
+        to={{
+          pathname: 'groomers',
+          state: {
+            email: props.email,
+          },
+        }}
+      >
+        Groomer
+      </Link>
+      <Link
+        to={{
+          pathname: 'customers',
+          state: {
+            email: props.email,
+          },
+        }}
+      >
+        Customer
+      </Link>
     </div>
   );
 };

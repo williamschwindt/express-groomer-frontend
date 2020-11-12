@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
 import { useForm } from 'react-hook-form';
+import { registerCustomer } from '../../../api/index';
 import './CustomerRegistration.css';
 
-function RegisterCustomer() {
+const CustomerRegistration = props => {
   const defaultUser = {
     name: '',
     lastname: '',
-    email: '',
+    email: props.location.state.email,
     phone: '',
-    zipcode: '',
+    zip: '',
     address: '',
     city: '',
     state: '',
@@ -20,27 +21,8 @@ function RegisterCustomer() {
   const { register, handleSubmit, errors } = useForm();
   const [user, setUser] = useState(defaultUser);
 
-  const onSubmit = data => {
-    axios
-      .post('https://labspt12-express-groomer-a-api.herokuapp.com/customers', {
-        name: user.name,
-        lastname: user.lastname,
-        email: user.email,
-        phone: user.phone,
-        address: user.address,
-        city: user.city,
-        state: user.state,
-        country: user.country,
-        zipcode: user.zip,
-        description: user.description,
-        photo_url: user.photo_url,
-      })
-      .then(function(response) {
-        console.log(response);
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+  const onSubmit = () => {
+    props.registerCustomer(user, props);
   };
 
   const handleInputChange = event => {
@@ -97,26 +79,6 @@ function RegisterCustomer() {
           <span role="alert">This is required</span>
         )}
         {errors.lastname && errors.lastname.type === 'maxLength' && (
-          <span role="alert">Max length exceeded</span>
-        )}
-
-        <label htmlFor="email">Email: </label>
-
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="Email"
-          onChange={handleInputChange}
-          aria-invalid={errors.email ? 'true' : 'false'}
-          ref={register({ required: true, maxLength: 30 })}
-        />
-
-        {/* use role="alert" to announce the error message */}
-        {errors.email && errors.email.type === 'required' && (
-          <span role="alert">This is required</span>
-        )}
-        {errors.email && errors.email.type === 'maxLength' && (
           <span role="alert">Max length exceeded</span>
         )}
 
@@ -205,7 +167,7 @@ function RegisterCustomer() {
         <input
           type="text"
           id="zipcode"
-          name="zipcode"
+          name="zip"
           placeholder="zipcode"
           onChange={handleInputChange}
           aria-invalid={errors.zipcode ? 'true' : 'false'}
@@ -244,7 +206,7 @@ function RegisterCustomer() {
         <input
           type="text"
           id="photoUrl"
-          name="photoUrl"
+          name="photo_url"
           placeholder="Photo URL"
           onChange={handleInputChange}
           aria-invalid={errors.zipcode ? 'true' : 'false'}
@@ -263,6 +225,14 @@ function RegisterCustomer() {
       </form>
     </div>
   );
-}
+};
 
-export default RegisterCustomer;
+const mapStateToProps = state => {
+  return {
+    customer: state.customerReducer.customer,
+  };
+};
+
+export default connect(mapStateToProps, { registerCustomer })(
+  CustomerRegistration
+);

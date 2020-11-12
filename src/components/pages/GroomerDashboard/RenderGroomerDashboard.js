@@ -33,7 +33,11 @@ export const RenderGroomerDashboard = props => {
           >
             Appointments
           </Menu.Item>
-          <Menu.Item key="3" icon={<FileOutlined />}>
+          <Menu.Item
+            key="3"
+            icon={<FileOutlined />}
+            onClick={() => props.authService.logout()}
+          >
             Logout
           </Menu.Item>
         </Menu>

@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
 import { useForm } from 'react-hook-form';
+import { registerGroomer } from '../../../api/index';
 import './GroomerRegistration.css';
 
-function GroomerRegistration() {
+const GroomerRegistration = props => {
   const defaultUser = {
     name: '',
     lastname: '',
-    email: '',
+    email: props.location.state.email,
     phone: '',
-    zipcode: '',
+    zip: '',
     address: '',
     city: '',
     state: '',
@@ -23,30 +24,8 @@ function GroomerRegistration() {
   const { register, handleSubmit, errors } = useForm();
   const [user, setUser] = useState(defaultUser);
 
-  const onSubmit = data => {
-    axios
-      .post('https://labspt12-express-groomer-a-api.herokuapp.com/groomers', {
-        name: user.name,
-        lastname: user.lastname,
-        email: user.email,
-        phone: user.phone,
-        address: user.address,
-        city: user.city,
-        state: user.state,
-        country: user.country,
-        zipcode: user.zip,
-        description: user.description,
-        photo_url: user.photo_url,
-        walk_rate: user.walk_rate,
-        day_care_rate: user.day_care_rate,
-        vet_visit_rate: user.vet_visit_rate,
-      })
-      .then(function(response) {
-        console.log(response);
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+  const onSubmit = () => {
+    props.registerGroomer(user, props);
   };
 
   const handleInputChange = event => {
@@ -104,25 +83,6 @@ function GroomerRegistration() {
           <span role="alert">This is required</span>
         )}
         {errors.lastname && errors.lastname.type === 'maxLength' && (
-          <span role="alert">Max length exceeded</span>
-        )}
-
-        <label htmlFor="email">Email: </label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="Email"
-          onChange={handleInputChange}
-          aria-invalid={errors.email ? 'true' : 'false'}
-          ref={register({ required: true, maxLength: 30 })}
-        />
-
-        {/* use role="alert" to announce the error message */}
-        {errors.email && errors.email.type === 'required' && (
-          <span role="alert">This is required</span>
-        )}
-        {errors.email && errors.email.type === 'maxLength' && (
           <span role="alert">Max length exceeded</span>
         )}
 
@@ -206,7 +166,7 @@ function GroomerRegistration() {
         <input
           type="text"
           id="zipcode"
-          name="zipcode"
+          name="zip"
           placeholder="zipcode"
           onChange={handleInputChange}
           aria-invalid={errors.zipcode ? 'true' : 'false'}
@@ -244,7 +204,7 @@ function GroomerRegistration() {
         <input
           type="text"
           id="photoUrl"
-          name="photoUrl"
+          name="photo_url"
           placeholder="Photo URL"
           onChange={handleInputChange}
           aria-invalid={errors.zipcode ? 'true' : 'false'}
@@ -321,6 +281,14 @@ function GroomerRegistration() {
       </form>
     </div>
   );
-}
+};
 
-export default GroomerRegistration;
+const mapStateToProps = state => {
+  return {
+    groomer: state.groomerReducer.groomer,
+  };
+};
+
+export default connect(mapStateToProps, { registerGroomer })(
+  GroomerRegistration
+);
