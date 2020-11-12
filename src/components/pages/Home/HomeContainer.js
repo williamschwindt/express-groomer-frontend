@@ -16,7 +16,7 @@ function HomeContainer(props) {
 
   return (
     <>
-      {authState.isAuthenticated && !props.oktaUser ? (
+      {authState.isAuthenticated && props.isFetching ? (
         <props.LoadingComponent message="Fetching user profile..." />
       ) : authState.isAuthenticated &&
         props.oktaUser &&
@@ -37,6 +37,7 @@ function HomeContainer(props) {
 
 const mapStateToProps = state => {
   return {
+    isFetching: state.usersReducer.isFetching,
     oktaUser: state.usersReducer.oktaUser,
     groomer: state.usersReducer.groomer,
     customer: state.usersReducer.customer,

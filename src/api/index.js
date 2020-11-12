@@ -43,13 +43,11 @@ const getUserData = memoAuthService => dispatch => {
   memoAuthService
     .getUser()
     .then(info => {
-      console.log(info);
       // if user is authenticated we can use the authService to snag some user info.
       return axios
         .all([requestGroomers, requestCustomers])
         .then(
           axios.spread((...responses) => {
-            console.log(responses);
             let users = {
               groomers: responses[0].data,
               customers: responses[1].data,
@@ -65,7 +63,7 @@ const getUserData = memoAuthService => dispatch => {
         });
     })
     .catch(err => {
-      console.log(err);
+      dispatch({ type: GET_USER_INFO_FAILURE, payload: err });
     });
 };
 
