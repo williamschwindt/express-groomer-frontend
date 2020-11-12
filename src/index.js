@@ -32,8 +32,6 @@ import GroomerDisplay from './components/pages/ProfileDisplay/GroomerDisplay';
 
 import './styles/UserProfile.css';
 
-import MyMap from './components/MyMap/MyMap';
-
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
