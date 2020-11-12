@@ -9,7 +9,7 @@ const CustomerDashboardContainer = () => {
   const [groomers, setGroomers] = useState(false);
   const [pets, setPets] = useState(false);
 
-  const { authState, authService } = useOktaAuth();
+  const { authService } = useOktaAuth();
 
   const onCollapse = collapsed => {
     setCollapsed(collapsed);
