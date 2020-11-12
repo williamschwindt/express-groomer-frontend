@@ -28,8 +28,6 @@ import GroomerDisplay from './components/pages/ProfileDisplay/GroomerDisplay';
 
 import './styles/UserProfile.css';
 
-import MyMap from './components/MyMap/MyMap';
-
 ReactDOM.render(
   <Router>
     <React.StrictMode>
