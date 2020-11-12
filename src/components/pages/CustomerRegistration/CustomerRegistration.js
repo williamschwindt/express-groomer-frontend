@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
-import Autocomplete from 'react-google-autocomplete';
+// import Autocomplete from 'react-google-autocomplete';
 import './CustomerRegistration.css';
 
 function RegisterCustomer() {
@@ -23,7 +23,7 @@ function RegisterCustomer() {
 
   const onSubmit = data => {
     axios
-      .post(`${process.env.REACT_APP_API_URI}customers`, {
+      .post(`${process.env.REACT_APP_API_URI}/customers`, {
         name: user.name,
         lastname: user.lastname,
         email: user.email,
