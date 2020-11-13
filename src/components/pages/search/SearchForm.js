@@ -67,7 +67,7 @@ const SearchForm = () => {
           <Link
             to={{
               pathname: `/groomers/${groomer.id}`,
-              state: { groomer },
+              state: groomer,
             }}
           >
             <Card

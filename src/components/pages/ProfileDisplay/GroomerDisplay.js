@@ -3,17 +3,17 @@ import { Link } from 'react-router-dom';
 
 const GroomerDisplay = props => {
   //   let groomerInfo = props.location.state.groomer;
-  let groomerInfo = props.history.state.groomer;
+  let groomerInfo = props.location.state;
   return (
     // name, location, phone#, schedule
     <div className="profile-page">
       <Link to="/customer-dashboard">Home</Link>
       <div className="profile-photo">
-        <p>{groomerInfo.photo_url}</p>
+        <img src={groomerInfo.photo_url} />
       </div>
       <div className="profile-description">
         <h3>{groomerInfo.name}</h3>
-        {/* {console.log('GroomerDisplay Props', props)} */}
+        {console.log('GroomerDisplay Props', props.location.state)}
         <h4>About Me</h4>
         <p>{groomerInfo.description}</p>
         <ul>
