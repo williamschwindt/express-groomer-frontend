@@ -1,5 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+import { rootReducer } from './state/reducers/rootReducer';
 import {
   BrowserRouter as Router,
   Route,
@@ -23,18 +27,22 @@ import CustomerRegistration from './components/pages/CustomerRegistration/Custom
 import CustomerDashboard from './components/pages/CustomerDashboard/CustomerDashboardContainer';
 import GroomerDashboard from './components/pages/GroomerDashboard/GroomerDashboardContainer';
 import { SearchForm } from './components/pages/search';
+import GroomerDisplay from './components/pages/ProfileDisplay/GroomerDisplay';
 
 import './styles/UserProfile.css';
 
 import MyMap from './components/MyMap/MyMap';
 
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
-  <Router>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </Router>,
+  <Provider store={store}>
+    <Router>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </Router>
+  </Provider>,
   document.getElementById('root')
 );
 
@@ -65,6 +73,7 @@ function App() {
           <SecureRoute path="/example-list" component={ExampleListPage} />{' '}
           <SecureRoute path="/profile-list" component={ProfileListPage} />
           <SecureRoute path="/register" component={Registration} />
+          <SecureRoute path="/groomers/:id" component={GroomerDisplay} />
           <SecureRoute path="/groomers" component={GroomerRegistration} />
           <SecureRoute path="/customers" component={CustomerRegistration} />
           <SecureRoute
