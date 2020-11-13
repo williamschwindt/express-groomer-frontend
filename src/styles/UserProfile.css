@@ -1,0 +1,8 @@
+.ant-form-item-label {
+    width: 30%;
+    display: flex;
+}
+
+.ant-form-item-control {
+    width: 70%;
+}

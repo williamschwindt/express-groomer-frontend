@@ -1,17 +1,13 @@
-import React, { useState } from 'react';
-// useState
-import {
-  Field,
-  Form,
-  Input,
-  Button,
-  Checkbox,
-  Radio,
-  Card,
-  Pagination,
-} from 'antd';
-import SkeletonButton from 'antd/lib/skeleton/Button';
-import SearchPagination from './SearchPagination.js';
+import React, { useState, useEffect } from 'react';
+import { Card, Pagination } from 'antd';
+import { getGroomerData } from '../../../api/index';
+import { Link } from 'react-router-dom';
+import GroomerDispaly from '../ProfileDisplay/GroomerDisplay';
+import GroomerDisplay from '../ProfileDisplay/GroomerDisplay';
+
+const cardDescription = {
+  margin: '1px',
+};
 const demo = {
   labelCol: {
     span: 8,
@@ -27,27 +23,19 @@ const tailLayout = {
   },
 };
 
-// const {Meta} = Card;
-// function itemRender (current, type, originalElement) {
-//   if (type === 'prev') {
-//     return <a>Previous</a>;
-//   }
-//   if (type === 'next') {
-//     return <a>Next</a>;
-//   }
-//   return originalElement;
-// }
-
-// const onChange = e => {
-//   console.log('radio checked', e.target.value);
-//   this.setState({
-//     value: e.target.value,
-//   });
-// };
+const { Meta } = Card;
 
 const SearchForm = () => {
   const [name, setName] = useState('');
   const [zipcode, setZipcode] = useState('');
+  const [groomers, setGroomers] = useState([]);
+  const [minValue, setMinValue] = useState(0);
+  const [maxValue, setMaxValue] = useState(12);
+
+  const handleChange = value => {
+    setMinValue((value - 1) * 12);
+    setMaxValue(value * 12);
+  };
 
   const onFinish = values => {
     console.log('Success: groomers displayed', values);
@@ -63,60 +51,54 @@ const SearchForm = () => {
     console.log(name, zipcode);
   };
 
+  useEffect(() => {
+    getGroomerData().then(response => {
+      setGroomers(response);
+    });
+  }, []);
+
+  console.log(groomers);
+
   return (
-    <Form
-      {...SearchForm}
-      name="basic"
-      initialValues={{
-        remember: true,
-      }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-    >
-      <Form.Item
-        label="petsName"
-        name="petsName"
-        rules={[
-          {
-            required: true,
-            message: 'What is your pets name?',
-          },
-        ]}
-      >
-        <Input onChange={handleName} />
-      </Form.Item>
-
-      <Radio.Group>
-        {/* onChange={onChange} */}
-        <h3>I have a:</h3>
-        <Radio value={1}>Dog</Radio>
-        <Radio value={2}>Cat</Radio>
-      </Radio.Group>
-
-      <Form.Item
-        label="Enter zip or postal code:"
-        name="zipcode"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your zipcode!',
-          },
-        ]}
-      >
-        <Input onChange={handleZipCode} />
-      </Form.Item>
-
-      <Form.Item {...tailLayout} name="remember" valuePropName="checked">
-        <Checkbox>Remember me</Checkbox>
-      </Form.Item>
-
-      <Form.Item {...tailLayout}>
-        <Button onClick={onSubmit} type="primary" htmlType="submit">
-          Find Your Groomers
-        </Button>
-      </Form.Item>
-      <SearchPagination />
-    </Form>
+    <div style={{ display: 'flex', flexWrap: 'wrap', margin: '10px' }}>
+      {groomers &&
+        groomers.length > 0 &&
+        groomers.slice(minValue, maxValue).map(groomer => (
+          <Link to={`/groomers/${groomer.id}`}>
+            <Card
+              hoverable
+              style={{
+                width: 240,
+                margin: '10px',
+              }}
+              cover={<img alt="example" src={groomer.photo_url} />}
+            >
+              <Meta title={groomer.name + ' ' + groomer.lastname}></Meta>
+              <div style={{ marginBottom: '1px' }}>
+                {GroomerDisplay(groomer)}# pass
+                <p style={cardDescription}>
+                  Vet Visit Rate: ${groomer.vet_visit_rate}
+                </p>
+                <p style={cardDescription}>
+                  Day Care Rate: ${groomer.day_care_rate}
+                </p>
+                <p style={cardDescription}>Walk Rate: ${groomer.walk_rate}</p>
+                <p style={cardDescription}>Address: {groomer.address}</p>
+                <p style={cardDescription}>
+                  {groomer.city}, {groomer.state} {groomer.zip}
+                </p>
+                <p style={cardDescription}>{groomer.country}</p>
+              </div>
+            </Card>
+          </Link>
+        ))}
+      <Pagination
+        defaultCurrent={1}
+        defaultPageSize={12}
+        onChange={handleChange}
+        total={100}
+      />
+    </div>
   );
 };
 export default SearchForm;

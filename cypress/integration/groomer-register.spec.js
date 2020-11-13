@@ -49,9 +49,8 @@ describe('Login page tests', function(){
  
 
 
-
-        // If we click on "Submit" it will create a user and we won't be 
-        // able to resuse this test unless we rewrite values for name, lastname, etc
+        // If we click on "Register" returns error for now, it will clear once we create postData function in Register-Groomer.js
+        // if we finally implement registration.
         //  cy.get('button').click();
 
     });

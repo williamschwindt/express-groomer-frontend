@@ -1,106 +1,33 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
 import { useForm } from 'react-hook-form';
+import { registerCustomer } from '../../../api/index';
+import './CustomerRegistration.css';
 
-export default function RegisterCustomer() {
+const CustomerRegistration = props => {
   const defaultUser = {
     name: '',
     lastname: '',
-    email: '',
+    email: props.location.state.email,
     phone: '',
-    zipcode: '',
+    zip: '',
     address: '',
     city: '',
     state: '',
     country: '',
     photo_url: 'https://images.unsplash.com/photo-1586057710892-4f30aed09a20',
-    //   password: '',
   };
 
   const { register, handleSubmit, errors } = useForm();
-  // const onSubmit = (data) => console.log(data);
   const [user, setUser] = useState(defaultUser);
 
-  const onSubmit = data => {
-    axios
-      .post('https://labspt12-express-groomer-a-api.herokuapp.com/customers', {
-        name: user.name,
-        lastname: user.lastname,
-        email: user.email,
-        phone: user.phone,
-        address: user.address,
-        city: user.city,
-        state: user.state,
-        country: user.country,
-        zipcode: user.zip,
-        description: user.description,
-        photo_url: user.photo_url,
-      })
-      .then(function(response) {
-        console.log(response);
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+  const onSubmit = () => {
+    props.registerCustomer(user, props);
   };
-
-  //   async function onSubmit (data) = {
-  //   // must be async in order to await key function
-
-  //   try {
-  //     let result = await fetch(
-  //       'https://labspt12-express-groomer-a-api.herokuapp.com/groomers',
-  //       {
-  //         method: 'post',
-  //         mode: 'no-cors', // no-cors to eliminate some errors
-  //         headers: {
-  //           Accept: 'application/json',
-  //           'Content-type': 'application/json',
-  //         },
-  //         // stringify the json obj payload
-  //         body: JSON.stringify({
-  //           name: user.name,
-  //           lastname: user.lastname,
-  //           email: user.email,
-  //           phone: user.phone,
-  //           address: user.address,
-  //           city: user.city,
-  //           state: user.state,
-  //           country: user.country,
-  //           zipcode: user.zip,
-  //           photo_url: user.photo_url,
-  //         }),
-  //       }
-  //     );
-  //     console.log('RESULT', result);
-  //   } catch (e) {
-  //     console.log('REGISTER ERROR: ', e);
-  //   }
-
-  // }
-
-  // const handleSubmit = event => {
-  //   event.preventDefault();
-  //   //   testing the handlesubmit
-  //   const data = this.state;
-  //   console.log('Final Data', data);
-  // };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault()
-  //   axios.post('/customers', customerRegister)
-  //     .then(function (response) {
-  //         console.log(response)
-  //     })
-  //     .catch(function (error) {
-  //         console.log(error)
-  //     })
 
   const handleInputChange = event => {
     event.preventDefault();
     //   getting name of input and value
-    // console.log('handleINputChange Name', event.target.name);
-    //   console.log('handleINputChange Value', event.target.value);
     setUser({
       ...user,
       // seting key to key-value pair
@@ -112,13 +39,12 @@ export default function RegisterCustomer() {
     //   change user.state based on whats coming in input
 
     <div className="registration-container">
-      <h1>User Registration</h1>
-      {/* To test functionality */}
-      <p>First name is: {user.name}</p>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="name">Name</label>
+      <h1>Customer Registration</h1>
 
-        {/* use aria-invalid to indicate field contain error */}
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <label htmlFor="name">Name: </label>
+
+        {/* use aria-invalid to indicate field contain error for screen reader users*/}
         <input
           type="text"
           id="name"
@@ -137,6 +63,7 @@ export default function RegisterCustomer() {
           <span role="alert">Max length exceeded</span>
         )}
 
+        <label htmlFor="lastname">Last Name: </label>
         <input
           type="text"
           id="lastname"
@@ -155,23 +82,7 @@ export default function RegisterCustomer() {
           <span role="alert">Max length exceeded</span>
         )}
 
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="Email"
-          onChange={handleInputChange}
-          aria-invalid={errors.email ? 'true' : 'false'}
-          ref={register({ required: true, maxLength: 30 })}
-        />
-
-        {/* use role="alert" to announce the error message */}
-        {errors.email && errors.email.type === 'required' && (
-          <span role="alert">This is required</span>
-        )}
-        {errors.email && errors.email.type === 'maxLength' && (
-          <span role="alert">Max length exceeded</span>
-        )}
+        <label htmlFor="phone">Phone: </label>
 
         <input
           type="text"
@@ -191,6 +102,8 @@ export default function RegisterCustomer() {
           <span role="alert">Max length exceeded</span>
         )}
 
+        <label htmlFor="address">Address: </label>
+
         <input
           type="text"
           id="address"
@@ -208,6 +121,8 @@ export default function RegisterCustomer() {
         {errors.address && errors.address.type === 'maxLength' && (
           <span role="alert">Max length exceeded</span>
         )}
+
+        <label htmlFor="city">City: </label>
 
         <input
           type="text"
@@ -227,6 +142,8 @@ export default function RegisterCustomer() {
           <span role="alert">Max length exceeded</span>
         )}
 
+        <label htmlFor="state">State: </label>
+
         <input
           type="text"
           id="state"
@@ -245,10 +162,12 @@ export default function RegisterCustomer() {
           <span role="alert">Max length exceeded</span>
         )}
 
+        <label htmlFor="zipcode">Zipcode: </label>
+
         <input
           type="text"
           id="zipcode"
-          name="zipcode"
+          name="zip"
           placeholder="zipcode"
           onChange={handleInputChange}
           aria-invalid={errors.zipcode ? 'true' : 'false'}
@@ -262,6 +181,8 @@ export default function RegisterCustomer() {
         {errors.zipcode && errors.zipcode.type === 'maxLength' && (
           <span role="alert">Max length exceeded</span>
         )}
+
+        <label htmlFor="description">Description: </label>
 
         <input
           type="text"
@@ -280,11 +201,12 @@ export default function RegisterCustomer() {
         {errors.description && errors.description.type === 'maxLength' && (
           <span role="alert">Max length exceeded</span>
         )}
+        <label htmlFor="photoUrl">Photo URL: </label>
 
         <input
           type="text"
           id="photoUrl"
-          name="photoUrl"
+          name="photo_url"
           placeholder="Photo URL"
           onChange={handleInputChange}
           aria-invalid={errors.zipcode ? 'true' : 'false'}
@@ -299,8 +221,18 @@ export default function RegisterCustomer() {
           <span role="alert">Max length exceeded</span>
         )}
 
-        <input type="submit" />
+        <button type="submit">Submit</button>
       </form>
     </div>
   );
-}
+};
+
+const mapStateToProps = state => {
+  return {
+    customer: state.customerReducer.customer,
+  };
+};
+
+export default connect(mapStateToProps, { registerCustomer })(
+  CustomerRegistration
+);

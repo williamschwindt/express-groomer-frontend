@@ -43,10 +43,10 @@ describe('Login page tests', function(){
         cy.get('input[name="zipcode"]').type('846891');
         cy.get('input[name="description"]').type('I love dogs!');
         cy.get('input[name="photoUrl"]').type('https://flikr.com/myphoto.jpg');
+        cy.get('input[placeholder="Talk about yourself!"]').type('I love dogs!');
 
-
-        // If we click on "Submit" it will create a user and we won't be 
-        // able to resuse this test unless we rewrite values for name, lastname, etc
+        // If we click on "Register" returns error for now, it will clear once we create postData function in Register-Customer.js
+        // if we finally implement registration.
         //  cy.get('button').click();
 
     });

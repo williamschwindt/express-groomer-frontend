@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
 import { useForm } from 'react-hook-form';
+import { registerGroomer } from '../../../api/index';
+import './GroomerRegistration.css';
 
-export default function RegisterCustomer() {
+const GroomerRegistration = props => {
   const defaultUser = {
-    name: 'Martha',
-    lastname: 'Seymour',
-    email: 'martha@seymour.com',
+    name: '',
+    lastname: '',
+    email: props.location.state.email,
     phone: '',
-    zipcode: '',
+    zip: '',
     address: '',
     city: '',
     state: '',
@@ -17,44 +19,19 @@ export default function RegisterCustomer() {
     walk_rate: 0,
     day_care_rate: 0,
     vet_visit_rate: 0,
-    //   password: '',
   };
 
   const { register, handleSubmit, errors } = useForm();
-  // const onSubmit = (data) => console.log(data);
   const [user, setUser] = useState(defaultUser);
 
-  const onSubmit = data => {
-    axios
-      .post('https://labspt12-express-groomer-a-api.herokuapp.com/groomers', {
-        name: user.name,
-        lastname: user.lastname,
-        email: user.email,
-        phone: user.phone,
-        address: user.address,
-        city: user.city,
-        state: user.state,
-        country: user.country,
-        zipcode: user.zip,
-        description: user.description,
-        photo_url: user.photo_url,
-        walk_rate: user.walk_rate,
-        day_care_rate: user.day_care_rate,
-        vet_visit_rate: user.vet_visit_rate,
-      })
-      .then(function(response) {
-        console.log(response);
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+  const onSubmit = () => {
+    props.registerGroomer(user, props);
   };
 
   const handleInputChange = event => {
     event.preventDefault();
     //   getting name of input and value
-    // console.log('handleINputChange Name', event.target.name);
-    //   console.log('handleINputChange Value', event.target.value);
+
     setUser({
       ...user,
       // seting key to key-value pair
@@ -66,11 +43,10 @@ export default function RegisterCustomer() {
     //   change user.state based on whats coming in input
 
     <div className="registration-container">
-      <h1>User Registration</h1>
-      {/* To test functionality */}
-      <p>First name is: {user.name}</p>
+      <h1>Groomer Registration</h1>
+
       <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="name">Name</label>
+        <label htmlFor="name">Name: </label>
 
         {/* use aria-invalid to indicate field contain error */}
         <input
@@ -91,6 +67,7 @@ export default function RegisterCustomer() {
           <span role="alert">Max length exceeded</span>
         )}
 
+        <label htmlFor="lastname">Last Name: </label>
         <input
           type="text"
           id="lastname"
@@ -109,24 +86,7 @@ export default function RegisterCustomer() {
           <span role="alert">Max length exceeded</span>
         )}
 
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="Email"
-          onChange={handleInputChange}
-          aria-invalid={errors.email ? 'true' : 'false'}
-          ref={register({ required: true, maxLength: 30 })}
-        />
-
-        {/* use role="alert" to announce the error message */}
-        {errors.email && errors.email.type === 'required' && (
-          <span role="alert">This is required</span>
-        )}
-        {errors.email && errors.email.type === 'maxLength' && (
-          <span role="alert">Max length exceeded</span>
-        )}
-
+        <label htmlFor="phone">Phone: </label>
         <input
           type="text"
           id="phone"
@@ -145,6 +105,7 @@ export default function RegisterCustomer() {
           <span role="alert">Max length exceeded</span>
         )}
 
+        <label htmlFor="address">Address: </label>
         <input
           type="text"
           id="address"
@@ -163,6 +124,7 @@ export default function RegisterCustomer() {
           <span role="alert">Max length exceeded</span>
         )}
 
+        <label htmlFor="city">City: </label>
         <input
           type="text"
           id="city"
@@ -181,6 +143,7 @@ export default function RegisterCustomer() {
           <span role="alert">Max length exceeded</span>
         )}
 
+        <label htmlFor="state">State: </label>
         <input
           type="text"
           id="state"
@@ -199,10 +162,11 @@ export default function RegisterCustomer() {
           <span role="alert">Max length exceeded</span>
         )}
 
+        <label htmlFor="zipcode">ZIP Code: </label>
         <input
           type="text"
           id="zipcode"
-          name="zipcode"
+          name="zip"
           placeholder="zipcode"
           onChange={handleInputChange}
           aria-invalid={errors.zipcode ? 'true' : 'false'}
@@ -217,6 +181,7 @@ export default function RegisterCustomer() {
           <span role="alert">Max length exceeded</span>
         )}
 
+        <label htmlFor="description">Description: </label>
         <input
           type="text"
           id="description"
@@ -235,10 +200,11 @@ export default function RegisterCustomer() {
           <span role="alert">Max length exceeded</span>
         )}
 
+        <label htmlFor="photoUrl">Photo URL: </label>
         <input
           type="text"
           id="photoUrl"
-          name="photoUrl"
+          name="photo_url"
           placeholder="Photo URL"
           onChange={handleInputChange}
           aria-invalid={errors.zipcode ? 'true' : 'false'}
@@ -253,6 +219,7 @@ export default function RegisterCustomer() {
           <span role="alert">Max length exceeded</span>
         )}
 
+        <label htmlFor="walk_rate">Walk rate: </label>
         <input
           type="text"
           id="walk_rate"
@@ -271,6 +238,7 @@ export default function RegisterCustomer() {
           <span role="alert">Max length exceeded</span>
         )}
 
+        <label htmlFor="day_care_rate">Day care rate: </label>
         <input
           type="text"
           id="day_care_rate"
@@ -288,6 +256,7 @@ export default function RegisterCustomer() {
         {errors.day_care_rate && errors.day_care_rate.type === 'maxLength' && (
           <span role="alert">Max length exceeded</span>
         )}
+        <label htmlFor="vet_visit_rate">Vet visit rate: </label>
 
         <input
           type="text"
@@ -308,8 +277,18 @@ export default function RegisterCustomer() {
             <span role="alert">Max length exceeded</span>
           )}
 
-        <input type="submit" />
+        <button type="submit">Submit</button>
       </form>
     </div>
   );
-}
+};
+
+const mapStateToProps = state => {
+  return {
+    groomer: state.groomerReducer.groomer,
+  };
+};
+
+export default connect(mapStateToProps, { registerGroomer })(
+  GroomerRegistration
+);

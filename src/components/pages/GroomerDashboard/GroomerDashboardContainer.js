@@ -1,31 +1,25 @@
 import React, { useState } from 'react';
 import { RenderGroomerDashboard } from './RenderGroomerDashboard';
+import { useOktaAuth } from '@okta/okta-react';
 
 const GroomerDashboardContainer = () => {
   const [collapsed, setCollapsed] = useState(false);
   const [home, setHome] = useState(true);
-  const [profile, setProfile] = useState(false);
   const [appointments, setAppointments] = useState(false);
+
+  const { authState, authService } = useOktaAuth();
 
   const onCollapse = collapsed => {
     setCollapsed(collapsed);
   };
 
   const viewHome = () => {
-    setProfile(false);
     setAppointments(false);
     setHome(true);
   };
 
-  const viewProfile = () => {
-    setHome(false);
-    setAppointments(false);
-    setProfile(true);
-  };
-
   const viewGroomers = () => {
     setHome(false);
-    setProfile(false);
     setAppointments(true);
   };
 
@@ -35,10 +29,9 @@ const GroomerDashboardContainer = () => {
       onCollapse={onCollapse}
       home={home}
       viewHome={viewHome}
-      profile={profile}
-      viewProfile={viewProfile}
       appointments={appointments}
       viewGroomers={viewGroomers}
+      authService={authService}
     />
   );
 };
