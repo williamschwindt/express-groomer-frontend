@@ -39,6 +39,8 @@ const CustomerProfileContainer = props => {
       showProfileModal={showProfileModal}
       handleProfileModalClose={handleProfileModalClose}
       customer={props.customer}
+      isFetching={props.isFetching}
+      error={props.error}
     />
   );
 };

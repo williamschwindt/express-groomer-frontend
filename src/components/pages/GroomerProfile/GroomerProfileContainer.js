@@ -37,6 +37,8 @@ const GroomerProfileContainer = props => {
       showProfileModal={showProfileModal}
       handleProfileModalClose={handleProfileModalClose}
       groomer={props.groomer}
+      isFetching={props.isFetching}
+      error={props.error}
     />
   );
 };
