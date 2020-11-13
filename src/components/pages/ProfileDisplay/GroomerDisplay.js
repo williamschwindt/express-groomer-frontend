@@ -10,7 +10,9 @@ const GroomerDisplay = props => {
         <img src={groomerInfo.photo_url} />
       </div>
       <div className="profile-description">
-        <h3>{groomerInfo.name}</h3>
+        <h3>
+          {groomerInfo.name} {groomerInfo.lastname}
+        </h3>
         <h4>About Me</h4>
         <p>{groomerInfo.description}</p>
         <ul>
