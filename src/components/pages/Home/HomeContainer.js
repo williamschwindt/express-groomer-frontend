@@ -19,6 +19,10 @@ function HomeContainer(props) {
     localStorage.setItem('customerId', props.customer[0].id);
   }
 
+  if (props.groomer[0]) {
+    localStorage.setItem('groomerId', props.groomer[0].id);
+  }
+
   return (
     <>
       {authState.isAuthenticated && props.isFetching ? (

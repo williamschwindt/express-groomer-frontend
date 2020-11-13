@@ -1,6 +1,5 @@
 import React from 'react';
-import { Row, Col, Avatar, Modal, Button, Breadcrumb, Form, Input } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
+import { Row, Col, Modal, Button, Breadcrumb, Form, Input } from 'antd';
 
 const DemoBox = props => (
   <p className={`height-${props.value}`}>{props.children}</p>
@@ -20,8 +19,8 @@ export const RenderGroomerProfile = props => {
           </Button>,
         ]}
       >
-        <p>Phone number: {props.dummyData.phone}</p>
-        <p>Email: {props.dummyData.email}</p>
+        <p>Phone number: {props.groomer.phone}</p>
+        <p>Email: {props.groomer.email}</p>
       </Modal>
       <Modal
         title="Edit profile"
@@ -42,34 +41,34 @@ export const RenderGroomerProfile = props => {
         ]}
       >
         <Form.Item label="First Name" name="name">
-          <Input placeholder={props.dummyData.name} />
+          <Input placeholder={props.groomer.name} />
         </Form.Item>
         <Form.Item label="Last Name" name="lastname">
-          <Input placeholder={props.dummyData.lastname} />
+          <Input placeholder={props.groomer.lastname} />
         </Form.Item>
         <Form.Item label="Address" name="address">
-          <Input placeholder={props.dummyData.address} />
+          <Input placeholder={props.groomer.address} />
         </Form.Item>
         <Form.Item label="Zip Code" name="zip">
-          <Input placeholder={props.dummyData.zip} />
+          <Input placeholder={props.groomer.zip} />
         </Form.Item>
         <Form.Item label="City" name="city">
-          <Input placeholder={props.dummyData.city} />
+          <Input placeholder={props.groomer.city} />
         </Form.Item>
         <Form.Item label="State" name="state">
-          <Input placeholder={props.dummyData.state} />
+          <Input placeholder={props.groomer.state} />
         </Form.Item>
         <Form.Item label="Country" name="country">
-          <Input placeholder={props.dummyData.country} />
+          <Input placeholder={props.groomer.country} />
         </Form.Item>
         <Form.Item label="Phone Number" name="phone">
-          <Input placeholder={props.dummyData.phone} />
+          <Input placeholder={props.groomer.phone} />
         </Form.Item>
         <Form.Item label="Email" name="email">
-          <Input placeholder={props.dummyData.email} />
+          <Input placeholder={props.groomer.email} />
         </Form.Item>
         <Form.Item label="Profile Picture" name="photo_url">
-          <Input placeholder={props.dummyData.photo_url} />
+          <Input placeholder={props.groomer.photo_url} />
         </Form.Item>
       </Modal>
       <Breadcrumb style={{ margin: '16px 0', marginBottom: '24px' }}>
@@ -84,16 +83,16 @@ export const RenderGroomerProfile = props => {
         <Col xs={2} sm={4} md={6} lg={8} xl={10}>
           <DemoBox value={100}>
             <img
-              src={props.dummyData.photo_url}
-              alt={props.dummyData.name}
+              src={props.groomer.photo_url}
+              alt={props.groomer.name}
               style={{ borderRadius: '50%', marginBottom: '10px' }}
             />
             <h2>
-              {props.dummyData.name} {props.dummyData.lastname}
+              {props.groomer.name} {props.groomer.lastname}
             </h2>
             <p>
-              {props.dummyData.city}, {props.dummyData.state},{' '}
-              {props.dummyData.country}
+              {props.groomer.city}, {props.groomer.state},{' '}
+              {props.groomer.country}
               <span
                 onClick={props.showContactModal}
                 style={{
@@ -108,7 +107,7 @@ export const RenderGroomerProfile = props => {
           </DemoBox>
           <div className="groomer-about-section">
             <h2>About</h2>
-            <p>{props.dummyData.description}</p>
+            <p>{props.groomer.description}</p>
           </div>
         </Col>
         <Col xs={20} sm={16} md={12} lg={8} xl={4} />

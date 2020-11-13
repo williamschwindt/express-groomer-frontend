@@ -123,13 +123,11 @@ const getCustomerInfo = id => dispatch => {
 };
 
 const getGroomerInfo = id => dispatch => {
-  console.log('get ran');
   dispatch({ type: GET_GROOMER_INFO_START });
 
   axios
     .get(`${process.env.REACT_APP_API_URI}/groomers/${id}`)
     .then(res => {
-      console.log(res.data);
       dispatch({ type: GET_GROOMER_INFO_SUCCESS, payload: res.data });
     })
     .catch(err => {

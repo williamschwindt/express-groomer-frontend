@@ -1,24 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { RenderGroomerProfile } from './RenderGroomerProfile';
+import { connect } from 'react-redux';
+import { getGroomerInfo } from '../../../api/index';
 
-const GroomerProfileContainer = () => {
+const GroomerProfileContainer = props => {
   const [contactModalVisible, setContactModalVisible] = useState(false);
   const [profileModalVisible, setProfileModalVisible] = useState(false);
-  const dummyData = {
-    name: 'Tony',
-    description:
-      'Deleniti dolorem nam. Dolores libero omnis consequatur minus illo. Cum soluta tempore quod nemo placeat ratione saepe. Sit labore reprehenderit et laborum cumque corrupti.',
-    lastname: 'Lang',
-    address: '806 Price Mount',
-    zip: '13349',
-    phone: '2649864723',
-    email: 'Norene45@gmail.com',
-    city: 'Port April',
-    state: 'Texas',
-    country: 'USA',
-    photo_url:
-      'https://s3.amazonaws.com/uifaces/faces/twitter/nfedoroff/128.jpg',
-  };
+  const { getGroomerInfo } = props;
+
+  useEffect(() => {
+    getGroomerInfo(localStorage.getItem('groomerId'));
+  }, [getGroomerInfo]);
 
   const showContactModal = () => {
     setContactModalVisible(true);
@@ -44,9 +36,19 @@ const GroomerProfileContainer = () => {
       profileModalVisible={profileModalVisible}
       showProfileModal={showProfileModal}
       handleProfileModalClose={handleProfileModalClose}
-      dummyData={dummyData}
+      groomer={props.groomer}
     />
   );
 };
 
-export default GroomerProfileContainer;
+const mapStateToProps = state => {
+  return {
+    groomer: state.groomerReducer.groomer,
+    isFetching: state.groomerReducer.isFetching,
+    error: state.groomerReducer.error,
+  };
+};
+
+export default connect(mapStateToProps, { getGroomerInfo })(
+  GroomerProfileContainer
+);
