@@ -1,6 +1,5 @@
 import React from 'react';
-import { Row, Col, Avatar, Modal, Button, Breadcrumb, Form, Input } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
+import { Row, Col, Modal, Button, Breadcrumb, Form, Input } from 'antd';
 
 const DemoBox = props => (
   <p className={`height-${props.value}`}>{props.children}</p>
@@ -20,8 +19,8 @@ export const RenderCustomerProfile = props => {
           </Button>,
         ]}
       >
-        <p>Phone number: {props.dummyData.phone}</p>
-        <p>Email: {props.dummyData.email}</p>
+        <p>Phone number: {props.customer.phone}</p>
+        <p>Email: {props.customer.email}</p>
       </Modal>
       <Modal
         title="Edit profile"
@@ -42,34 +41,34 @@ export const RenderCustomerProfile = props => {
         ]}
       >
         <Form.Item label="First Name" name="name">
-          <Input placeholder={props.dummyData.name} />
+          <Input placeholder={props.customer.name} />
         </Form.Item>
         <Form.Item label="Last Name" name="lastname">
-          <Input placeholder={props.dummyData.lastname} />
+          <Input placeholder={props.customer.lastname} />
         </Form.Item>
         <Form.Item label="Address" name="address">
-          <Input placeholder={props.dummyData.address} />
+          <Input placeholder={props.customer.address} />
         </Form.Item>
         <Form.Item label="Zip Code" name="zip">
-          <Input placeholder={props.dummyData.zip} />
+          <Input placeholder={props.customer.zip} />
         </Form.Item>
         <Form.Item label="City" name="city">
-          <Input placeholder={props.dummyData.city} />
+          <Input placeholder={props.customer.city} />
         </Form.Item>
         <Form.Item label="State" name="state">
-          <Input placeholder={props.dummyData.state} />
+          <Input placeholder={props.customer.state} />
         </Form.Item>
         <Form.Item label="Country" name="country">
-          <Input placeholder={props.dummyData.country} />
+          <Input placeholder={props.customer.country} />
         </Form.Item>
         <Form.Item label="Phone Number" name="phone">
-          <Input placeholder={props.dummyData.phone} />
+          <Input placeholder={props.customer.phone} />
         </Form.Item>
         <Form.Item label="Email" name="email">
-          <Input placeholder={props.dummyData.email} />
+          <Input placeholder={props.customer.email} />
         </Form.Item>
         <Form.Item label="Profile Picture" name="photo_url">
-          <Input placeholder={props.dummyData.photo_url} />
+          <Input placeholder={props.customer.photo_url} />
         </Form.Item>
       </Modal>
       <Breadcrumb style={{ margin: '16px 0', marginBottom: '24px' }}>
@@ -84,16 +83,16 @@ export const RenderCustomerProfile = props => {
         <Col xs={2} sm={4} md={6} lg={8} xl={10}>
           <DemoBox value={100}>
             <img
-              src={props.dummyData.photo_url}
-              alt={props.dummyData.name}
+              src={props.customer.photo_url}
+              alt={props.customer.name}
               style={{ borderRadius: '50%', marginBottom: '10px' }}
             />
             <h2>
-              {props.dummyData.name} {props.dummyData.lastname}
+              {props.customer.name} {props.customer.lastname}
             </h2>
             <p>
-              {props.dummyData.city}, {props.dummyData.state},{' '}
-              {props.dummyData.country}
+              {props.customer.city}, {props.customer.state},{' '}
+              {props.customer.country}
               <span
                 onClick={props.showContactModal}
                 style={{
@@ -108,7 +107,7 @@ export const RenderCustomerProfile = props => {
           </DemoBox>
           <div className="customer-about-section">
             <h2>About</h2>
-            <p>{props.dummyData.description}</p>
+            <p>{props.customer.description}</p>
           </div>
         </Col>
         <Col xs={20} sm={16} md={12} lg={8} xl={4} />

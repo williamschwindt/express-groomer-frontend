@@ -15,6 +15,10 @@ function HomeContainer(props) {
     // eslint-disable-next-line
   }, [memoAuthService]);
 
+  if (props.customer[0]) {
+    localStorage.setItem('customerId', props.customer[0].id);
+  }
+
   return (
     <>
       {authState.isAuthenticated && props.isFetching ? (

@@ -115,7 +115,7 @@ const getCustomerInfo = id => dispatch => {
   axios
     .get(`${process.env.REACT_APP_API_URI}/customers/${id}`)
     .then(res => {
-      dispatch({ type: GET_CUSTOMER_INFO_SUCCESS, payload: res.body });
+      dispatch({ type: GET_CUSTOMER_INFO_SUCCESS, payload: res.data });
     })
     .catch(err => {
       dispatch({ type: GET_CUSTOMER_INFO_FAILURE, payload: err.message });
