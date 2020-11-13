@@ -13,7 +13,6 @@ const GroomerDisplay = props => {
       </div>
       <div className="profile-description">
         <h3>{groomerInfo.name}</h3>
-        {console.log('GroomerDisplay Props', props.location.state)}
         <h4>About Me</h4>
         <p>{groomerInfo.description}</p>
         <ul>
