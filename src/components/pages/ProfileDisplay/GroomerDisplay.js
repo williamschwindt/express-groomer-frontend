@@ -13,7 +13,7 @@ const GroomerDisplay = props => {
         <h3>
           {groomerInfo.name} {groomerInfo.lastname}
         </h3>
-        <h4>About Me</h4>
+        <h4>About Me:</h4>
         <p>{groomerInfo.description}</p>
         <ul>
           <h4>Contact: </h4>
