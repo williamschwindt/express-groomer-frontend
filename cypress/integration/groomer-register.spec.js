@@ -33,20 +33,20 @@ describe('Login page tests', function(){
     
 
     it('Groomer can register', function () {
-        cy.get('input[name="fName"]').type('Michael');
-        cy.get('input[name="lName"]').type('Jackson');
+        cy.get('input[name="name"]').type('Michael');
+        cy.get('input[name="lastname"]').type('Jackson');
         cy.get('input[name="email"]').type('mike@blackandwhite.com');
         cy.get('input[name="phone"]').type('969404565');
         cy.get('input[name="address"]').type("23 Saint Peter's Rd");
         cy.get('input[name="city"]').type('Atlanta');
         cy.get('input[name="state"]').type('Georgia');
         cy.get('input[name="zipcode"]').type('856891');
-        cy.get('input[placeholder="Talk about yourself!"]').type('I love dogs!');
-        cy.get('input[name="photo_url"]').type('https://flikr.com/myphoto.jpg');
-        cy.get('input[placeholder="walk rate"]').type('1000');
-        cy.get('input[placeholder="day care rate"]').type('13000');
-        cy.get('input[placeholder="vet visit rate"]').type('3000');
-
+        cy.get('input[name="description"]').type('I love dogs!');
+        cy.get('input[name="photoUrl"]').type('https://flikr.com/myphoto.jpg');
+        cy.get('#walk_rate').type('1000');
+        cy.get('#day_care_rate').type('3000');
+        cy.get('#vet_visit_rate').type('13000');
+ 
 
 
         // If we click on "Register" returns error for now, it will clear once we create postData function in Register-Groomer.js
