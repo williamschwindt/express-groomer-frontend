@@ -1,8 +1,10 @@
 import React from 'react';
 import { Row, Col, Modal, Button, Breadcrumb, Form, Input } from 'antd';
+import MyMap from '../../../components/MyMap/MyMap';
+import './style.css';
 
 const DemoBox = props => (
-  <p className={`height-${props.value}`}>{props.children}</p>
+  <div className={`height-${props.value}`}>{props.children}</div>
 );
 
 export const RenderGroomerProfile = props => {
@@ -87,8 +89,8 @@ export const RenderGroomerProfile = props => {
           Edit profile
         </Breadcrumb.Item>
       </Breadcrumb>
-      <Row justify="space-around" align="middle">
-        <Col xs={2} sm={4} md={6} lg={8} xl={10}>
+      <Row id="about" justify="start" align="middle">
+        <Col xs={24} sm={24} md={24} lg={10} xl={10}>
           <DemoBox value={100}>
             <img
               src={props.groomer.photo_url}
@@ -118,9 +120,29 @@ export const RenderGroomerProfile = props => {
             <p>{props.groomer.description}</p>
           </div>
         </Col>
-        <Col xs={20} sm={16} md={12} lg={8} xl={4} />
-        <Col xs={2} sm={4} md={6} lg={8} xl={10}>
-          <DemoBox value={50}>Calendar Here</DemoBox>
+
+        <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+          <div id="calendar">
+            <DemoBox value={50}>Calendar Here</DemoBox>
+          </div>
+        </Col>
+      </Row>
+
+      <Row id="map" justify="start" align="middle">
+        <Col xs={24} sm={24} md={24} lg={10} xl={10}>
+          <div id="map">
+            <h2>Location</h2>
+            <MyMap
+              // style={{
+
+              // }}
+              zoom={10}
+              initialCenter={{
+                lat: -1.2884,
+                lng: 36.8233,
+              }}
+            />
+          </div>
         </Col>
       </Row>
     </>
