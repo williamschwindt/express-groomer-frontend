@@ -15,33 +15,40 @@ function HomeContainer(props) {
     // eslint-disable-next-line
   }, [memoAuthService]);
 
-  if (props.customer[0]) {
-    localStorage.setItem('customerId', props.customer[0].id);
+  // user is authenticated but fetching api response
+  if (authState.isAuthenticated && props.isFetching) {
+    return <props.LoadingComponent message="Fetching user profile..." />;
   }
 
-  if (props.groomer[0]) {
+  // okta user has been found and has a groomer profile
+  else if (
+    authState.isAuthenticated &&
+    props.oktaUser &&
+    props.groomer.length === 1
+  ) {
     localStorage.setItem('groomerId', props.groomer[0].id);
+    return <Redirect to={'/groomer-dashboard'} />;
   }
 
-  return (
-    <>
-      {authState.isAuthenticated && props.isFetching ? (
-        <props.LoadingComponent message="Fetching user profile..." />
-      ) : authState.isAuthenticated &&
-        props.oktaUser &&
-        props.customer.length === 1 ? (
-        <Redirect to={'/customer-dashboard'} />
-      ) : authState.isAuthenticated &&
-        props.oktaUser &&
-        props.groomer.length === 1 ? (
-        <Redirect to={'/groomer-dashboard'} />
-      ) : props.oktaUser ? (
-        <RegistrationForm email={props.oktaUser.email} />
-      ) : (
-        <h1>Something went wrong</h1>
-      )}
-    </>
-  );
+  // okta user has been found and has a customer profile
+  else if (
+    authState.isAuthenticated &&
+    props.oktaUser &&
+    props.customer.length === 1
+  ) {
+    localStorage.setItem('customerId', props.customer[0].id);
+    return <Redirect to={'/customer-dashboard'} />;
+  }
+
+  // okta user found but has not created a profile
+  else if (props.oktaUser) {
+    return <RegistrationForm email={props.oktaUser.email} />;
+  }
+
+  // server error
+  else {
+    return <h1>Something went wrong</h1>;
+  }
 }
 
 const mapStateToProps = state => {

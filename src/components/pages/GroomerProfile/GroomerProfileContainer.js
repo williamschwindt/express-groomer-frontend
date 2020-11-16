@@ -28,19 +28,23 @@ const GroomerProfileContainer = props => {
     setProfileModalVisible(false);
   };
 
-  return (
-    <RenderGroomerProfile
-      contactModalVisible={contactModalVisible}
-      showContactModal={showContactModal}
-      handleContactModalClose={handleContactModalClose}
-      profileModalVisible={profileModalVisible}
-      showProfileModal={showProfileModal}
-      handleProfileModalClose={handleProfileModalClose}
-      groomer={props.groomer}
-      isFetching={props.isFetching}
-      error={props.error}
-    />
-  );
+  if (props.groomer && props.groomer.hasOwnProperty('name')) {
+    return (
+      <RenderGroomerProfile
+        contactModalVisible={contactModalVisible}
+        showContactModal={showContactModal}
+        handleContactModalClose={handleContactModalClose}
+        profileModalVisible={profileModalVisible}
+        showProfileModal={showProfileModal}
+        handleProfileModalClose={handleProfileModalClose}
+        groomer={props.groomer}
+      />
+    );
+  } else if (props.isFetching === true) {
+    return <div>Loading</div>;
+  } else {
+    return <div>There was a problem loading this page</div>;
+  }
 };
 
 const mapStateToProps = state => {

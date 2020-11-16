@@ -8,14 +8,6 @@ const DemoBox = props => (
 );
 
 export const RenderGroomerProfile = props => {
-  if (props.isFetching === true) {
-    return <div>Loading</div>;
-  }
-
-  if (props.error !== '') {
-    return <div>There was a problem loading this page</div>;
-  }
-
   return (
     <>
       <Modal

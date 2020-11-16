@@ -141,7 +141,8 @@ const registerCustomer = (data, props) => dispatch => {
   axios
     .post(`${process.env.REACT_APP_API_URI}/customers`, data)
     .then(res => {
-      dispatch({ type: REGISTER_CUSTOMER_INFO_SUCCESS, payload: res.body });
+      localStorage.setItem('customerId', res.data.id);
+      dispatch({ type: REGISTER_CUSTOMER_INFO_SUCCESS, payload: res.data });
       props.history.push('/customer-dashboard');
     })
     .catch(err => {
@@ -155,6 +156,7 @@ const registerGroomer = (data, props) => dispatch => {
   axios
     .post(`${process.env.REACT_APP_API_URI}/groomers`, data)
     .then(res => {
+      localStorage.setItem('groomerId', res.data.id);
       dispatch({ type: REGISTER_GROOMER_INFO_SUCCESS, payload: res.data });
       props.history.push('/groomer-dashboard');
     })

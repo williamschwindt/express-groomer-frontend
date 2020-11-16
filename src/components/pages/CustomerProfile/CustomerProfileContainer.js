@@ -30,19 +30,23 @@ const CustomerProfileContainer = props => {
     setProfileModalVisible(false);
   };
 
-  return (
-    <RenderCustomerProfile
-      contactModalVisible={contactModalVisible}
-      showContactModal={showContactModal}
-      handleContactModalClose={handleContactModalClose}
-      profileModalVisible={profileModalVisible}
-      showProfileModal={showProfileModal}
-      handleProfileModalClose={handleProfileModalClose}
-      customer={props.customer}
-      isFetching={props.isFetching}
-      error={props.error}
-    />
-  );
+  if (props.customer && props.customer.hasOwnProperty('name')) {
+    return (
+      <RenderCustomerProfile
+        contactModalVisible={contactModalVisible}
+        showContactModal={showContactModal}
+        handleContactModalClose={handleContactModalClose}
+        profileModalVisible={profileModalVisible}
+        showProfileModal={showProfileModal}
+        handleProfileModalClose={handleProfileModalClose}
+        customer={props.customer}
+      />
+    );
+  } else if (props.isFetching === true) {
+    return <div>Loading</div>;
+  } else {
+    return <div>There was a problem loading this page</div>;
+  }
 };
 
 const mapStateToProps = state => {
