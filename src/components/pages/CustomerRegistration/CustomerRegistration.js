@@ -14,8 +14,8 @@ const CustomerRegistration = props => {
     phone: '',
     zip: '',
     address: '',
-    latitude: '',
-    longitude: '',
+    latitude: '', // retrieved by react-geocode
+    longitude: '', // retrieved by react-geocode
     city: '',
     state: '',
     country: '',
