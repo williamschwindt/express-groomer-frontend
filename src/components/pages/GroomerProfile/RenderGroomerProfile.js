@@ -87,7 +87,12 @@ export const RenderGroomerProfile = props => {
             <img
               src={props.groomer.photo_url}
               alt={props.groomer.name}
-              style={{ borderRadius: '50%', marginBottom: '10px' }}
+              style={{
+                borderRadius: '50%',
+                marginBottom: '10px',
+                width: '150px',
+                height: '150px',
+              }}
             />
             <h2>
               {props.groomer.name} {props.groomer.lastname}

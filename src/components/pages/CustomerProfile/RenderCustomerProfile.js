@@ -85,7 +85,12 @@ export const RenderCustomerProfile = props => {
             <img
               src={props.customer.photo_url}
               alt={props.customer.name}
-              style={{ borderRadius: '50%', marginBottom: '10px' }}
+              style={{
+                borderRadius: '50%',
+                marginBottom: '10px',
+                width: '150px',
+                height: '150px',
+              }}
             />
             <h2>
               {props.customer.name} {props.customer.lastname}
