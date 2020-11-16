@@ -15,6 +15,8 @@ import { getGroomerData } from '../../../api/index';
 import Geocode from 'react-geocode';
 
 Geocode.setApiKey('AIzaSyDvbprCrQ-zJnjwdimEwzJHO5LULTR_vtg');
+Geocode.setLanguage('en');
+Geocode.setRegion('us');
 
 const cardDescription = {
   margin: '1px',
@@ -105,7 +107,7 @@ const SearchForm = () => {
   // };
 
   const onFormFinish = values => {
-    Geocode.fromAddress(values).then(
+    Geocode.fromAddress(values.zip).then(
       response => {
         const { lat, lng } = response.results[0].geometry.location;
         console.log(lat, lng);
@@ -115,7 +117,7 @@ const SearchForm = () => {
       }
     );
 
-    console.log(values);
+    console.log(values.zip);
   };
 
   const onReset = () => {
