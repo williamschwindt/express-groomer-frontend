@@ -74,6 +74,7 @@ const SearchForm = () => {
   const [zipcode, setZipcode] = useState('');
   const [groomers, setGroomers] = useState([]);
   const [form] = Form.useForm();
+  // const [distance] = usestate('')
 
   const onFinish = values => {
     console.log('Success: groomers displayed', values);
@@ -92,8 +93,18 @@ const SearchForm = () => {
   useEffect(() => {
     getGroomerData().then(response => {
       setGroomers(response);
+      Geocode.fromAddress(groomers.zip).then(
+        response => {
+          const { lat, lng } = response.results[0].geometry.location;
+          // filterLocation(lat, lng, latInput, lngInput);
+          console.log(lat, lng);
+        },
+        error => {
+          console.error(error);
+        }
+      );
     });
-  }, []);
+  }, [zipcode]);
 
   //for the form, need to add logic for places api
   // const onOptionChange = (value) => {
@@ -106,11 +117,22 @@ const SearchForm = () => {
   //   }
   // };
 
+  // function filterLocation(lat, lng, latInput, lngInput){
+  //   var latOut = latInput-lat;
+  //   var lngOut = lngInput-lng;
+  //   distance = (lngOut.abs)*(latOut.abs)/2;
+  //   return distance;
+  // }
+
   const onFormFinish = values => {
+    setZipcode(values.zip);
+
     Geocode.fromAddress(values.zip).then(
       response => {
         const { lat, lng } = response.results[0].geometry.location;
-        console.log(lat, lng);
+        const latInput = lat;
+        const lngInput = lng;
+        console.log(latInput, lngInput);
       },
       error => {
         console.error(error);
