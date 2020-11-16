@@ -15,6 +15,12 @@ import {
   GET_USER_INFO_START,
   GET_USER_INFO_SUCCESS,
   GET_USER_INFO_FAILURE,
+  UPDATE_CUSTOMER_START,
+  UPDATE_CUSTOMER_SUCCESS,
+  UPDATE_CUSTOMER_FAILURE,
+  UPDATE_GROOMER_START,
+  UPDATE_GROOMER_SUCCESS,
+  UPDATE_GROOMER_FAILURE,
 } from './types';
 
 let groomersReq = `${process.env.REACT_APP_API_URI}/groomers`;
@@ -165,6 +171,32 @@ const registerGroomer = (data, props) => dispatch => {
     });
 };
 
+const updateGroomer = (data, id) => dispatch => {
+  dispatch({ type: UPDATE_GROOMER_START });
+
+  axios
+    .post(`${process.env.REACT_APP_API_URI}/groomers/${id}`, data)
+    .then(res => {
+      dispatch({ type: UPDATE_GROOMER_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: UPDATE_GROOMER_FAILURE, payload: err.message });
+    });
+};
+
+const updateCustomer = (data, id) => dispatch => {
+  dispatch({ type: UPDATE_CUSTOMER_START });
+
+  axios
+    .post(`${process.env.REACT_APP_API_URI}/customers/${id}`, data)
+    .then(res => {
+      dispatch({ type: UPDATE_CUSTOMER_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: UPDATE_CUSTOMER_FAILURE, payload: err.message });
+    });
+};
+
 export {
   sleep,
   getExampleData,
@@ -176,4 +208,6 @@ export {
   getUserData,
   registerCustomer,
   registerGroomer,
+  updateCustomer,
+  updateGroomer,
 };

@@ -5,6 +5,9 @@ import {
   REGISTER_CUSTOMER_INFO_START,
   REGISTER_CUSTOMER_INFO_SUCCESS,
   REGISTER_CUSTOMER_INFO_FAILURE,
+  UPDATE_CUSTOMER_START,
+  UPDATE_CUSTOMER_SUCCESS,
+  UPDATE_CUSTOMER_FAILURE,
 } from '../../../api/types';
 
 const initialState = {
@@ -44,6 +47,23 @@ export const customerReducer = (state = initialState, action) => {
         customer: action.payload,
       };
     case REGISTER_CUSTOMER_INFO_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        error: action.payload,
+      };
+    case UPDATE_CUSTOMER_START:
+      return {
+        ...state,
+        isFetching: true,
+      };
+    case UPDATE_CUSTOMER_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        customer: action.payload,
+      };
+    case UPDATE_CUSTOMER_FAILURE:
       return {
         ...state,
         isFetching: false,
