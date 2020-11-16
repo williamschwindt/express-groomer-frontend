@@ -9,11 +9,13 @@ const GroomerProfileContainer = () => {
     description:
       'Deleniti dolorem nam. Dolores libero omnis consequatur minus illo. Cum soluta tempore quod nemo placeat ratione saepe. Sit labore reprehenderit et laborum cumque corrupti.',
     lastname: 'Lang',
-    address: '806 Price Mount',
-    zip: '13349',
+    address: 'Ave L',
+    latitude: '',
+    longitude: '',
+    zip: '76801',
     phone: '2649864723',
     email: 'Norene45@gmail.com',
-    city: 'Port April',
+    city: 'Brownwood',
     state: 'Texas',
     country: 'USA',
     photo_url:
@@ -37,15 +39,17 @@ const GroomerProfileContainer = () => {
   };
 
   return (
-    <RenderGroomerProfile
-      contactModalVisible={contactModalVisible}
-      showContactModal={showContactModal}
-      handleContactModalClose={handleContactModalClose}
-      profileModalVisible={profileModalVisible}
-      showProfileModal={showProfileModal}
-      handleProfileModalClose={handleProfileModalClose}
-      dummyData={dummyData}
-    />
+    <div>
+      <RenderGroomerProfile
+        contactModalVisible={contactModalVisible}
+        showContactModal={showContactModal}
+        handleContactModalClose={handleContactModalClose}
+        profileModalVisible={profileModalVisible}
+        showProfileModal={showProfileModal}
+        handleProfileModalClose={handleProfileModalClose}
+        dummyData={dummyData}
+      />
+    </div>
   );
 };
 

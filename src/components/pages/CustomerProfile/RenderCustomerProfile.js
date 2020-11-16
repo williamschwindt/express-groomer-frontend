@@ -114,6 +114,7 @@ export const RenderCustomerProfile = props => {
         <Col xs={20} sm={16} md={12} lg={8} xl={4} />
         <Col xs={2} sm={4} md={6} lg={8} xl={10}>
           <DemoBox value={50}>Calendar Here</DemoBox>
+          <DemoBox value={50}>Map Here</DemoBox>
         </Col>
       </Row>
     </>

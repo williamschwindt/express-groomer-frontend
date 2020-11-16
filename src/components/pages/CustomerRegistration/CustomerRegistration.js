@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { useForm } from 'react-hook-form';
+// import Autocomplete from 'react-google-autocomplete';
 import { registerCustomer } from '../../../api/index';
+
 import './CustomerRegistration.css';
 
 const CustomerRegistration = props => {
@@ -114,6 +116,21 @@ const CustomerRegistration = props => {
           ref={register({ required: true, maxLength: 30 })}
         />
 
+        {/* todo maybe I can use this for the inputs as a stretch goal
+         <Autocomplete        
+          apiKey={process.env.REACT_APP_API_KEY}
+          style={{ width: '90%' }}
+          id="address"
+          onChange={handleInputChange}
+          aria-invalid={errors.address ? 'true' : 'false'}
+          ref={register({ required: true, maxLength: 30 })}
+          onPlaceSelected={(place) => {
+            console.log(place);
+          }}
+          types={['(regions)']}
+          componentRestrictions={{ address: user.address }}
+        /> */}
+
         {/* use role="alert" to announce the error message */}
         {errors.address && errors.address.type === 'required' && (
           <span role="alert">This is required</span>
@@ -159,6 +176,26 @@ const CustomerRegistration = props => {
           <span role="alert">This is required</span>
         )}
         {errors.state && errors.state.type === 'maxLength' && (
+          <span role="alert">Max length exceeded</span>
+        )}
+
+        <label htmlFor="state">Country: </label>
+
+        <input
+          type="text"
+          id="country"
+          name="country"
+          placeholder="Country"
+          onChange={handleInputChange}
+          aria-invalid={errors.country ? 'true' : 'false'}
+          ref={register({ required: true, maxLength: 30 })}
+        />
+
+        {/* use role="alert" to announce the error message */}
+        {errors.country && errors.country.type === 'required' && (
+          <span role="alert">This is required</span>
+        )}
+        {errors.country && errors.country.type === 'maxLength' && (
           <span role="alert">Max length exceeded</span>
         )}
 
