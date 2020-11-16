@@ -227,7 +227,7 @@ const GroomerRegistration = props => {
           placeholder="Photo URL"
           onChange={handleInputChange}
           aria-invalid={errors.zipcode ? 'true' : 'false'}
-          ref={register({ required: false, maxLength: 100 })}
+          ref={register({ required: false, maxLength: 300 })}
         />
 
         {/* use role="alert" to announce the error message */}
