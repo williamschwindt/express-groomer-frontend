@@ -14,6 +14,8 @@ const CustomerRegistration = props => {
     phone: '',
     zip: '',
     address: '',
+    latitude: '',
+    longitude: '',
     city: '',
     state: '',
     country: '',
