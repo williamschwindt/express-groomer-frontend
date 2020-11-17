@@ -104,7 +104,7 @@ const SearchForm = () => {
       //   }
       // );
     });
-  }, [groomers]);
+  }, []);
 
   //for the form, use the below to add a toggle option
   // const onOptionChange = (value) => {
