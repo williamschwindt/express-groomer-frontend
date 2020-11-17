@@ -38,7 +38,7 @@ class Header extends React.Component {
           <Menu.Item key="preview">
             <a
               target="_blank"
-              href="http://preview.pro.ant.design/"
+              href="https://github.com/orgs/Lambda-School-Labs/teams/labspt12-express_groomer-teama/repositories"
               rel="noopener noreferrer"
             >
               some page
@@ -76,16 +76,6 @@ class Header extends React.Component {
           </Col>
           <Col xxl={20} xl={19} lg={16} md={16} sm={0} xs={0}>
             <div className="header-meta">
-              <div id="preview">
-                <a
-                  id="preview-button"
-                  target="_blank"
-                  href="http://preview.pro.ant.design"
-                  rel="noopener noreferrer"
-                >
-                  <Button icon="eye-o">Button</Button>
-                </a>
-              </div>
               {menuMode === 'horizontal' ? <div id="menu">{menu}</div> : null}
             </div>
           </Col>
