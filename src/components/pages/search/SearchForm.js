@@ -93,18 +93,18 @@ const SearchForm = () => {
   useEffect(() => {
     getGroomerData().then(response => {
       setGroomers(response);
-      Geocode.fromAddress(groomers.zip).then(
-        response => {
-          const { lat, lng } = response.results[0].geometry.location;
-          // filterLocation(lat, lng, latInput, lngInput);
-          console.log(lat, lng);
-        },
-        error => {
-          console.error(error);
-        }
-      );
+      // Geocode.fromAddress(groomers.zip).then(
+      //   response => {
+      //     const { lat, lng } = response.results[0].geometry.location;
+      //     // filterLocation(lat, lng, latInput, lngInput);
+      //     console.log(lat, lng);
+      //   },
+      //   error => {
+      //     console.error(error);
+      //   }
+      // );
     });
-  }, [zipcode]);
+  }, [groomers]);
 
   //for the form, use the below to add a toggle option
   // const onOptionChange = (value) => {
@@ -123,6 +123,13 @@ const SearchForm = () => {
   //   distance = (lngOut.abs)*(latOut.abs)/2;
   //   return distance;
   // }
+  const filterDist = (dist, lng, lat) => {
+    const distance =
+      ((lng - groomers.longitude) * (lat - groomers.latitude)) / 2;
+    const sorted = [...groomers].sort((a, b) => b[distance] - a[distance]);
+    console.log(sorted);
+    setGroomers(sorted);
+  };
 
   const onFormFinish = values => {
     setZipcode(values.zip);
@@ -130,9 +137,8 @@ const SearchForm = () => {
     Geocode.fromAddress(values.zip).then(
       response => {
         const { lat, lng } = response.results[0].geometry.location;
-        const latInput = lat;
-        const lngInput = lng;
-        console.log(latInput, lngInput);
+        filterDist(lng, lat);
+        console.log(lat, lng, groomers);
       },
       error => {
         console.error(error);
