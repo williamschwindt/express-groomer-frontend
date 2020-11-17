@@ -106,7 +106,7 @@ const SearchForm = () => {
     });
   }, [zipcode]);
 
-  //for the form, need to add logic for places api
+  //for the form, use the below to add a toggle option
   // const onOptionChange = (value) => {
   //   switch (value) {
   //     case 'example':
@@ -193,7 +193,7 @@ const SearchForm = () => {
         </Select>
       </Form.Item> */}
 
-          {/* this is to set an option, maybe for pet breeds or options for services? */}
+          {/* ^^^^^ this is to set an option, maybe for pet breeds or options for services? */}
 
           <Form.Item
             noStyle
@@ -267,74 +267,6 @@ const SearchForm = () => {
         })}
       </div>
     </div>
-    // <Form
-    //   {...SearchForm}
-    //   name="basic"
-    //   initialValues={{
-    //     remember: true,
-    //   }}
-    //   onFinish={onFinish}
-    //   onFinishFailed={onFinishFailed}
-    // >
-    //   <Form.Item
-    //     label="Pet's Name"
-    //     name="petsName"
-    //     rules={[
-    //       {
-    //         required: true,
-    //         message: 'What is your pets name?',
-    //       },
-    //     ]}
-    //   >
-    //     <Input onChange={handleName} />
-    //   </Form.Item>
-
-    //   <Radio.Group>
-    //     {/* onChange={onChange} */}
-    //     <h3>I have a:</h3>
-    //     <Radio value={1}>Dog</Radio>
-    //     <Radio value={2}>Cat</Radio>
-    //   </Radio.Group>
-
-    //   <Form.Item
-    //     label="Enter zip or postal code:"
-    //     name="zipcode"
-    //     rules={[
-    //       {
-    //         required: true,
-    //         message: 'Please input your zipcode!',
-    //       },
-    //     ]}
-    //   >
-    //     <Input onChange={handleZipCode} />
-    //   </Form.Item>
-
-    //   <Form.Item {...tailLayout} name="remember" valuePropName="checked">
-    //     <Checkbox>Remember me</Checkbox>
-    //   </Form.Item>
-
-    //   <Form.Item {...tailLayout}>
-    //     <Button onClick={onSubmit} type="primary" htmlType="submit">
-    //       Find Your Groomers
-    //     </Button>
-    //   </Form.Item>
-    //   {/* <SearchPagination /> */}
-
-    //   <Card
-    //     hoverable
-    //     style={{width: 240}}
-    //     cover={
-    //       <img
-    //         alt="example"
-    //         src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-    //       />
-    //     }
-    //   >
-    //     <Meta title="K-9 Whisperer" description="www.expressgroomers.com" />
-    //   </Card>
-    //   {/* <Pagination total={100} itemRender={itemRender} /> */}
-    // </Form>
-    // // <SearchPagination/>
   );
 };
 export default SearchForm;
