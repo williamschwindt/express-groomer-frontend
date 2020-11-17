@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Geocode from 'react-geocode';
+
 import { RenderGroomerProfile } from './RenderGroomerProfile';
 
 const GroomerProfileContainer = () => {
@@ -16,7 +18,7 @@ const GroomerProfileContainer = () => {
     phone: '2649864723',
     email: 'Norene45@gmail.com',
     city: 'Brownwood',
-    state: 'Texas',
+    state: 'TX',
     country: 'USA',
     photo_url:
       'https://s3.amazonaws.com/uifaces/faces/twitter/nfedoroff/128.jpg',
@@ -37,6 +39,34 @@ const GroomerProfileContainer = () => {
   const handleProfileModalClose = e => {
     setProfileModalVisible(false);
   };
+  // set Google Maps Geocoding API for purposes of quota management. Its optional but recommended.
+  Geocode.setApiKey(process.env.REACT_APP_API_KEY);
+
+  // set response language. Defaults to english.
+  Geocode.setLanguage('en');
+
+  // set response region. Its optional.
+  // A Geocoding request with region=es (Spain) will return the Spanish city.
+  Geocode.setRegion('us');
+
+  // Enable or disable logs. Its optional.
+  Geocode.enableDebug();
+
+  // Get latitude & longitude from address.
+  Geocode.fromAddress(
+    dummyData.address + dummyData.state + dummyData.country
+  ).then(
+    response => {
+      const { lat, lng } = response.results[0].geometry.location;
+      dummyData.latitude = lat;
+      dummyData.longitude = lng;
+      console.log(lat, lng);
+      console.log(dummyData.latitude, dummyData.longitude);
+    },
+    error => {
+      console.error(error);
+    }
+  );
 
   return (
     <div>
