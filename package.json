@@ -12,8 +12,8 @@
     "axios": "^0.19.2",
     "craco-less": "^1.17.0",
     "google-maps-react": "^2.0.6",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "react": "^16.1.1",
+    "react-dom": "^16.1.1",
     "react-geocode": "^0.2.2",
     "react-google-autocomplete": "^1.2.6",
     "react-hook-form": "^6.10.1",
@@ -21,7 +21,14 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.4",
     "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "enquire-js": "^0.1.0",
+    "prop-types": "^15.6.0",
+    "rc-queue-anim": "^1.4.0",
+    "rc-scroll-anim": "^2.0.2",
+    "rc-tween-one": "^1.5.5",
+    "react-document-title": "^2.0.3",
+    "react-github-button": "^0.1.11"
   },
   "scripts": {
     "start": "craco start",
