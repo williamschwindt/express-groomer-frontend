@@ -131,8 +131,8 @@ export const RenderGroomerProfile = props => {
               // }}
               zoom={10}
               initialCenter={{
-                lat: props.dummyData.latitude, // -1.2884
-                lng: props.dummyData.longitude, // 36.8233
+                lat: props.dummyData.latitude,
+                lng: props.dummyData.longitude,
               }}
             />
           </div>
