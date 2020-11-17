@@ -60,8 +60,6 @@ const GroomerProfileContainer = () => {
       const { lat, lng } = response.results[0].geometry.location;
       dummyData.latitude = lat;
       dummyData.longitude = lng;
-      console.log(lat, lng);
-      console.log(dummyData.latitude, dummyData.longitude);
     },
     error => {
       console.error(error);
