@@ -1,7 +1,7 @@
 import React from 'react';
 import { OverPack } from 'rc-scroll-anim';
 import QueueAnim from 'rc-queue-anim';
-import { Button } from 'antd';
+//import { Button } from 'antd';
 
 function Page2() {
   return (
@@ -24,11 +24,12 @@ function Page2() {
               This is the about page：
             </p>
             <div key="code1" className="home-code">
-              <div>$ cd ant-design-pro</div>
-              <div>$ npm install</div>
+              <div>This is the about page</div>
               <div>
-                $ npm start
-                <span className="home-code-comment">http://localhost:8000</span>
+                Our pet stylists make sure your pet is relaxed and enjoys the
+                grooming process, making it an experience they’ll look forward
+                to every time. Trained in animal behavior and pet healthcare so
+                that no detail is overlooked while we pamper and treat your pets
               </div>
             </div>
           </QueueAnim>
