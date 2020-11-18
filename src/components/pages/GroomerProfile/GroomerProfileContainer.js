@@ -1,25 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { RenderGroomerProfile } from './RenderGroomerProfile';
+import { connect } from 'react-redux';
+import { getGroomerInfo } from '../../../api/index';
+import { updateGroomer } from '../../../api/index';
 
-const GroomerProfileContainer = () => {
+const GroomerProfileContainer = props => {
   const [contactModalVisible, setContactModalVisible] = useState(false);
   const [profileModalVisible, setProfileModalVisible] = useState(false);
-  const dummyData = {
-    name: 'Tony',
-    description:
-      'Deleniti dolorem nam. Dolores libero omnis consequatur minus illo. Cum soluta tempore quod nemo placeat ratione saepe. Sit labore reprehenderit et laborum cumque corrupti.',
-    lastname: 'Lang',
-    address: 'Ave L',
-    latitude: '',
-    longitude: '',
-    zip: '76801',
-    phone: '2649864723',
-    email: 'Norene45@gmail.com',
-    city: 'Brownwood',
-    state: 'Texas',
-    country: 'USA',
-    photo_url:
-      'https://s3.amazonaws.com/uifaces/faces/twitter/nfedoroff/128.jpg',
+  const { getGroomerInfo } = props;
+  const groomerId = localStorage.getItem('groomerId');
+
+  useEffect(() => {
+    getGroomerInfo(groomerId);
+  }, [getGroomerInfo, groomerId]);
+
+  const updateProfile = data => {
+    props.updateGroomer(data, groomerId);
   };
 
   const showContactModal = () => {
@@ -38,8 +34,8 @@ const GroomerProfileContainer = () => {
     setProfileModalVisible(false);
   };
 
-  return (
-    <div>
+  if (props.groomer && props.groomer.hasOwnProperty('name')) {
+    return (
       <RenderGroomerProfile
         contactModalVisible={contactModalVisible}
         showContactModal={showContactModal}
@@ -47,10 +43,28 @@ const GroomerProfileContainer = () => {
         profileModalVisible={profileModalVisible}
         showProfileModal={showProfileModal}
         handleProfileModalClose={handleProfileModalClose}
-        dummyData={dummyData}
+        groomer={props.groomer}
+        updateProfile={updateProfile}
+        error={props.error}
+        status={props.status}
       />
-    </div>
-  );
+    );
+  } else if (props.isFetching === true) {
+    return <div>Loading</div>;
+  } else {
+    return <div>There was a problem loading this page</div>;
+  }
 };
 
-export default GroomerProfileContainer;
+const mapStateToProps = state => {
+  return {
+    groomer: state.groomerReducer.groomer,
+    isFetching: state.groomerReducer.isFetching,
+    error: state.groomerReducer.error,
+    status: state.groomerReducer.status,
+  };
+};
+
+export default connect(mapStateToProps, { getGroomerInfo, updateGroomer })(
+  GroomerProfileContainer
+);
