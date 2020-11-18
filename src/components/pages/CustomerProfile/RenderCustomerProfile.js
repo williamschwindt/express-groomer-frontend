@@ -168,11 +168,11 @@ export const RenderCustomerProfile = props => {
                 height: '150px',
               }}
             />
-            <h2>
+            <h2 style={{ textTransform: 'capitalize' }}>
               {props.customer.name} {props.customer.lastname}
             </h2>
             <div style={{ display: 'flex' }}>
-              <p>
+              <p style={{ textTransform: 'capitalize' }}>
                 {props.customer.city}, {props.customer.state},{' '}
                 {props.customer.country}
               </p>

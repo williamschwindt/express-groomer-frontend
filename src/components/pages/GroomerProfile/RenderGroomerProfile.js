@@ -169,11 +169,11 @@ export const RenderGroomerProfile = props => {
                 height: '150px',
               }}
             />
-            <h2>
+            <h2 style={{ textTransform: 'capitalize' }}>
               {props.groomer.name} {props.groomer.lastname}
             </h2>
             <div style={{ display: 'flex' }}>
-              <p>
+              <p style={{ textTransform: 'capitalize' }}>
                 {props.groomer.city}, {props.groomer.state},{' '}
                 {props.groomer.country}
               </p>
