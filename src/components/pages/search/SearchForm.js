@@ -52,29 +52,12 @@ const tailLayoutForm = {
 };
 
 const { Meta } = Card;
-// function itemRender (current, type, originalElement) {
-//   if (type === 'prev') {
-//     return <a>Previous</a>;
-//   }
-//   if (type === 'next') {
-//     return <a>Next</a>;
-//   }
-//   return originalElement;
-// }
-
-// const onChange = e => {
-//   console.log('radio checked', e.target.value);
-//   this.setState({
-//     value: e.target.value,
-//   });
-// };
 
 const SearchForm = () => {
   const [name, setName] = useState('');
   const [zipcode, setZipcode] = useState('');
   const [groomers, setGroomers] = useState([]);
   const [form] = Form.useForm();
-  // const [distance] = usestate('')
 
   const onFinish = values => {
     console.log('Success: groomers displayed', values);
@@ -123,12 +106,18 @@ const SearchForm = () => {
   //   distance = (lngOut.abs)*(latOut.abs)/2;
   //   return distance;
   // }
-  const filterDist = (dist, lng, lat) => {
-    const distance =
-      ((lng - groomers.longitude) * (lat - groomers.latitude)) / 2;
-    const sorted = [...groomers].sort((a, b) => b[distance] - a[distance]);
-    console.log(sorted);
-    setGroomers(sorted);
+  const filterDist = (lng, lat) => {
+    groomers.map(groomer => {
+      const groomLng = parseInt(groomer.longitude, 10);
+      const groomLat = parseInt(groomer.latitude, 10);
+      console.log(groomLat, groomLng);
+      const distance = (lng - groomLng + (lat - groomLat)) / 2;
+      const sorted = [...groomers].sort(
+        (a, b) => b[Math.abs(distance)] - a[Math.abs(distance)]
+      );
+      console.log(distance);
+      setGroomers(sorted);
+    });
   };
 
   const onFormFinish = values => {
@@ -157,9 +146,9 @@ const SearchForm = () => {
       zip: '44101',
     });
   };
-  //for the form
+  //for the form ^^^^
 
-  console.log(groomers);
+  // console.log(groomers);
 
   return (
     <div>
