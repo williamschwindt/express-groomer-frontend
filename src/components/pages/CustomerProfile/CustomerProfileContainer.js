@@ -46,7 +46,6 @@ const CustomerProfileContainer = props => {
         customer={props.customer}
         updateProfile={updateProfile}
         error={props.error}
-        isFetching={props.isFetching}
         status={props.status}
       />
     );

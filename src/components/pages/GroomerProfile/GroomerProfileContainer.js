@@ -2,15 +2,21 @@ import React, { useEffect, useState } from 'react';
 import { RenderGroomerProfile } from './RenderGroomerProfile';
 import { connect } from 'react-redux';
 import { getGroomerInfo } from '../../../api/index';
+import { updateGroomer } from '../../../api/index';
 
 const GroomerProfileContainer = props => {
   const [contactModalVisible, setContactModalVisible] = useState(false);
   const [profileModalVisible, setProfileModalVisible] = useState(false);
   const { getGroomerInfo } = props;
+  const groomerId = localStorage.getItem('groomerId');
 
   useEffect(() => {
-    getGroomerInfo(localStorage.getItem('groomerId'));
-  }, [getGroomerInfo]);
+    getGroomerInfo(groomerId);
+  }, [getGroomerInfo, groomerId]);
+
+  const updateProfile = data => {
+    props.updateGroomer(data, groomerId);
+  };
 
   const showContactModal = () => {
     setContactModalVisible(true);
@@ -38,6 +44,9 @@ const GroomerProfileContainer = props => {
         showProfileModal={showProfileModal}
         handleProfileModalClose={handleProfileModalClose}
         groomer={props.groomer}
+        updateProfile={updateProfile}
+        error={props.error}
+        status={props.status}
       />
     );
   } else if (props.isFetching === true) {
@@ -52,9 +61,10 @@ const mapStateToProps = state => {
     groomer: state.groomerReducer.groomer,
     isFetching: state.groomerReducer.isFetching,
     error: state.groomerReducer.error,
+    status: state.groomerReducer.status,
   };
 };
 
-export default connect(mapStateToProps, { getGroomerInfo })(
+export default connect(mapStateToProps, { getGroomerInfo, updateGroomer })(
   GroomerProfileContainer
 );

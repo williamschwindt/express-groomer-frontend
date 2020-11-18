@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Row, Col, Modal, Button, Breadcrumb, Form, Input } from 'antd';
 import MyMap from '../../../components/MyMap/MyMap';
 import './style.css';
@@ -8,6 +8,45 @@ const DemoBox = props => (
 );
 
 export const RenderGroomerProfile = props => {
+  const [profileInfo, setProfileInfo] = useState({});
+  const [message, setMessage] = useState('');
+
+  const handleChange = e => {
+    setProfileInfo({
+      ...profileInfo,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const validateForm = () => {
+    for (let input in profileInfo) {
+      if (input !== 'photo_url') {
+        let value = profileInfo[input];
+        value = value.replace(/^\s+/, '').replace(/\s+$/, '');
+        if (value === '') {
+          return false;
+        }
+      }
+    }
+    return true;
+  };
+
+  const handleSubmit = () => {
+    if (validateForm()) {
+      props.updateProfile(profileInfo);
+    } else {
+      setMessage('This field is required');
+    }
+  };
+
+  useEffect(() => {
+    if (props.status === 'success') {
+      props.handleProfileModalClose();
+    }
+    if (props.status === 'failure') {
+      setMessage(props.error);
+    }
+  }, [props.groomer, props.error, props.status]);
   return (
     <>
       <Modal
@@ -30,48 +69,80 @@ export const RenderGroomerProfile = props => {
         onOk={props.handleProfileModalClose}
         onCancel={props.handleProfileModalClose}
         footer={[
+          <p>{message}</p>,
           <Button key="back" onClick={props.handleProfileModalClose}>
             Close
           </Button>,
-          <Button
-            key="submit"
-            type="primary"
-            onClick={props.handleProfileModalClose}
-          >
+          <Button key="submit" type="primary" onClick={handleSubmit}>
             Update
           </Button>,
         ]}
       >
-        <Form.Item label="First Name" name="name">
-          <Input placeholder={props.groomer.name} />
-        </Form.Item>
-        <Form.Item label="Last Name" name="lastname">
-          <Input placeholder={props.groomer.lastname} />
-        </Form.Item>
-        <Form.Item label="Address" name="address">
-          <Input placeholder={props.groomer.address} />
-        </Form.Item>
-        <Form.Item label="Zip Code" name="zip">
-          <Input placeholder={props.groomer.zip} />
-        </Form.Item>
-        <Form.Item label="City" name="city">
-          <Input placeholder={props.groomer.city} />
-        </Form.Item>
-        <Form.Item label="State" name="state">
-          <Input placeholder={props.groomer.state} />
-        </Form.Item>
-        <Form.Item label="Country" name="country">
-          <Input placeholder={props.groomer.country} />
-        </Form.Item>
-        <Form.Item label="Phone Number" name="phone">
-          <Input placeholder={props.groomer.phone} />
-        </Form.Item>
-        <Form.Item label="Email" name="email">
-          <Input placeholder={props.groomer.email} />
-        </Form.Item>
-        <Form.Item label="Profile Picture" name="photo_url">
-          <Input placeholder={props.groomer.photo_url} />
-        </Form.Item>
+        <form>
+          <Form.Item label="First Name" name="name">
+            <Input
+              name="name"
+              onChange={handleChange}
+              placeholder={props.groomer.name}
+            />
+          </Form.Item>
+          <Form.Item label="Last Name" name="lastname">
+            <Input
+              name="lastname"
+              onChange={handleChange}
+              placeholder={props.groomer.lastname}
+            />
+          </Form.Item>
+          <Form.Item label="Address" name="address">
+            <Input
+              name="address"
+              onChange={handleChange}
+              placeholder={props.groomer.address}
+            />
+          </Form.Item>
+          <Form.Item label="Zip Code" name="zip">
+            <Input
+              name="zip"
+              onChange={handleChange}
+              placeholder={props.groomer.zip}
+            />
+          </Form.Item>
+          <Form.Item label="City" name="city">
+            <Input
+              name="city"
+              onChange={handleChange}
+              placeholder={props.groomer.city}
+            />
+          </Form.Item>
+          <Form.Item label="State" name="state">
+            <Input
+              name="state"
+              onChange={handleChange}
+              placeholder={props.groomer.state}
+            />
+          </Form.Item>
+          <Form.Item label="Country" name="country">
+            <Input
+              name="country"
+              onChange={handleChange}
+              placeholder={props.groomer.country}
+            />
+          </Form.Item>
+          <Form.Item label="Phone Number" name="phone">
+            <Input
+              name="phone"
+              onChange={handleChange}
+              placeholder={props.groomer.phone}
+            />
+          </Form.Item>
+          <Form.Item label="Profile Picture" name="photo_url">
+            <Input
+              name="photo_url"
+              onChange={handleChange}
+              placeholder={props.groomer.photo_url}
+            />
+          </Form.Item>
+        </form>
       </Modal>
       <Breadcrumb style={{ margin: '16px 0', marginBottom: '24px' }}>
         <Breadcrumb.Item
@@ -97,9 +168,11 @@ export const RenderGroomerProfile = props => {
             <h2>
               {props.groomer.name} {props.groomer.lastname}
             </h2>
-            <p>
-              {props.groomer.city}, {props.groomer.state},{' '}
-              {props.groomer.country}
+            <div style={{ display: 'flex' }}>
+              <p>
+                {props.groomer.city}, {props.groomer.state},{' '}
+                {props.groomer.country}
+              </p>
               <span
                 onClick={props.showContactModal}
                 style={{
@@ -110,7 +183,7 @@ export const RenderGroomerProfile = props => {
               >
                 Contact info
               </span>
-            </p>
+            </div>
           </DemoBox>
           <div className="groomer-about-section">
             <h2>About</h2>

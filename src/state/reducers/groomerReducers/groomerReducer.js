@@ -14,6 +14,7 @@ const initialState = {
   groomer: {},
   isFetching: false,
   error: '',
+  status: '',
 };
 
 export const groomerReducer = (state = initialState, action) => {
@@ -62,12 +63,14 @@ export const groomerReducer = (state = initialState, action) => {
         ...state,
         isFetching: false,
         groomer: action.payload,
+        status: 'success',
       };
     case UPDATE_GROOMER_FAILURE:
       return {
         ...state,
         isFetching: false,
         error: action.payload,
+        status: 'failure',
       };
     default:
       return state;
