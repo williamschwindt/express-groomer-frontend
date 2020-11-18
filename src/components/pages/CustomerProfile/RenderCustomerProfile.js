@@ -68,7 +68,11 @@ export const RenderCustomerProfile = props => {
         onOk={props.handleProfileModalClose}
         onCancel={props.handleProfileModalClose}
         footer={[
-          <p>{message}</p>,
+          <p
+            style={{ display: 'inline', marginRight: '20%', color: '#ec3944' }}
+          >
+            {message}
+          </p>,
           <Button key="back" onClick={props.handleProfileModalClose}>
             Close
           </Button>,
