@@ -14,6 +14,7 @@ const initialState = {
   customer: {},
   isFetching: false,
   error: '',
+  status: '',
 };
 
 export const customerReducer = (state = initialState, action) => {
@@ -62,12 +63,14 @@ export const customerReducer = (state = initialState, action) => {
         ...state,
         isFetching: false,
         customer: action.payload,
+        status: 'success',
       };
     case UPDATE_CUSTOMER_FAILURE:
       return {
         ...state,
         isFetching: false,
         error: action.payload,
+        status: 'failure',
       };
     default:
       return state;

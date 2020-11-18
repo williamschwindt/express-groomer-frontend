@@ -2,17 +2,21 @@ import React, { useEffect, useState } from 'react';
 import { RenderCustomerProfile } from './RenderCustomerProfile';
 import { connect } from 'react-redux';
 import { getCustomerInfo } from '../../../api/index';
+import { updateCustomer } from '../../../api/index';
 
 const CustomerProfileContainer = props => {
   const [contactModalVisible, setContactModalVisible] = useState(false);
   const [profileModalVisible, setProfileModalVisible] = useState(false);
   const { getCustomerInfo } = props;
+  const customerId = localStorage.getItem('customerId');
 
   useEffect(() => {
-    getCustomerInfo(localStorage.getItem('customerId'));
-  }, [getCustomerInfo]);
+    getCustomerInfo(customerId);
+  }, [getCustomerInfo, customerId]);
 
-  console.log(props);
+  const updateProfile = data => {
+    props.updateCustomer(data, customerId);
+  };
 
   const showContactModal = () => {
     setContactModalVisible(true);
@@ -40,6 +44,10 @@ const CustomerProfileContainer = props => {
         showProfileModal={showProfileModal}
         handleProfileModalClose={handleProfileModalClose}
         customer={props.customer}
+        updateProfile={updateProfile}
+        error={props.error}
+        isFetching={props.isFetching}
+        status={props.status}
       />
     );
   } else if (props.isFetching === true) {
@@ -54,9 +62,10 @@ const mapStateToProps = state => {
     customer: state.customerReducer.customer,
     isFetching: state.customerReducer.isFetching,
     error: state.customerReducer.error,
+    status: state.customerReducer.status,
   };
 };
 
-export default connect(mapStateToProps, { getCustomerInfo })(
+export default connect(mapStateToProps, { getCustomerInfo, updateCustomer })(
   CustomerProfileContainer
 );

@@ -175,7 +175,7 @@ const updateGroomer = (data, id) => dispatch => {
   dispatch({ type: UPDATE_GROOMER_START });
 
   axios
-    .post(`${process.env.REACT_APP_API_URI}/groomers/${id}`, data)
+    .put(`${process.env.REACT_APP_API_URI}/groomers/${id}`, data)
     .then(res => {
       dispatch({ type: UPDATE_GROOMER_SUCCESS, payload: res.data });
     })
@@ -188,7 +188,7 @@ const updateCustomer = (data, id) => dispatch => {
   dispatch({ type: UPDATE_CUSTOMER_START });
 
   axios
-    .post(`${process.env.REACT_APP_API_URI}/customers/${id}`, data)
+    .put(`${process.env.REACT_APP_API_URI}/customers/${id}`, data)
     .then(res => {
       dispatch({ type: UPDATE_CUSTOMER_SUCCESS, payload: res.data });
     })
