@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Icon, Menu, Button, Popover } from 'antd';
+import { Row, Col, Menu, Button, Popover } from 'antd';
 
 import { enquireScreen } from 'enquire-js';
 
@@ -31,9 +31,7 @@ class Header extends React.Component {
             <span>About</span>
           </a>
         </Menu.Item>
-        <Menu.Item key="components">
-          <a>Register</a>
-        </Menu.Item>
+        <Menu.Item key="components"></Menu.Item>
         {menuMode === 'inline' && (
           <Menu.Item key="preview">
             <a
@@ -60,11 +58,11 @@ class Header extends React.Component {
             arrowPointAtCenter
             onVisibleChange={this.onMenuVisibleChange}
           >
-            <Icon
+            {/* <Icon
               className="nav-phone-icon"
               type="menu"
               onClick={this.handleShowMenu}
-            />
+            /> */}
           </Popover>
         ) : null}
         <Row>

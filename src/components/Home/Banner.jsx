@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router, Link, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import GitHubButton from 'react-github-button';
 import QueueAnim from 'rc-queue-anim';
@@ -7,6 +8,13 @@ import { Button } from 'antd';
 import BannerSVGAnim from './component/BannerSVGAnim';
 
 function Banner(props) {
+  const history = useHistory();
+
+  const routeChange = () => {
+    let path = `/login`;
+    history.push(path);
+  };
+
   return (
     <div className="banner-wrapper">
       {props.isMobile && (
@@ -33,22 +41,10 @@ function Banner(props) {
         <h1 key="h1">Groomers Express</h1>
         <p key="content">Please log in</p>
         <div key="button" className="button-wrapper">
-          <a
-            href="http://preview.pro.ant.design"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Button type="primary">Login</Button>
-          </a>
-          <Button style={{ margin: '0 16px' }} type="primary" ghost>
-            Register
+          {/* <Link to={path="/login"} component={LoginPage}>{user.name}} /> */}
+          <Button type="primary" onClick={routeChange}>
+            Login
           </Button>
-          <GitHubButton
-            key="github-button"
-            type="stargazers"
-            namespace="ant-design"
-            repo="ant-design-pro"
-          />
         </div>
       </QueueAnim>
       {!props.isMobile && (
