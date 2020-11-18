@@ -8,7 +8,7 @@ function Search() {
   const [single, setSingleUser] = useState('');
 
   useEffect(() => {
-    fetch().then(res => res.json().then(data => setUsers(data)));
+    fetch().then(res => res.json().then(data => setUsers(data)).catch(err => console.log(err))).catch(err => console.log(err));
   }, []);
 
   return <div></div>;
