@@ -12,6 +12,8 @@ const GroomerRegistration = props => {
     phone: '',
     zip: '',
     address: '',
+    latitude: '',
+    longitude: '',
     city: '',
     state: '',
     country: '',
