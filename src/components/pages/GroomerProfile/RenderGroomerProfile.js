@@ -46,7 +46,8 @@ export const RenderGroomerProfile = props => {
     if (props.status === 'failure') {
       setMessage(props.error);
     }
-  }, [props.groomer, props.error, props.status]);
+  }, [props]);
+
   return (
     <>
       <Modal
@@ -212,8 +213,8 @@ export const RenderGroomerProfile = props => {
               // }}
               zoom={10}
               initialCenter={{
-                lat: props.dummyData.latitude,
-                lng: props.dummyData.longitude,
+                lat: props.latitude,
+                lng: props.longitude,
               }}
             />
           </div>
