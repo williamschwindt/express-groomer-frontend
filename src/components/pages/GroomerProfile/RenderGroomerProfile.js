@@ -157,40 +157,31 @@ export const RenderGroomerProfile = props => {
       </Breadcrumb>
       <Row id="about" justify="start" align="middle">
         <Col xs={24} sm={24} md={24} lg={10} xl={10}>
-          <DemoBox value={100}>
+          <div className="profile-image-container">
             <img
+              className="profile-picture"
               src={props.groomer.photo_url}
               alt={props.groomer.name}
-              style={{
-                borderRadius: '50%',
-                marginBottom: '10px',
-                width: '150px',
-                height: '150px',
-              }}
             />
-            <h2 style={{ textTransform: 'capitalize' }}>
+            <h2 className="profile-name">
               {props.groomer.name} {props.groomer.lastname}
             </h2>
-            <div style={{ display: 'flex' }}>
-              <p style={{ textTransform: 'capitalize' }}>
+            <div className="profile-info" style={{ display: 'flex' }}>
+              <p className="profile-info-p">
                 {props.groomer.city}, {props.groomer.state},{' '}
                 {props.groomer.country}
               </p>
               <span
+                className="profile-info-span"
                 onClick={props.showContactModal}
-                style={{
-                  color: '#ec3944',
-                  marginLeft: '20px',
-                  cursor: 'pointer',
-                }}
               >
                 Contact info
               </span>
             </div>
-          </DemoBox>
-          <div className="groomer-about-section">
-            <h2>About</h2>
-            <p>{props.groomer.description}</p>
+          </div>
+          <div className="profile-about">
+            <h2 className="profile-about-title">About</h2>
+            <p className="profile-about-p">{props.groomer.description}</p>
           </div>
         </Col>
 

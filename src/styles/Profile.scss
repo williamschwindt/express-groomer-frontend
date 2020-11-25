@@ -1,0 +1,45 @@
+.profile-image-container {
+    .profile-picture {
+        border-radius: 50%;
+        margin-bottom: 15px;
+        width: 150px;
+        height: 150px;
+    }
+
+    .profile-name {
+        font-size: 2rem;
+        text-transform: capitalize;
+        margin-bottom: 5px;
+    }
+
+    .profile-info {
+        display: flex;
+        font-size: 1.6rem;
+        font-weight: 200;
+
+        .profile-info-p {
+            text-transform: capitalize;
+        }
+
+        .profile-info-span {
+            color: #ec3944;
+            margin-left: 15px;
+            cursor: pointer;
+        }
+    }
+}
+
+.profile-about {
+    margin-top: 40px;
+
+    .profile-about-title {
+        font-size: 2rem;
+        margin-bottom: 5px;
+    }
+
+    .profile-about-p {
+        font-size: 1.6rem;
+        font-weight: 200;
+        line-height: 1.3;
+    }
+}

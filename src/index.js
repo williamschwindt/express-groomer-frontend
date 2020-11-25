@@ -29,7 +29,7 @@ import MyMap from './components/MyMap/MyMap';
 import { SearchForm } from './components/pages/search';
 import GroomerDisplay from './components/pages/ProfileDisplay/GroomerDisplay';
 import Home from './components/Home';
-import './index.scss';
+import './styles/index.scss';
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 

@@ -157,40 +157,31 @@ export const RenderCustomerProfile = props => {
       </Breadcrumb>
       <Row justify="space-around" align="middle">
         <Col xs={2} sm={4} md={6} lg={8} xl={10}>
-          <DemoBox value={100}>
+          <div className="profile-image-container">
             <img
+              className="profile-picture"
               src={props.customer.photo_url}
               alt={props.customer.name}
-              style={{
-                borderRadius: '50%',
-                marginBottom: '10px',
-                width: '150px',
-                height: '150px',
-              }}
             />
-            <h2 style={{ textTransform: 'capitalize' }}>
+            <h2 className="profile-name">
               {props.customer.name} {props.customer.lastname}
             </h2>
-            <div style={{ display: 'flex' }}>
-              <p style={{ textTransform: 'capitalize' }}>
+            <div className="profile-info">
+              <p className="profile-info-p">
                 {props.customer.city}, {props.customer.state},{' '}
                 {props.customer.country}
               </p>
               <span
+                className="profile-info-span"
                 onClick={props.showContactModal}
-                style={{
-                  color: '#ec3944',
-                  marginLeft: '20px',
-                  cursor: 'pointer',
-                }}
               >
                 Contact info
               </span>
             </div>
-          </DemoBox>
-          <div className="customer-about-section">
-            <h2>About</h2>
-            <p>{props.customer.description}</p>
+          </div>
+          <div className="profile-about">
+            <h2 className="profile-about-title">About</h2>
+            <p className="profile-about-p">{props.customer.description}</p>
           </div>
         </Col>
         <Col xs={20} sm={16} md={12} lg={8} xl={4} />

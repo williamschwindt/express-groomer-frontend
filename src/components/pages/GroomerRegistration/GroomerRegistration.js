@@ -38,8 +38,8 @@ const GroomerRegistration = props => {
 
   return (
     <div className="registration-container">
+      <h1 className="registration-title">Sign Up for Express Groomer</h1>
       <form className="registration-form" onSubmit={handleSubmit(onSubmit)}>
-        <h1 className="registration-title">Sign Up for Express Groomer</h1>
         <label className="registration-label" htmlFor="name">
           Name{' '}
         </label>
