@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { useOktaAuth } from '@okta/okta-react';
 import { getUserData } from '../../../api/index.js';
-import { RegistrationForm } from '../Registration/';
+import CustomerRegistration from '../CustomerRegistration/CustomerRegistration';
 
 function HomeContainer(props) {
   const { authState, authService } = useOktaAuth();
@@ -42,7 +42,7 @@ function HomeContainer(props) {
 
   // okta user found but has not created a profile
   else if (props.oktaUser) {
-    return <RegistrationForm email={props.oktaUser.email} />;
+    return <CustomerRegistration email={props.oktaUser.email} />;
   }
 
   // server error

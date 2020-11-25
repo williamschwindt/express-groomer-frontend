@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { registerGroomer } from '../../../api/index';
-import './GroomerRegistration.css';
 
 const GroomerRegistration = props => {
   const defaultUser = {
