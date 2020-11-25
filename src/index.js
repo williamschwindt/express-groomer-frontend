@@ -21,7 +21,6 @@ import { LoginPage } from './components/pages/Login';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
 // new imports
-import Registration from './components/pages/Registration/Registration';
 import GroomerRegistration from './components/pages/GroomerRegistration/GroomerRegistration';
 import CustomerRegistration from './components/pages/CustomerRegistration/CustomerRegistration';
 import CustomerDashboard from './components/pages/CustomerDashboard/CustomerDashboardContainer';
@@ -55,7 +54,10 @@ function App() {
     history.push('/login');
   };
   return (
-    <div className="index-container">
+    <div
+      className="index-container"
+      style={{ display: 'flex', justifyContent: 'center' }}
+    >
       {/* Added features */}
 
       <Security {...config} onAuthRequired={authHandler}>
@@ -72,7 +74,6 @@ function App() {
           />
           <SecureRoute path="/example-list" component={ExampleListPage} />{' '}
           <SecureRoute path="/profile-list" component={ProfileListPage} />
-          <SecureRoute path="/register" component={Registration} />
           <SecureRoute path="/groomers/:id" component={GroomerDisplay} />
           <SecureRoute path="/groomers" component={GroomerRegistration} />
           <SecureRoute path="/customers" component={CustomerRegistration} />

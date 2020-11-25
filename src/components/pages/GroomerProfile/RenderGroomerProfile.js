@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Row, Col, Modal, Button, Breadcrumb, Form, Input } from 'antd';
 import MyMap from '../../../components/MyMap/MyMap';
-import './style.css';
 
 const DemoBox = props => (
   <div className={`height-${props.value}`}>{props.children}</div>

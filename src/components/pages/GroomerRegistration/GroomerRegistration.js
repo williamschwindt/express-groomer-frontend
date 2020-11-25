@@ -38,11 +38,14 @@ const GroomerRegistration = props => {
 
   return (
     <div className="registration-container">
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <h1>Become a Groomer</h1>
-        <label htmlFor="name">Name </label>
+      <form className="registration-form" onSubmit={handleSubmit(onSubmit)}>
+        <h1 className="registration-title">Sign Up for Express Groomer</h1>
+        <label className="registration-label" htmlFor="name">
+          Name{' '}
+        </label>
 
         <input
+          className="registration-input"
           type="text"
           id="name"
           name="name"
@@ -58,8 +61,11 @@ const GroomerRegistration = props => {
           <span role="alert">Max length exceeded</span>
         )}
 
-        <label htmlFor="lastname">Last Name </label>
+        <label className="registration-label" htmlFor="lastname">
+          Last Name{' '}
+        </label>
         <input
+          className="registration-input"
           type="text"
           id="lastname"
           name="lastname"
@@ -75,9 +81,12 @@ const GroomerRegistration = props => {
           <span role="alert">Max length exceeded</span>
         )}
 
-        <label htmlFor="phone">Phone </label>
+        <label className="registration-label" htmlFor="phone">
+          Phone{' '}
+        </label>
 
         <input
+          className="registration-input"
           type="text"
           id="phone"
           name="phone"
@@ -93,9 +102,12 @@ const GroomerRegistration = props => {
           <span role="alert">Max length exceeded</span>
         )}
 
-        <label htmlFor="address">Address </label>
+        <label className="registration-label" htmlFor="address">
+          Address{' '}
+        </label>
 
         <input
+          className="registration-input"
           type="text"
           id="address"
           name="address"
@@ -111,9 +123,12 @@ const GroomerRegistration = props => {
           <span role="alert">Max length exceeded</span>
         )}
 
-        <label htmlFor="city">City </label>
+        <label className="registration-label" htmlFor="city">
+          City{' '}
+        </label>
 
         <input
+          className="registration-input"
           type="text"
           id="city"
           name="city"
@@ -129,9 +144,12 @@ const GroomerRegistration = props => {
           <span role="alert">Max length exceeded</span>
         )}
 
-        <label htmlFor="state">State </label>
+        <label className="registration-label" htmlFor="state">
+          State{' '}
+        </label>
 
         <input
+          className="registration-input"
           type="text"
           id="state"
           name="state"
@@ -147,8 +165,11 @@ const GroomerRegistration = props => {
           <span role="alert">Max length exceeded</span>
         )}
 
-        <label htmlFor="country">Country </label>
+        <label className="registration-label" htmlFor="country">
+          Country{' '}
+        </label>
         <input
+          className="registration-input"
           type="text"
           id="country"
           name="country"
@@ -164,9 +185,12 @@ const GroomerRegistration = props => {
           <span role="alert">Max length exceeded</span>
         )}
 
-        <label htmlFor="zipcode">Zipcode </label>
+        <label className="registration-label" htmlFor="zipcode">
+          Zipcode{' '}
+        </label>
 
         <input
+          className="registration-input"
           type="text"
           id="zipcode"
           name="zip"
@@ -182,9 +206,14 @@ const GroomerRegistration = props => {
           <span role="alert">Max length exceeded</span>
         )}
 
-        <button type="submit">Submit</button>
-        <p>
-          Already have an account? <Link to="/login">Sign in now</Link>
+        <button className="registration-button" type="submit">
+          Submit
+        </button>
+        <p className="registration-p">
+          Already have an account?{' '}
+          <Link className="registration-link" to="/login">
+            Sign in now
+          </Link>
         </p>
       </form>
     </div>

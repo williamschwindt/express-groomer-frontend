@@ -7,8 +7,19 @@
   -ms-flex-direction: column;
   flex-direction: column;
   margin: 20px;
+  width: 450px;
+  background-color: #fff;
+  border-radius: 5px;
 
-  form {
+  .registration-title {
+    font-size: 2.8rem;
+    font-weight: 300;
+    text-align: center;
+    padding: 20px 0px 15px 0px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  }
+
+  .registration-form {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -18,16 +29,12 @@
     flex-direction: column;
     -ms-flex-item-align: center;
     align-self: center;
-    width: 400px;
-    background-color: #fff;
+    width: 430px;
     padding: 20px;
-    border-radius: 5px;
 
-    h1 {
-      margin: auto;
-    }
-
-    label {
+    .registration-label {
+      font-size: 1.6rem;
+      font-weight: 200;
       margin-top: 10px;
 
       &:first-child {
@@ -35,12 +42,18 @@
       }
     }
 
-    input {
+    .registration-input {
+      font-size: 1.6rem;
+      font-weight: 200;
+      margin-top: 2px;
+      padding: 3px 4px;
       border: 1px solid rgb(230, 230, 230);
       background-image: none;
     }
 
-    button {
+    .registration-button {
+      font-size: 1.8rem;
+      font-weight: 200;
       margin-top: 15px;
       background-color: #ec3944;
       border: none;
@@ -54,15 +67,13 @@
       }
     }
 
-    p {
+    .registration-p {
+      font-size: 1.6rem;
+      font-weight: 200;
       padding-top: 20px;
       margin-top: 30px;
       border-top: 1px solid rgba(0, 0, 0, 0.25);
       text-align: center;
-    }
-
-    span {
-      color: #ec3944; 
     }
   }
 }
