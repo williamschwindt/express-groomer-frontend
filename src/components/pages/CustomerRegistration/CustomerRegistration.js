@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { useForm } from 'react-hook-form';
-// import Autocomplete from 'react-google-autocomplete';
 import { registerCustomer } from '../../../api/index';
-
-import './CustomerRegistration.css';
 import { Link } from 'react-router-dom';
 
 const CustomerRegistration = props => {

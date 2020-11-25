@@ -1,4 +1,4 @@
-const config = require('./src/styles/theme-overrides.js') ;
+
 const CracoLessPlugin = require('craco-less');
 
 module.exports = {
@@ -8,7 +8,6 @@ module.exports = {
       options: {
         lessLoaderOptions: {
           lessOptions: {
-            modifyVars: config,
             javascriptEnabled: true,
           },
         },
