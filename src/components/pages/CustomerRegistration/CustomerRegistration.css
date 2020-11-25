@@ -25,6 +25,10 @@
   border-radius: 5px;
 }
 
+.registration-container form h1 {
+  margin: auto;
+}
+
 .registration-container form label {
   margin-top: 10px;
 }
