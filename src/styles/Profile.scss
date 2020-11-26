@@ -94,6 +94,13 @@
     .site-calendar-demo-card {
         width: 300px;
         border: 1px solid #f0f0f0;
-        border-radius: 2px;
+
+        .ant-picker-calendar {
+            border-radius: 10px;
+
+            .ant-picker-panel {
+                border-radius: 0 0 10px 10px;
+            }
+        }
     }
 }
