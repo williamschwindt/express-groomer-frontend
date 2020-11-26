@@ -50,10 +50,10 @@ export const RenderCustomerDashboard = props => {
       {props.home && (
         <Layout className="site-layout">
           <Header className="site-layout-background" style={{ padding: 0 }} />
-          <Content style={{ margin: '0 16px' }}>
+          <Content>
             <div
               className="site-layout-background"
-              style={{ padding: 24, minHeight: 360 }}
+              style={{ padding: 20, minHeight: 360 }}
             >
               <CustomerProfile />
             </div>

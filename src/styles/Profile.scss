@@ -1,45 +1,90 @@
-.profile-image-container {
-    .profile-picture {
-        border-radius: 50%;
-        margin-bottom: 15px;
-        width: 150px;
-        height: 150px;
-    }
+.edit-profile-form {
+    .edit-profile-label {
+        .ant-form-item-label {
+            width: 25%;
 
-    .profile-name {
-        font-size: 2rem;
-        text-transform: capitalize;
-        margin-bottom: 5px;
-    }
-
-    .profile-info {
-        display: flex;
-        font-size: 1.6rem;
-        font-weight: 200;
-
-        .profile-info-p {
-            text-transform: capitalize;
-        }
-
-        .profile-info-span {
-            color: #ec3944;
-            margin-left: 15px;
-            cursor: pointer;
+            label {
+                width: 100%;
+            }
         }
     }
 }
 
-.profile-about {
-    margin-top: 40px;
+.profile-home-container {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 980px;
+    min-width: 980px;
+    margin: 0;
 
-    .profile-about-title {
-        font-size: 2rem;
-        margin-bottom: 5px;
+    @media(min-width: 1200px) {
+        margin: auto;
     }
 
-    .profile-about-p {
-        font-size: 1.6rem;
-        font-weight: 200;
-        line-height: 1.3;
+    .profile-container {
+        display: flex;
+        flex-direction: column;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        width: 610px;
+        margin-right: 50px;
+
+        .profile-image-container {
+            display: flex;
+            flex-direction: column;
+            .profile-picture {
+                border-radius: 50%;
+                margin-bottom: 15px;
+                width: 150px;
+                height: 150px;
+            }
+
+            .profile-name {
+                text-align: left;
+                font-size: 2rem;
+                text-transform: capitalize;
+                margin-bottom: 5px;
+            }
+
+            .profile-info {
+                display: flex;
+                font-size: 1.6rem;
+                font-weight: 200;
+
+                .profile-info-p {
+                    text-transform: capitalize;
+                }
+
+                .profile-info-span {
+                    color: #ec3944;
+                    margin-left: 15px;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .profile-about {
+            margin-top: 40px;
+
+            .profile-about-title {
+                font-size: 2rem;
+                margin-bottom: 5px;
+                text-align: left;
+            }
+
+            .profile-about-p {
+                text-align: left;
+                font-size: 1.6rem;
+                font-weight: 200;
+                line-height: 1.3;
+            }
+        }
+    }
+
+    .site-calendar-demo-card {
+        width: 300px;
+        border: 1px solid #f0f0f0;
+        border-radius: 2px;
     }
 }

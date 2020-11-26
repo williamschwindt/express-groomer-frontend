@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Row, Col, Modal, Button, Breadcrumb, Form, Input } from 'antd';
+import { Row, Modal, Button, Breadcrumb, Form, Input, Calendar } from 'antd';
 
 const DemoBox = props => (
   <p className={`height-${props.value}`}>{props.children}</p>
@@ -35,6 +35,10 @@ export const RenderCustomerProfile = props => {
     } else {
       setMessage('This field is required');
     }
+  };
+
+  const onPanelChange = (value, mode) => {
+    console.log(value, mode);
   };
 
   useEffect(() => {
@@ -81,65 +85,98 @@ export const RenderCustomerProfile = props => {
           </Button>,
         ]}
       >
-        <form>
-          <Form.Item label="First Name" name="name">
+        <form className="edit-profile-form">
+          <Form.Item
+            className="edit-profile-label"
+            label="First Name"
+            name="name"
+          >
             <Input
+              className="edit-profile-input"
               name="name"
               onChange={handleChange}
               placeholder={props.customer.name}
             />
           </Form.Item>
-          <Form.Item label="Last Name" name="lastname">
+          <Form.Item
+            className="edit-profile-label"
+            label="Last Name"
+            name="lastname"
+          >
             <Input
+              className="edit-profile-input"
               name="lastname"
               onChange={handleChange}
               placeholder={props.customer.lastname}
             />
           </Form.Item>
-          <Form.Item label="Address" name="address">
+          <Form.Item
+            className="edit-profile-label"
+            label="Address"
+            name="address"
+          >
             <Input
+              className="edit-profile-input"
               name="address"
               onChange={handleChange}
               placeholder={props.customer.address}
             />
           </Form.Item>
-          <Form.Item label="Zip Code" name="zip">
+          <Form.Item className="edit-profile-label" label="Zip Code" name="zip">
             <Input
+              className="edit-profile-input"
               name="zip"
               onChange={handleChange}
               placeholder={props.customer.zip}
             />
           </Form.Item>
-          <Form.Item label="City" name="city">
+          <Form.Item className="edit-profile-label" label="City" name="city">
             <Input
+              className="edit-profile-input"
               name="city"
               onChange={handleChange}
               placeholder={props.customer.city}
             />
           </Form.Item>
-          <Form.Item label="State" name="state">
+          <Form.Item className="edit-profile-label" label="State" name="state">
             <Input
+              className="edit-profile-input"
               name="state"
               onChange={handleChange}
               placeholder={props.customer.state}
             />
           </Form.Item>
-          <Form.Item label="Country" name="country">
+          <Form.Item
+            className="edit-profile-label"
+            label="Country"
+            name="country"
+          >
             <Input
+              className="edit-profile-input"
               name="country"
               onChange={handleChange}
               placeholder={props.customer.country}
             />
           </Form.Item>
-          <Form.Item label="Phone Number" name="phone">
+          <Form.Item
+            className="edit-profile-label"
+            label="Phone Number"
+            name="phone"
+          >
             <Input
+              className="edit-profile-input"
               name="phone"
               onChange={handleChange}
               placeholder={props.customer.phone}
             />
           </Form.Item>
-          <Form.Item label="Profile Picture" name="photo_url">
+          <Form.Item
+            className="edit-profile-label"
+            label="Profile Picture"
+            name="photo_url"
+          >
             <Input
+              className="edit-profile-input"
               name="photo_url"
               onChange={handleChange}
               placeholder={props.customer.photo_url}
@@ -155,8 +192,12 @@ export const RenderCustomerProfile = props => {
           Edit profile
         </Breadcrumb.Item>
       </Breadcrumb>
-      <Row justify="space-around" align="middle">
-        <Col xs={2} sm={4} md={6} lg={8} xl={10}>
+      <div
+        className="profile-home-container"
+        justify="space-around"
+        align="middle"
+      >
+        <div className="profile-container">
           <div className="profile-image-container">
             <img
               className="profile-picture"
@@ -183,13 +224,13 @@ export const RenderCustomerProfile = props => {
             <h2 className="profile-about-title">About</h2>
             <p className="profile-about-p">{props.customer.description}</p>
           </div>
-        </Col>
-        <Col xs={20} sm={16} md={12} lg={8} xl={4} />
-        <Col xs={2} sm={4} md={6} lg={8} xl={10}>
-          <DemoBox value={50}>Calendar Here</DemoBox>
-          <DemoBox value={50}>Map Here</DemoBox>
-        </Col>
-      </Row>
+        </div>
+        <div className="calendar-container">
+          <div className="site-calendar-demo-card">
+            <Calendar fullscreen={false} onPanelChange={onPanelChange} />
+          </div>
+        </div>
+      </div>
     </>
   );
 };
