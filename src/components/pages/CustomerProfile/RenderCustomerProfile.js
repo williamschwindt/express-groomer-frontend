@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Row, Modal, Button, Breadcrumb, Form, Input, Calendar } from 'antd';
-
-const DemoBox = props => (
-  <p className={`height-${props.value}`}>{props.children}</p>
-);
+import { Modal, Button, Form, Input, Calendar } from 'antd';
+import { EditOutlined } from '@ant-design/icons';
 
 export const RenderCustomerProfile = props => {
   const [profileInfo, setProfileInfo] = useState({});
@@ -184,14 +181,6 @@ export const RenderCustomerProfile = props => {
           </Form.Item>
         </form>
       </Modal>
-      <Breadcrumb style={{ margin: '16px 0', marginBottom: '24px' }}>
-        <Breadcrumb.Item
-          onClick={props.showProfileModal}
-          style={{ cursor: 'pointer' }}
-        >
-          Edit profile
-        </Breadcrumb.Item>
-      </Breadcrumb>
       <div
         className="profile-home-container"
         justify="space-around"
@@ -218,6 +207,12 @@ export const RenderCustomerProfile = props => {
               >
                 Contact info
               </span>
+              <div
+                className="profile-edit-icon"
+                onClick={props.showProfileModal}
+              >
+                <EditOutlined />
+              </div>
             </div>
           </div>
           <div className="profile-about">

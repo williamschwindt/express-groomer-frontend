@@ -9,7 +9,7 @@ import {
 } from '@ant-design/icons';
 
 import SearchForm from '../search/SearchForm';
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Content, Sider } = Layout;
 
 export const RenderCustomerDashboard = props => {
   return (
