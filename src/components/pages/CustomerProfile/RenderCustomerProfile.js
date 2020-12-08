@@ -1,41 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Modal, Button, Form, Input, Calendar } from 'antd';
 import { EditOutlined } from '@ant-design/icons';
 
 const { TextArea } = Input;
 
 export const RenderCustomerProfile = props => {
-  const [profileInfo, setProfileInfo] = useState({});
-  const [message, setMessage] = useState('');
-
-  const handleChange = e => {
-    setProfileInfo({
-      ...profileInfo,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const validateForm = () => {
-    for (let input in profileInfo) {
-      if (input !== 'photo_url') {
-        let value = profileInfo[input];
-        value = value.replace(/^\s+/, '').replace(/\s+$/, '');
-        if (value === '') {
-          return false;
-        }
-      }
-    }
-    return true;
-  };
-
-  const handleSubmit = () => {
-    if (validateForm()) {
-      props.updateProfile(profileInfo);
-    } else {
-      setMessage('This field is required');
-    }
-  };
-
   const onPanelChange = (value, mode) => {
     console.log(value, mode);
   };
@@ -46,7 +15,7 @@ export const RenderCustomerProfile = props => {
       props.handleAboutModalClose();
     }
     if (props.status === 'failure') {
-      setMessage(props.error);
+      props.setMessage(props.error);
     }
   }, [props.customer, props.error, props.status]);
 
@@ -75,12 +44,16 @@ export const RenderCustomerProfile = props => {
           <p
             style={{ display: 'inline', marginRight: '20%', color: '#ec3944' }}
           >
-            {message}
+            {props.message}
           </p>,
           <Button key="back" onClick={props.handleProfileModalClose}>
             Close
           </Button>,
-          <Button key="submit" type="primary" onClick={handleSubmit}>
+          <Button
+            key="submit"
+            type="primary"
+            onClick={() => props.updateProfile(props.profileInfo)}
+          >
             Update
           </Button>,
         ]}
@@ -94,7 +67,7 @@ export const RenderCustomerProfile = props => {
             <Input
               className="edit-profile-input"
               name="name"
-              onChange={handleChange}
+              onChange={props.handleChange}
               placeholder={props.customer.name}
             />
           </Form.Item>
@@ -106,7 +79,7 @@ export const RenderCustomerProfile = props => {
             <Input
               className="edit-profile-input"
               name="lastname"
-              onChange={handleChange}
+              onChange={props.handleChange}
               placeholder={props.customer.lastname}
             />
           </Form.Item>
@@ -118,7 +91,7 @@ export const RenderCustomerProfile = props => {
             <Input
               className="edit-profile-input"
               name="address"
-              onChange={handleChange}
+              onChange={props.handleChange}
               placeholder={props.customer.address}
             />
           </Form.Item>
@@ -126,7 +99,7 @@ export const RenderCustomerProfile = props => {
             <Input
               className="edit-profile-input"
               name="zip"
-              onChange={handleChange}
+              onChange={props.handleChange}
               placeholder={props.customer.zip}
             />
           </Form.Item>
@@ -134,7 +107,7 @@ export const RenderCustomerProfile = props => {
             <Input
               className="edit-profile-input"
               name="city"
-              onChange={handleChange}
+              onChange={props.handleChange}
               placeholder={props.customer.city}
             />
           </Form.Item>
@@ -142,7 +115,7 @@ export const RenderCustomerProfile = props => {
             <Input
               className="edit-profile-input"
               name="state"
-              onChange={handleChange}
+              onChange={props.handleChange}
               placeholder={props.customer.state}
             />
           </Form.Item>
@@ -154,7 +127,7 @@ export const RenderCustomerProfile = props => {
             <Input
               className="edit-profile-input"
               name="country"
-              onChange={handleChange}
+              onChange={props.handleChange}
               placeholder={props.customer.country}
             />
           </Form.Item>
@@ -166,7 +139,7 @@ export const RenderCustomerProfile = props => {
             <Input
               className="edit-profile-input"
               name="phone"
-              onChange={handleChange}
+              onChange={props.handleChange}
               placeholder={props.customer.phone}
             />
           </Form.Item>
@@ -178,7 +151,7 @@ export const RenderCustomerProfile = props => {
             <Input
               className="edit-profile-input"
               name="photo_url"
-              onChange={handleChange}
+              onChange={props.handleChange}
               placeholder={props.customer.photo_url}
             />
           </Form.Item>
@@ -191,14 +164,19 @@ export const RenderCustomerProfile = props => {
         onCancel={props.handleAboutModalClose}
         footer={[
           <p
+            key="error"
             style={{ display: 'inline', marginRight: '20%', color: '#ec3944' }}
           >
-            {message}
+            {props.message}
           </p>,
           <Button key="back" onClick={props.handleAboutModalClose}>
             Close
           </Button>,
-          <Button key="submit" type="primary" onClick={handleSubmit}>
+          <Button
+            key="submit"
+            type="primary"
+            onClick={() => props.updateProfile(props.profileInfo)}
+          >
             Update
           </Button>,
         ]}
@@ -207,7 +185,7 @@ export const RenderCustomerProfile = props => {
           rows={4}
           name="description"
           defaultValue={props.customer.description}
-          onChange={handleChange}
+          onChange={props.handleChange}
         />
       </Modal>
       <div
