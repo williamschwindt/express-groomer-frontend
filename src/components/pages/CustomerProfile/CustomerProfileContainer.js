@@ -7,6 +7,10 @@ import { updateCustomer } from '../../../api/index';
 const CustomerProfileContainer = props => {
   const [contactModalVisible, setContactModalVisible] = useState(false);
   const [profileModalVisible, setProfileModalVisible] = useState(false);
+  const [aboutModalVisible, setAboutModalVisible] = useState(false);
+  const [profileInfo, setProfileInfo] = useState({});
+  const [message, setMessage] = useState('');
+
   const { getCustomerInfo } = props;
   const customerId = localStorage.getItem('customerId');
 
@@ -14,8 +18,32 @@ const CustomerProfileContainer = props => {
     getCustomerInfo(customerId);
   }, [getCustomerInfo, customerId]);
 
+  const handleChange = e => {
+    setProfileInfo({
+      ...profileInfo,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const validateForm = () => {
+    for (let input in profileInfo) {
+      if (input !== 'photo_url') {
+        let value = profileInfo[input];
+        value = value.replace(/^\s+/, '').replace(/\s+$/, '');
+        if (value === '') {
+          return false;
+        }
+      }
+    }
+    return true;
+  };
+
   const updateProfile = data => {
-    props.updateCustomer(data, customerId);
+    if (validateForm()) {
+      props.updateCustomer(data, customerId);
+    } else {
+      setMessage('This field is required');
+    }
   };
 
   const showContactModal = () => {
@@ -34,6 +62,14 @@ const CustomerProfileContainer = props => {
     setProfileModalVisible(false);
   };
 
+  const showAboutModal = () => {
+    setAboutModalVisible(true);
+  };
+
+  const handleAboutModalClose = () => {
+    setAboutModalVisible(false);
+  };
+
   if (props.customer && props.customer.hasOwnProperty('name')) {
     return (
       <RenderCustomerProfile
@@ -43,10 +79,19 @@ const CustomerProfileContainer = props => {
         profileModalVisible={profileModalVisible}
         showProfileModal={showProfileModal}
         handleProfileModalClose={handleProfileModalClose}
+        aboutModalVisible={aboutModalVisible}
+        showAboutModal={showAboutModal}
+        handleAboutModalClose={handleAboutModalClose}
         customer={props.customer}
         updateProfile={updateProfile}
         error={props.error}
         status={props.status}
+        profileInfo={profileInfo}
+        setProfileInfo={setProfileInfo}
+        message={message}
+        setMessage={setMessage}
+        handleChange={handleChange}
+        validateForm={validateForm}
       />
     );
   } else if (props.isFetching === true) {

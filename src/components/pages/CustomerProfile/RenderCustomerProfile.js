@@ -1,48 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import { Row, Col, Modal, Button, Breadcrumb, Form, Input } from 'antd';
+import React, { useEffect } from 'react';
+import { Modal, Button, Form, Input, Calendar } from 'antd';
+import { EditOutlined } from '@ant-design/icons';
 
-const DemoBox = props => (
-  <p className={`height-${props.value}`}>{props.children}</p>
-);
+const { TextArea } = Input;
 
 export const RenderCustomerProfile = props => {
-  const [profileInfo, setProfileInfo] = useState({});
-  const [message, setMessage] = useState('');
-
-  const handleChange = e => {
-    setProfileInfo({
-      ...profileInfo,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const validateForm = () => {
-    for (let input in profileInfo) {
-      if (input !== 'photo_url') {
-        let value = profileInfo[input];
-        value = value.replace(/^\s+/, '').replace(/\s+$/, '');
-        if (value === '') {
-          return false;
-        }
-      }
-    }
-    return true;
-  };
-
-  const handleSubmit = () => {
-    if (validateForm()) {
-      props.updateProfile(profileInfo);
-    } else {
-      setMessage('This field is required');
-    }
+  const onPanelChange = (value, mode) => {
+    console.log(value, mode);
   };
 
   useEffect(() => {
     if (props.status === 'success') {
       props.handleProfileModalClose();
+      props.handleAboutModalClose();
     }
     if (props.status === 'failure') {
-      setMessage(props.error);
+      props.setMessage(props.error);
     }
   }, [props.customer, props.error, props.status]);
 
@@ -71,134 +44,203 @@ export const RenderCustomerProfile = props => {
           <p
             style={{ display: 'inline', marginRight: '20%', color: '#ec3944' }}
           >
-            {message}
+            {props.message}
           </p>,
           <Button key="back" onClick={props.handleProfileModalClose}>
             Close
           </Button>,
-          <Button key="submit" type="primary" onClick={handleSubmit}>
+          <Button
+            key="submit"
+            type="primary"
+            onClick={() => props.updateProfile(props.profileInfo)}
+          >
             Update
           </Button>,
         ]}
       >
-        <form>
-          <Form.Item label="First Name" name="name">
+        <form className="edit-profile-form">
+          <Form.Item
+            className="edit-profile-label"
+            label="First Name"
+            name="name"
+          >
             <Input
+              className="edit-profile-input"
               name="name"
-              onChange={handleChange}
+              onChange={props.handleChange}
               placeholder={props.customer.name}
             />
           </Form.Item>
-          <Form.Item label="Last Name" name="lastname">
+          <Form.Item
+            className="edit-profile-label"
+            label="Last Name"
+            name="lastname"
+          >
             <Input
+              className="edit-profile-input"
               name="lastname"
-              onChange={handleChange}
+              onChange={props.handleChange}
               placeholder={props.customer.lastname}
             />
           </Form.Item>
-          <Form.Item label="Address" name="address">
+          <Form.Item
+            className="edit-profile-label"
+            label="Address"
+            name="address"
+          >
             <Input
+              className="edit-profile-input"
               name="address"
-              onChange={handleChange}
+              onChange={props.handleChange}
               placeholder={props.customer.address}
             />
           </Form.Item>
-          <Form.Item label="Zip Code" name="zip">
+          <Form.Item className="edit-profile-label" label="Zip Code" name="zip">
             <Input
+              className="edit-profile-input"
               name="zip"
-              onChange={handleChange}
+              onChange={props.handleChange}
               placeholder={props.customer.zip}
             />
           </Form.Item>
-          <Form.Item label="City" name="city">
+          <Form.Item className="edit-profile-label" label="City" name="city">
             <Input
+              className="edit-profile-input"
               name="city"
-              onChange={handleChange}
+              onChange={props.handleChange}
               placeholder={props.customer.city}
             />
           </Form.Item>
-          <Form.Item label="State" name="state">
+          <Form.Item className="edit-profile-label" label="State" name="state">
             <Input
+              className="edit-profile-input"
               name="state"
-              onChange={handleChange}
+              onChange={props.handleChange}
               placeholder={props.customer.state}
             />
           </Form.Item>
-          <Form.Item label="Country" name="country">
+          <Form.Item
+            className="edit-profile-label"
+            label="Country"
+            name="country"
+          >
             <Input
+              className="edit-profile-input"
               name="country"
-              onChange={handleChange}
+              onChange={props.handleChange}
               placeholder={props.customer.country}
             />
           </Form.Item>
-          <Form.Item label="Phone Number" name="phone">
+          <Form.Item
+            className="edit-profile-label"
+            label="Phone Number"
+            name="phone"
+          >
             <Input
+              className="edit-profile-input"
               name="phone"
-              onChange={handleChange}
+              onChange={props.handleChange}
               placeholder={props.customer.phone}
             />
           </Form.Item>
-          <Form.Item label="Profile Picture" name="photo_url">
+          <Form.Item
+            className="edit-profile-label"
+            label="Profile Picture"
+            name="photo_url"
+          >
             <Input
+              className="edit-profile-input"
               name="photo_url"
-              onChange={handleChange}
+              onChange={props.handleChange}
               placeholder={props.customer.photo_url}
             />
           </Form.Item>
         </form>
       </Modal>
-      <Breadcrumb style={{ margin: '16px 0', marginBottom: '24px' }}>
-        <Breadcrumb.Item
-          onClick={props.showProfileModal}
-          style={{ cursor: 'pointer' }}
-        >
-          Edit profile
-        </Breadcrumb.Item>
-      </Breadcrumb>
-      <Row justify="space-around" align="middle">
-        <Col xs={2} sm={4} md={6} lg={8} xl={10}>
-          <DemoBox value={100}>
+      <Modal
+        title="About info"
+        visible={props.aboutModalVisible}
+        onOk={props.handleAboutModalClose}
+        onCancel={props.handleAboutModalClose}
+        footer={[
+          <p
+            key="error"
+            style={{ display: 'inline', marginRight: '20%', color: '#ec3944' }}
+          >
+            {props.message}
+          </p>,
+          <Button key="back" onClick={props.handleAboutModalClose}>
+            Close
+          </Button>,
+          <Button
+            key="submit"
+            type="primary"
+            onClick={() => props.updateProfile(props.profileInfo)}
+          >
+            Update
+          </Button>,
+        ]}
+      >
+        <TextArea
+          rows={4}
+          name="description"
+          defaultValue={props.customer.description}
+          onChange={props.handleChange}
+        />
+      </Modal>
+      <div
+        className="profile-home-container"
+        justify="space-around"
+        align="middle"
+      >
+        <div className="profile-container">
+          <div className="profile-image-container">
             <img
+              className="profile-picture"
               src={props.customer.photo_url}
               alt={props.customer.name}
-              style={{
-                borderRadius: '50%',
-                marginBottom: '10px',
-                width: '150px',
-                height: '150px',
-              }}
             />
-            <h2 style={{ textTransform: 'capitalize' }}>
+            <h2 className="profile-name">
               {props.customer.name} {props.customer.lastname}
             </h2>
-            <div style={{ display: 'flex' }}>
-              <p style={{ textTransform: 'capitalize' }}>
+            <div className="profile-info">
+              <p className="profile-info-p">
                 {props.customer.city}, {props.customer.state},{' '}
                 {props.customer.country}
               </p>
               <span
+                className="profile-info-span"
                 onClick={props.showContactModal}
-                style={{
-                  color: '#ec3944',
-                  marginLeft: '20px',
-                  cursor: 'pointer',
-                }}
               >
                 Contact info
               </span>
+              <div
+                className="profile-edit-icon"
+                onClick={props.showProfileModal}
+              >
+                <EditOutlined />
+              </div>
             </div>
-          </DemoBox>
-          <div className="customer-about-section">
-            <h2>About</h2>
-            <p>{props.customer.description}</p>
           </div>
-        </Col>
-        <Col xs={20} sm={16} md={12} lg={8} xl={4} />
-        <Col xs={2} sm={4} md={6} lg={8} xl={10}>
-          <DemoBox value={50}>Calendar Here</DemoBox>
-          <DemoBox value={50}>Map Here</DemoBox>
-        </Col>
-      </Row>
+          <div className="profile-about">
+            <div className="profile-about-heading">
+              <h2 className="profile-about-title">About</h2>
+              <div
+                className="profile-about-edit-icon"
+                onClick={props.showAboutModal}
+              >
+                <EditOutlined />
+              </div>
+            </div>
+            <p className="profile-about-p">{props.customer.description}</p>
+          </div>
+        </div>
+        <div className="calendar-container">
+          <div className="site-calendar-demo-card">
+            <Calendar fullscreen={false} onPanelChange={onPanelChange} />
+          </div>
+        </div>
+      </div>
     </>
   );
 };
