@@ -7,6 +7,7 @@ import { updateCustomer } from '../../../api/index';
 const CustomerProfileContainer = props => {
   const [contactModalVisible, setContactModalVisible] = useState(false);
   const [profileModalVisible, setProfileModalVisible] = useState(false);
+  const [aboutModalVisible, setAboutModalVisible] = useState(false);
   const { getCustomerInfo } = props;
   const customerId = localStorage.getItem('customerId');
 
@@ -34,6 +35,14 @@ const CustomerProfileContainer = props => {
     setProfileModalVisible(false);
   };
 
+  const showAboutModal = () => {
+    setAboutModalVisible(true);
+  };
+
+  const handleAboutModalClose = () => {
+    setAboutModalVisible(false);
+  };
+
   if (props.customer && props.customer.hasOwnProperty('name')) {
     return (
       <RenderCustomerProfile
@@ -43,6 +52,9 @@ const CustomerProfileContainer = props => {
         profileModalVisible={profileModalVisible}
         showProfileModal={showProfileModal}
         handleProfileModalClose={handleProfileModalClose}
+        aboutModalVisible={aboutModalVisible}
+        showAboutModal={showAboutModal}
+        handleAboutModalClose={handleAboutModalClose}
         customer={props.customer}
         updateProfile={updateProfile}
         error={props.error}

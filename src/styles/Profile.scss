@@ -58,13 +58,13 @@
                 }
 
                 .profile-info-span {
-                    color: #ec3944;
+                    color: #1890ff;
                     margin-left: 15px;
                     cursor: pointer;
                 }
 
                 .profile-edit-icon {
-                    margin-left: auto;
+                    margin-left: 10px;
 
                     &:hover {
                         cursor: pointer;
@@ -76,11 +76,28 @@
         .profile-about {
             margin-top: 40px;
 
-            .profile-about-title {
-                font-size: 2rem;
-                margin-bottom: 5px;
-                text-align: left;
-            }
+            .profile-about-heading {
+                display: flex;
+
+                .profile-about-title {
+                    font-size: 2rem;
+                    margin-bottom: 5px;
+                    text-align: left;
+                }
+
+                .profile-about-edit-icon {
+                    margin-left: 10px;
+                    font-size: 1.6rem;
+
+                    &:hover {
+                        cursor: pointer;
+                    }
+
+                    span {
+                        margin-top: 3px;
+                    }
+                }
+            }   
 
             .profile-about-p {
                 text-align: left;

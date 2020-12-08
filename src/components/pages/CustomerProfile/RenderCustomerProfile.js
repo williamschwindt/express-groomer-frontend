@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Modal, Button, Form, Input, Calendar } from 'antd';
 import { EditOutlined } from '@ant-design/icons';
 
+const { TextArea } = Input;
+
 export const RenderCustomerProfile = props => {
   const [profileInfo, setProfileInfo] = useState({});
   const [message, setMessage] = useState('');
@@ -41,6 +43,7 @@ export const RenderCustomerProfile = props => {
   useEffect(() => {
     if (props.status === 'success') {
       props.handleProfileModalClose();
+      props.handleAboutModalClose();
     }
     if (props.status === 'failure') {
       setMessage(props.error);
@@ -181,6 +184,32 @@ export const RenderCustomerProfile = props => {
           </Form.Item>
         </form>
       </Modal>
+      <Modal
+        title="About info"
+        visible={props.aboutModalVisible}
+        onOk={props.handleAboutModalClose}
+        onCancel={props.handleAboutModalClose}
+        footer={[
+          <p
+            style={{ display: 'inline', marginRight: '20%', color: '#ec3944' }}
+          >
+            {message}
+          </p>,
+          <Button key="back" onClick={props.handleAboutModalClose}>
+            Close
+          </Button>,
+          <Button key="submit" type="primary" onClick={handleSubmit}>
+            Update
+          </Button>,
+        ]}
+      >
+        <TextArea
+          rows={4}
+          name="description"
+          defaultValue={props.customer.description}
+          onChange={handleChange}
+        />
+      </Modal>
       <div
         className="profile-home-container"
         justify="space-around"
@@ -216,7 +245,15 @@ export const RenderCustomerProfile = props => {
             </div>
           </div>
           <div className="profile-about">
-            <h2 className="profile-about-title">About</h2>
+            <div className="profile-about-heading">
+              <h2 className="profile-about-title">About</h2>
+              <div
+                className="profile-about-edit-icon"
+                onClick={props.showAboutModal}
+              >
+                <EditOutlined />
+              </div>
+            </div>
             <p className="profile-about-p">{props.customer.description}</p>
           </div>
         </div>
